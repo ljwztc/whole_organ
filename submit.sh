@@ -17,4 +17,4 @@ conda activate cuda113
 #python 
 # python -m torch.distributed.launch --nproc_per_node=$GPUS --master_port=$PORT train_adv.py --snapshot-dir ./snapshots/$EXP --log-dir ./log/$EXP  --port $PORT
 # python -m torch.distributed.launch --nproc_per_node=2 --master_port=1105 train_so.py --snapshot-dir ./snapshots/try --log-dir ./log/try  --port 1105
-python -m torch.distributed.launch --nproc_per_node=2 --master_port=$PORT train_cond.py
+python -m torch.distributed.launch --nproc_per_node=2 --master_port=$PORT train.py --dist True

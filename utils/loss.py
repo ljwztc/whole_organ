@@ -39,24 +39,30 @@ class DiceLoss(nn.Module):
         self.num_classes = num_classes
         self.dice = BinaryDiceLoss(**self.kwargs)
 
-    def forward(self, predict, target):
+    def forward(self, predict, target, name, TEMPLATE):
         
         total_loss = []
         predict = F.sigmoid(predict)
 
-        for i in range(self.num_classes):
-            if i != self.ignore_index:
-                dice_loss = self.dice(predict[:, i], target[:, i])
-                if self.weight is not None:
-                    assert self.weight.shape[0] == self.num_classes, \
-                        'Expect weight shape [{}], get[{}]'.format(self.num_classes, self.weight.shape[0])
-                    dice_loss *= self.weights[i]
-                total_loss.append(dice_loss)
+        total_loss = []
+        B = predict.shape[0]
 
+        for b in range(B):
+            dataset_index = int(name[b][0:2])
+            if dataset_index == 10:
+                template_key = name[b][0:2] + '_' + name[b][17:19]
+            else:
+                template_key = name[b][0:2]
+            organ_list = TEMPLATE[template_key]
+            for organ in organ_list:
+                dice_loss = self.dice(predict[b, organ-1], target[b, organ-1])
+                total_loss.append(dice_loss)
+            
         total_loss = torch.stack(total_loss)
-        total_loss = total_loss[total_loss==total_loss]
 
         return total_loss.sum()/total_loss.shape[0]
+
+        
 
 class Multi_BCELoss(nn.Module):
     def __init__(self, ignore_index=None, num_classes=3, **kwargs):
@@ -64,21 +70,26 @@ class Multi_BCELoss(nn.Module):
         self.kwargs = kwargs
         self.num_classes = num_classes
         self.ignore_index = ignore_index
-        self.criterion = nn.BCEWithLogitsLoss(reduction='none')
+        self.criterion = nn.BCEWithLogitsLoss()
 
-    def forward(self, predict, target):
+    def forward(self, predict, target, name, TEMPLATE):
         assert predict.shape == target.shape, 'predict & target shape do not match'
 
         total_loss = []
-        for i in range(self.num_classes):
-            if i != self.ignore_index:
-                ce_loss = self.criterion(predict[:, i], target[:, i])
-                ce_loss = torch.mean(ce_loss, dim=[1,2,3])
+        B = predict.shape[0]
 
-                ce_loss_avg = ce_loss[target[:, i, 0, 0, 0] != -1].sum() / ce_loss[target[:, i, 0, 0, 0] != -1].shape[0]
-                total_loss.append(ce_loss_avg)
+        for b in range(B):
+            dataset_index = int(name[b][0:2])
+            if dataset_index == 10:
+                template_key = name[b][0:2] + '_' + name[b][17:19]
+            else:
+                template_key = name[b][0:2]
+            organ_list = TEMPLATE[template_key]
+            for organ in organ_list:
+                ce_loss = self.criterion(predict[b, organ-1], target[b, organ-1])
+                total_loss.append(ce_loss)
         total_loss = torch.stack(total_loss)
-        # print(total_loss)
-        total_loss = total_loss[total_loss == total_loss]
-        # print(total_loss)
+
+        # print(name, total_loss, total_loss.sum()/total_loss.shape[0])
+
         return total_loss.sum()/total_loss.shape[0]

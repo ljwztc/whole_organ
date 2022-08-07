@@ -8,12 +8,155 @@ import torch.utils.checkpoint as checkpoint
 from torch.nn import LayerNorm
 
 from monai.networks.blocks import MLPBlock as Mlp
-from monai.networks.blocks import PatchEmbed, UnetOutBlock, UnetrBasicBlock, UnetrUpBlock
+from monai.networks.blocks import PatchEmbed, UnetOutBlock, UnetrBasicBlock
 from monai.networks.layers import DropPath, trunc_normal_
 from monai.utils import ensure_tuple_rep, optional_import
+from monai.networks.blocks.dynunet_block import UnetBasicBlock, UnetResBlock, get_conv_layer
 
 rearrange, _ = optional_import("einops", name="rearrange")
 
+class PreNorm(nn.Module):
+    def __init__(self, dim, fn):
+        super().__init__()
+        self.norm = nn.LayerNorm(dim)
+        self.fn = fn
+    def forward(self, x, **kwargs):
+        return self.fn(self.norm(x), **kwargs)
+
+class FeedForward(nn.Module):
+    def __init__(self, dim, hidden_dim, dropout = 0.):
+        super().__init__()
+        self.net = nn.Sequential(
+            nn.Linear(dim, hidden_dim),
+            nn.GELU(),
+            nn.Dropout(dropout),
+            nn.Linear(hidden_dim, dim),
+            nn.Dropout(dropout)
+        )
+    def forward(self, x):
+        return self.net(x)
+
+class Attention(nn.Module):
+    def __init__(self, dim, heads = 8, dim_head = 64, dropout = 0.):
+        super().__init__()
+        inner_dim = dim_head *  heads
+        project_out = not (heads == 1 and dim_head == dim)
+
+        self.heads = heads
+        self.scale = dim_head ** -0.5
+
+        self.attend = nn.Softmax(dim = -1)
+        self.dropout = nn.Dropout(dropout)
+
+        self.to_qkv = nn.Linear(dim, inner_dim * 3, bias = False)
+
+        self.to_out = nn.Sequential(
+            nn.Linear(inner_dim, dim),
+            nn.Dropout(dropout)
+        ) if project_out else nn.Identity()
+
+    def forward(self, x):
+        qkv = self.to_qkv(x).chunk(3, dim = -1)
+        q, k, v = map(lambda t: rearrange(t, 'b n (h d) -> b h n d', h = self.heads), qkv)
+
+        dots = torch.matmul(q, k.transpose(-1, -2)) * self.scale
+
+        attn = self.attend(dots)
+        attn = self.dropout(attn)
+
+        out = torch.matmul(attn, v)
+        out = rearrange(out, 'b h n d -> b n (h d)')
+        return self.to_out(out)
+
+
+class UnetrUpBlock(nn.Module):
+    """
+    An upsampling module that can be used for UNETR: "Hatamizadeh et al.,
+    UNETR: Transformers for 3D Medical Image Segmentation <https://arxiv.org/abs/2103.10504>"
+    """
+
+    def __init__(
+        self,
+        spatial_dims: int,
+        in_channels: int,
+        out_channels: int,
+        kernel_size: Union[Sequence[int], int],
+        upsample_kernel_size: Union[Sequence[int], int],
+        norm_name: Union[Tuple, str],
+        res_block: bool = False,
+    ) -> None:
+        """
+        Args:
+            spatial_dims: number of spatial dimensions.
+            in_channels: number of input channels.
+            out_channels: number of output channels.
+            kernel_size: convolution kernel size.
+            upsample_kernel_size: convolution kernel size for transposed convolution layers.
+            norm_name: feature normalization type and arguments.
+            res_block: bool argument to determine if residual block is used.
+
+        """
+
+        super().__init__()
+        upsample_stride = upsample_kernel_size
+        self.transp_conv = get_conv_layer(
+            spatial_dims,
+            in_channels,
+            out_channels,
+            kernel_size=upsample_kernel_size,
+            stride=upsample_stride,
+            conv_only=True,
+            is_transposed=True,
+        )
+
+        if res_block:
+            self.conv_block = UnetResBlock(
+                spatial_dims,
+                out_channels + out_channels,
+                out_channels,
+                kernel_size=kernel_size,
+                stride=1,
+                norm_name=norm_name,
+            )
+        else:
+            self.conv_block = UnetBasicBlock(  # type: ignore
+                spatial_dims,
+                out_channels + out_channels,
+                out_channels,
+                kernel_size=kernel_size,
+                stride=1,
+                norm_name=norm_name,
+            )
+        
+        self.class_att = nn.ModuleList([])
+        self.class_att.append(nn.ModuleList([
+            PreNorm(out_channels, Attention(out_channels, heads = 8, dim_head = 32, dropout = 0.1)),
+            PreNorm(out_channels, FeedForward(out_channels, out_channels // 2, dropout = 0.1))
+        ]))
+
+        self.class_embedding = nn.Linear(in_channels, out_channels, bias = False)
+
+
+    def forward(self, inp, skip, class_token):
+        # number of channels for skip should equals to out_channels
+        out = self.transp_conv(inp)
+        out = torch.cat((out, skip), dim=1)
+        out = self.conv_block(out)
+
+        ## for class_token
+        class_token = self.class_embedding(class_token)
+        b, c, w, h, d = out.shape
+        out = rearrange(out, 'b c w h d -> b (w h d) c')
+        _, n_token, _  = class_token.shape
+        _, n_out, _ = out.shape
+        print(out.shape, class_token.shape)
+        x = torch.cat([out, class_token], dim=1)
+        for attn, ff in self.class_att:
+            x = attn(x) + x
+            x = ff(x) + x
+        out, class_token = torch.split(x, [n_out, n_token], dim=1)
+        out = rearrange(out, 'b (w h d) c -> b c w h d', w=w, h=h, d=d)
+        return out, class_token
 
 class SwinUNETR(nn.Module):
     """
@@ -233,9 +376,9 @@ class SwinUNETR(nn.Module):
         bias_nums.append(1)
         self.weight_nums = weight_nums
         self.bias_nums = bias_nums
-        self.controller = nn.Conv3d(256+256, sum(weight_nums+bias_nums), kernel_size=1, stride=1, padding=0)
+        self.controller = nn.Conv3d(48+256, sum(weight_nums+bias_nums), kernel_size=1, stride=1, padding=0)
 
-        self.organ_embedding = nn.Embedding(out_channels, 256)
+        self.organ_embedding = nn.Embedding(out_channels, 768)
         self.class_num = out_channels
 
     def load_from(self, weights):
@@ -337,6 +480,7 @@ class SwinUNETR(nn.Module):
         return x
 
     def forward(self, x_in):
+        b = x_in.shape[0]
         # print(x_in.shape, task_id.shape)
         hidden_states_out = self.swinViT(x_in, self.normalize)
         enc0 = self.encoder1(x_in)
@@ -348,11 +492,13 @@ class SwinUNETR(nn.Module):
         # torch.Size([6, 1, 64, 64, 64]) torch.Size([6, 48, 64, 64, 64]) torch.Size([6, 48, 32, 32, 32]) 
         # torch.Size([6, 96, 16, 16, 16]) torch.Size([6, 192, 8,8, 8]) torch.Size([6, 768, 2, 2, 2])
 
-        dec3 = self.decoder5(dec4, hidden_states_out[3])
-        dec2 = self.decoder4(dec3, enc3)
-        dec1 = self.decoder3(dec2, enc2)
-        dec0 = self.decoder2(dec1, enc1)
-        out = self.decoder1(dec0, enc0)
+        class_token = self.organ_embedding.weight.unsqueeze(0).repeat(b,1,1)
+
+        dec3, class_token = self.decoder5(dec4, hidden_states_out[3], class_token)
+        dec2, class_token = self.decoder4(dec3, enc3, class_token)
+        dec1, class_token = self.decoder3(dec2, enc2, class_token)
+        dec0, class_token = self.decoder2(dec1, enc1, class_token)
+        out, class_token = self.decoder1(dec0, enc0, class_token)
         # print(dec3.shape, dec2.shape, dec1.shape, dec0.shape, out.shape)
         # torch.Size([6, 384, 4, 4, 4]) torch.Size([6, 192, 8, 8, 8]) torch.Size([6, 96, 16, 16, 16]) 
         # torch.Size([6, 48, 32, 32, 32]) torch.Size([6, 48, 64, 64, 64])
@@ -366,7 +512,7 @@ class SwinUNETR(nn.Module):
         task_encoding = self.organ_embedding.weight.unsqueeze(2).unsqueeze(2).unsqueeze(2)
         # task_encoding torch.Size([31, 256, 1, 1, 1])
         x_feat = self.GAP(dec4)
-        b = x_feat.shape[0]
+        
         logits_array = []
         for i in range(b):
             x_cond = torch.cat([x_feat[i].unsqueeze(0).repeat(self.class_num,1,1,1,1), task_encoding], 1)
