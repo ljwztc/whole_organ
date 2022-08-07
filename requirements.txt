@@ -1,5 +1,5 @@
 connected-components-3d
 h5py
-monai==0.9.0
+monai
 torch==1.11.0
 tqdm
