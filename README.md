@@ -4,7 +4,7 @@
 3. ```python label_transfer.py```
 
 ## Train
-```python -m torch.distributed.launch --nproc_per_node=2 --master_port=1234 train.py --dist True```
+```python -m torch.distributed.launch --nproc_per_node=2 --master_port=1234 train.py --dist True --data_root_path /mnt/medical_data/PublicAbdominalData/```
 
 ## Test
 ```python eval.py --resume ./out/epoch_330.pth```
