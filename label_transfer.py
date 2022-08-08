@@ -26,17 +26,19 @@ import sys
 import tempfile
 import threading
 import time
-import warnings
 from copy import copy, deepcopy
 import cc3d
 import argparse
 import os
 import h5py
+import warnings
+warnings.filterwarnings("ignore")
 
 import numpy as np
 import torch
 from typing import IO, TYPE_CHECKING, Any, Callable, Dict, Hashable, List, Mapping, Optional, Sequence, Tuple, Union
 
+torch.multiprocessing.set_sharing_strategy('file_system')
 
 from monai.data import DataLoader, Dataset, list_data_collate, DistributedSampler
 from monai.config import DtypeLike, KeysCollection
