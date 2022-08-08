@@ -153,7 +153,7 @@ def main():
     parser.add_argument('--data_root_path', default='/home/jliu288/data/whole_organ/', help='data root path')
     parser.add_argument('--data_txt_path', default='./dataset/whole_oragn/', help='data txt path')
     parser.add_argument('--batch_size', default=1, help='batch size')
-    parser.add_argument('--num_workers', default=8, help='workers numebr for DataLoader')
+    parser.add_argument('--num_workers', default=8, type=int, help='workers numebr for DataLoader')
     parser.add_argument('--a_min', default=-175, type=float, help='a_min in ScaleIntensityRanged')
     parser.add_argument('--a_max', default=250, type=float, help='a_max in ScaleIntensityRanged')
     parser.add_argument('--b_min', default=0.0, type=float, help='b_min in ScaleIntensityRanged')
