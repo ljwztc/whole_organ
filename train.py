@@ -8,6 +8,9 @@ import os
 import argparse
 import time
 
+import warnings
+warnings.filterwarnings("ignore")
+
 import torch.distributed as dist
 from torch.nn.parallel import DistributedDataParallel
 
