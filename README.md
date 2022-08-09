@@ -11,7 +11,11 @@ pip install 'monai[all]'
 ```
 
 ## Train
-```python -m torch.distributed.launch --nproc_per_node=2 --master_port=1234 train.py --dist True --data_root_path /mnt/medical_data/PublicAbdominalData/```
+```
+CUDA_VISIBLE_DEVICES=0,1 python -m torch.distributed.launch --nproc_per_node=2 --master_port=1234 train.py --dist True --data_root_path /mnt/medical_data/PublicAbdominalData/ --num_workers 8
+```
 
 ## Test
-```python eval.py --resume ./out/epoch_330.pth```
+```
+python eval.py --resume ./out/epoch_330.pth
+```
