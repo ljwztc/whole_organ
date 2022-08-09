@@ -87,20 +87,6 @@ def process(args):
     model.load_state_dict(store_dict)
     print('Use pretrained weights')
 
-    if args.resume:
-        checkpoint = torch.load(args.resume)
-        if args.dist:
-            model.load_state_dict(checkpoint)
-        else:
-            store_dict = model.state_dict()
-            for key in checkpoint.keys():
-                store_dict['.'.join(key.split('.')[1:])] = checkpoint[key]
-            model.load_state_dict(store_dict)
-        # model.load_state_dict(checkpoint['net'])
-        # optimizer.load_state_dict(checkpoint['optimizer'])
-        # args.epoch = checkpoint['epoch']
-        print('success resume from ', args.resume)
-
     model.to(args.device)
     model.train()
     if args.dist:
@@ -111,6 +97,21 @@ def process(args):
     loss_seg_DICE = loss.DiceLoss(num_classes=NUM_CLASS).to(args.device)
     loss_seg_CE = loss.Multi_BCELoss(num_classes=NUM_CLASS).to(args.device)
     optimizer = torch.optim.AdamW(model.parameters(), lr=args.lr, weight_decay=args.weight_decay)
+
+    if args.resume:
+        checkpoint = torch.load(args.resume)
+        if args.dist:
+            model.load_state_dict(checkpoint['net'])
+        else:
+            store_dict = model.state_dict()
+            model_dict = checkpoint['net']
+            for key in model_dict.keys():
+                store_dict['.'.join(key.split('.')[1:])] = model_dict[key]
+            model.load_state_dict(store_dict)
+        optimizer.load_state_dict(checkpoint['optimizer'])
+        args.epoch = checkpoint['epoch']
+        
+        print('success resume from ', args.resume)
 
     torch.backends.cudnn.benchmark = True
 
@@ -167,7 +168,7 @@ def main():
     parser.add_argument('--roi_x', default=96, type=int, help='roi size in x direction')
     parser.add_argument('--roi_y', default=96, type=int, help='roi size in y direction')
     parser.add_argument('--roi_z', default=96, type=int, help='roi size in z direction')
-    parser.add_argument('--num_samples', default=2, type=int, help='sample number in each ct')
+    parser.add_argument('--num_samples', default=1, type=int, help='sample number in each ct')
 
     args = parser.parse_args()
 
@@ -176,4 +177,4 @@ def main():
 if __name__ == "__main__":
     main()
 
-# python -m torch.distributed.launch --nproc_per_node=2 --master_port=1234 train_cond.py --dist True
+# python -m torch.distributed.launch --nproc_per_node=2 --master_port=1234 train.py --dist True
