@@ -2,3 +2,4 @@ pretrained_weights/*.pth
 pretrained_weights/*.pt
 __pycache__
 out
+*.out
