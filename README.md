@@ -9,6 +9,7 @@
 pip install -r requirements.txt
 pip install 'monai[all]'
 ```
+Check README in pretrained_weights
 
 ## Train
 ```
