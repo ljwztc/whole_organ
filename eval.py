@@ -40,7 +40,8 @@ def validation(model, ValLoader, args):
             # print(pred_sigmoid.shape, label.shape)
             # pred_sigmoid = predict_sliding([model], image.numpy(), [128, 128, 128], NUM_CLASS, task_id)
 
-        
+        # TODO: save prediction to a file at /out/epoch_xxx/predict/case_name.npy
+        # TODO: save label to a file at /out/epoch_xxx/label/case_name.npy
         
         B = pred_sigmoid.shape[0]
         for b in range(B):
@@ -62,6 +63,8 @@ def validation(model, ValLoader, args):
             dice = dice_list[key][0][organ-1] / dice_list[key][1][organ-1]
             content += '%s: %.4f, '%(ORGAN_NAME[organ-1], dice)
         print(content)
+        
+        # TODO: save content at /out/epoch_xxx/result.npy
 
 
 
