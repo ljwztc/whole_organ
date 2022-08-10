@@ -173,7 +173,7 @@ def main():
     parser.add_argument('--num_samples', default=1, type=int, help='sample number in each ct')
 
     args = parser.parse_args()
-    logging.basicConfig(filename='out/'+args.log_name+'.txt', level=logging.INFO)
+    
     process(args=args)
 
 if __name__ == "__main__":
