@@ -29,10 +29,10 @@ def validation(model, ValLoader, args):
     dice_list = {}
     for key in TEMPLATE.keys():
         dice_list[key] = np.zeros((2, NUM_CLASS)) # 1st row for dice, 2nd row for count
-    for index, batch in enumerate(ValLoader):
+    for index, batch in enumerate(tqdm(ValLoader)):
         # print('%d processd' % (index))
         image, label, name = batch["image"].cuda(), batch["post_label"], batch["name"]
-        print(label.shape)
+        # print(label.shape)
         with torch.no_grad():
             # with torch.autocast(device_type="cuda", dtype=torch.float16):
             pred = sliding_window_inference(image, (args.roi_x, args.roi_y, args.roi_z), 1, model)
