@@ -18,5 +18,5 @@ CUDA_VISIBLE_DEVICES=0,1,4,5,6,7 python -W ignore -m torch.distributed.launch --
 
 ## Test
 ```
-python eval.py --resume ./out/epoch_330.pth
+CUDA_VISIBLE_DEVICES=7 python -W ignore eval.py --resume ./out/epoch_61.pth --data_root_path /mnt/medical_data/PublicAbdominalData/
 ```
