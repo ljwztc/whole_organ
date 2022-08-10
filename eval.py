@@ -79,16 +79,16 @@ def main():
                         help='The path of pretrain model')
 
     ## hyperparameter
-    parser.add_argument('--max_epoch', default=1000, help='Number of training epoches')
-    parser.add_argument('--store_num', default=10, help='Store model how often')
-    parser.add_argument('--lr', default=1e-4, help='Learning rate')
-    parser.add_argument('--weight_decay', default=1e-5, help='Weight Decay')
+    parser.add_argument('--max_epoch', default=1000, type=int, help='Number of training epoches')
+    parser.add_argument('--store_num', default=10, type=int, help='Store model how often')
+    parser.add_argument('--lr', default=1e-4, type=float, help='Learning rate')
+    parser.add_argument('--weight_decay', default=1e-5, type=float, help='Weight Decay')
     ## dataset
     parser.add_argument('--dataset_list', nargs='+', default=['organ_plus', 'organ_plusplus', 'single_organ']) # 'organ_plusplus', 'organ_plus', 'single_organ', 'mri'
     parser.add_argument('--data_root_path', default='/home/jliu288/data/whole_organ/', help='data root path')
     parser.add_argument('--data_txt_path', default='./dataset/whole_oragn/', help='data txt path')
-    parser.add_argument('--batch_size', default=1, help='batch size')
-    parser.add_argument('--num_workers', default=8, help='workers numebr for DataLoader')
+    parser.add_argument('--batch_size', default=1, type=int, help='batch size')
+    parser.add_argument('--num_workers', default=8, type=int, help='workers numebr for DataLoader')
     parser.add_argument('--a_min', default=-175, type=float, help='a_min in ScaleIntensityRanged')
     parser.add_argument('--a_max', default=250, type=float, help='a_max in ScaleIntensityRanged')
     parser.add_argument('--b_min', default=0.0, type=float, help='b_min in ScaleIntensityRanged')
@@ -105,14 +105,14 @@ def main():
 
     # prepare the 3D model
     model = SwinUNETR(img_size=(args.roi_x, args.roi_y, args.roi_z),
-                    in_channels=1,
-                    out_channels=NUM_CLASS,
-                    feature_size=48,
-                    drop_rate=0.0,
-                    attn_drop_rate=0.0,
-                    dropout_path_rate=0.0,
-                    use_checkpoint=False,
-                    )
+                      in_channels=1,
+                      out_channels=NUM_CLASS,
+                      feature_size=48,
+                      drop_rate=0.0,
+                      attn_drop_rate=0.0,
+                      dropout_path_rate=0.0,
+                      use_checkpoint=False,
+                     )
     
     #Load pre-trained weights
     store_dict = model.state_dict()
