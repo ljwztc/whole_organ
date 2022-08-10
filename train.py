@@ -155,7 +155,7 @@ def main():
     parser.add_argument('--lr', default=1e-4, help='Learning rate')
     parser.add_argument('--weight_decay', default=1e-5, help='Weight Decay')
     ## dataset
-    parser.add_argument('--dataset_list', nargs='+', default=['organ_plus', 'organ_plusplus', 'single_organ']) # 'organ_plusplus', 'organ_plus', 'single_organ', 'mri'
+    parser.add_argument('--dataset_list', nargs='+', default=['whole_organ']) # 'organ_plusplus', 'organ_plus', 'single_organ', 'mri'
     parser.add_argument('--data_root_path', default='/home/jliu288/data/whole_organ/', help='data root path')
     parser.add_argument('--data_txt_path', default='./dataset/whole_oragn/', help='data txt path')
     parser.add_argument('--batch_size', default=1, help='batch size')
