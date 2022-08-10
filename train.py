@@ -143,6 +143,8 @@ def main():
     parser.add_argument("--local_rank", type=int)
     parser.add_argument("--device")
     parser.add_argument("--epoch", default=0)
+    ## logging
+    parser.add_argument('--log_name', default='whole_organ', help='The path resume from checkpoint')
     ## model load
     parser.add_argument('--resume', default=None, help='The path resume from checkpoint')
     parser.add_argument('--pretrain', default='./pretrained_weights/swin_unetr.base_5000ep_f48_lr2e-4_pretrained.pt', 
@@ -171,7 +173,7 @@ def main():
     parser.add_argument('--num_samples', default=1, type=int, help='sample number in each ct')
 
     args = parser.parse_args()
-
+    logging.basicConfig(filename='out/'+args.log_name+'.txt', level=logging.INFO)
     process(args=args)
 
 if __name__ == "__main__":

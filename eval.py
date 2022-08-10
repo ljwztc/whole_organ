@@ -31,7 +31,7 @@ def validation(model, ValLoader, args):
         dice_list[key] = np.zeros((2, NUM_CLASS)) # 1st row for dice, 2nd row for count
     for index, batch in enumerate(ValLoader):
         # print('%d processd' % (index))
-        image, label, name = batch["image"].cuda(), batch["post_label"].cuda(), batch["name"]
+        image, label, name = batch["image"].cuda(), batch["post_label"], batch["name"]
         print(label.shape)
         with torch.no_grad():
             # with torch.autocast(device_type="cuda", dtype=torch.float16):
@@ -51,7 +51,7 @@ def validation(model, ValLoader, args):
                 template_key = name[b][0:2]
             organ_list = TEMPLATE[template_key]
             for organ in organ_list:
-                dice_organ = dice_score(pred_sigmoid[b,organ-1,:,:,:], label[b,organ-1,:,:,:])
+                dice_organ = dice_score(pred_sigmoid[b,organ-1,:,:,:], label[b,organ-1,:,:,:].cuda())
                 dice_list[template_key][0][organ-1] += dice_organ.item()
                 dice_list[template_key][1][organ-1] += 1
         
