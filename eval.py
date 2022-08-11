@@ -25,6 +25,11 @@ NUM_CLASS = 31
 
 
 def validation(model, ValLoader, args):
+    save_dir = 'out/' + args.resume.split('/')[-1].split('.')[0]
+    if not os.path.isdir(save_dir):
+        os.mkdir(save_dir)
+        os.mkdir(save_dir+'/predict')
+        os.mkdir(save_dir+'/label')
     model.eval()
     dice_list = {}
     for key in TEMPLATE.keys():
@@ -38,8 +43,9 @@ def validation(model, ValLoader, args):
             pred = sliding_window_inference(image, (args.roi_x, args.roi_y, args.roi_z), 1, model)
             pred_sigmoid = F.sigmoid(pred)
             # print(pred_sigmoid.shape, label.shape)
-            # pred_sigmoid = predict_sliding([model], image.numpy(), [128, 128, 128], NUM_CLASS, task_id)
 
+        np.save(save_dir + '/predict/' + name[0].split('/')[0] + name[0].split('/')[-1] + '.npy', pred_sigmoid.cpu().numpy())
+        np.save(save_dir + '/label/' + name[0].split('/')[0] + name[0].split('/')[-1] + '.npy', label.numpy())
         # TODO: save prediction to a file at /out/epoch_xxx/predict/case_name.npy
         # TODO: save label to a file at /out/epoch_xxx/label/case_name.npy
         
@@ -55,16 +61,22 @@ def validation(model, ValLoader, args):
                 dice_organ = dice_score(pred_sigmoid[b,organ-1,:,:,:], label[b,organ-1,:,:,:].cuda())
                 dice_list[template_key][0][organ-1] += dice_organ.item()
                 dice_list[template_key][1][organ-1] += 1
-        
-    for key in TEMPLATE.keys():
-        organ_list = TEMPLATE[key]
-        content = 'Task%s| '%(key)
-        for organ in organ_list:
-            dice = dice_list[key][0][organ-1] / dice_list[key][1][organ-1]
-            content += '%s: %.4f, '%(ORGAN_NAME[organ-1], dice)
-        print(content)
-        
-        # TODO: save content at /out/epoch_xxx/result.npy
+    
+    with open(save_dir + '/result.txt', 'w') as f:
+        for key in TEMPLATE.keys():
+            organ_list = TEMPLATE[key]
+            content = 'Task%s| '%(key)
+            for organ in organ_list:
+                dice = dice_list[key][0][organ-1] / dice_list[key][1][organ-1]
+                content += '%s: %.4f, '%(ORGAN_NAME[organ-1], dice)
+            print(content)
+            f.write(content)
+            f.write('\n')
+    
+    np.save(save_dir + '/result.npy', dice_list)
+    # load
+    # dice_list = np.load(/out/epoch_xxx/result.npy, allow_pickle=True)
+    # TODO: save content at /out/epoch_xxx/result.npy
 
 
 
