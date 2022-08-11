@@ -13,6 +13,7 @@ warnings.filterwarnings("ignore")
 
 import torch.distributed as dist
 from torch.nn.parallel import DistributedDataParallel
+from tensorboardX import SummaryWriter
 
 from monai.losses import DiceCELoss
 from monai.inferers import sliding_window_inference
@@ -24,6 +25,7 @@ from model.SwinUNETR_partial import SwinUNETR
 from dataset.dataloader import get_loader
 from utils import loss
 from utils.utils import dice_score, check_data, generate_label, TEMPLATE
+from optimizers.lr_scheduler import LinearWarmupCosineAnnealingLR
 
 
 torch.multiprocessing.set_sharing_strategy('file_system')
@@ -32,7 +34,8 @@ NUM_CLASS = 31
 
 def train(args, train_loader, model, optimizer, loss_seg_DICE, loss_seg_CE):
     model.train()
-    eval_num = 30
+    loss_bce_ave = 0
+    loss_dice_ave = 0
     epoch_iterator = tqdm(
         train_loader, desc="Training (X / X Steps) (loss=X.X)", dynamic_ncols=True
     )
@@ -55,7 +58,12 @@ def train(args, train_loader, model, optimizer, loss_seg_DICE, loss_seg_CE):
             "Epoch=%d: Training (%d / %d Steps) (dice_loss=%2.5f, bce_loss=%2.5f)" % (
                 args.epoch, step, len(train_loader), term_seg_Dice.item(), term_seg_BCE.item())
         )
+        loss_bce_ave += term_seg_BCE.item()
+        loss_dice_ave += term_seg_Dice.item()
         torch.cuda.empty_cache()
+    print('Epoch=%d: ave_dice_loss=%2.5f, ave_bce_loss=%2.5f' % (args.epoch, loss_dice_ave/len(epoch_iterator), loss_bce_ave/len(epoch_iterator)))
+    
+    return loss_dice_ave/len(epoch_iterator), loss_bce_ave/len(epoch_iterator)
 
 def process(args):
     rank = 0
@@ -98,6 +106,8 @@ def process(args):
     loss_seg_CE = loss.Multi_BCELoss(num_classes=NUM_CLASS).to(args.device)
     optimizer = torch.optim.AdamW(model.parameters(), lr=args.lr, weight_decay=args.weight_decay)
 
+    scheduler = LinearWarmupCosineAnnealingLR(optimizer, warmup_epochs=args.warmup_epoch, max_epochs=args.max_epoch)
+
     if args.resume:
         checkpoint = torch.load(args.resume)
         if args.dist:
@@ -110,6 +120,7 @@ def process(args):
             model.load_state_dict(store_dict)
         optimizer.load_state_dict(checkpoint['optimizer'])
         args.epoch = checkpoint['epoch']
+        scheduler.load_state_dict(checkpoint['scheduler'])
         
         print('success resume from ', args.resume)
 
@@ -117,15 +128,27 @@ def process(args):
 
     train_loader, train_sampler, _ = get_loader(args)
 
+    if dist.get_rank() == 0:
+        writer = SummaryWriter(log_dir='out/' + args.log_name)
+        print('Writing Tensorboard logs to ', 'out/' + args.log_name)
+
     while args.epoch < args.max_epoch:
         if args.dist:
             dist.barrier()
             train_sampler.set_epoch(args.epoch)
-        train(args, train_loader, model, optimizer, loss_seg_DICE, loss_seg_CE)
-        if (args.epoch % args.store_num == 0 and args.epoch != 0) and dist.get_rank() == 0:
+        scheduler.step()
+
+        loss_dice, loss_bce = train(args, train_loader, model, optimizer, loss_seg_DICE, loss_seg_CE)
+        if dist.get_rank() == 0:
+            writer.add_scalar('train_dice_loss', loss_dice, args.epoch)
+            writer.add_scalar('train_bce_loss', loss_bce, args.epoch)
+            writer.add_scalar('lr', scheduler.get_lr(), args.epoch)
+
+        if (args.epoch % args.store_num == 0) and dist.get_rank() == 0:
             checkpoint = {
                 "net": model.state_dict(),
                 'optimizer':optimizer.state_dict(),
+                'scheduler': scheduler.state_dict(),
                 "epoch": args.epoch
             }
             if not os.path.isdir("out/"):
@@ -133,6 +156,7 @@ def process(args):
             torch.save(checkpoint, 'out/' + 'epoch_' + str(args.epoch) + '.pth')
             print('save model success')
         args.epoch += 1
+
     dist.destroy_process_group()
 
 def main():
@@ -150,8 +174,9 @@ def main():
     parser.add_argument('--pretrain', default='./pretrained_weights/swin_unetr.base_5000ep_f48_lr2e-4_pretrained.pt', 
                         help='The path of pretrain model')
     ## hyperparameter
-    parser.add_argument('--max_epoch', default=1000, help='Number of training epoches')
+    parser.add_argument('--max_epoch', default=5000, help='Number of training epoches')
     parser.add_argument('--store_num', default=10, help='Store model how often')
+    parser.add_argument('--warmup_epoch', default=50, help='number of warmup epochs')
     parser.add_argument('--lr', default=1e-4, help='Learning rate')
     parser.add_argument('--weight_decay', default=1e-5, help='Weight Decay')
     ## dataset
