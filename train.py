@@ -174,10 +174,10 @@ def main():
     parser.add_argument('--pretrain', default='./pretrained_weights/swin_unetr.base_5000ep_f48_lr2e-4_pretrained.pt', 
                         help='The path of pretrain model')
     ## hyperparameter
-    parser.add_argument('--max_epoch', default=5000, help='Number of training epoches')
-    parser.add_argument('--store_num', default=10, help='Store model how often')
-    parser.add_argument('--warmup_epoch', default=50, help='number of warmup epochs')
-    parser.add_argument('--lr', default=1e-4, help='Learning rate')
+    parser.add_argument('--max_epoch', default=5000, type=int, help='Number of training epoches')
+    parser.add_argument('--store_num', default=10, type=int, help='Store model how often')
+    parser.add_argument('--warmup_epoch', default=50, type=int, help='number of warmup epochs')
+    parser.add_argument('--lr', default=1e-4, type=float, help='Learning rate')
     parser.add_argument('--weight_decay', default=1e-5, help='Weight Decay')
     ## dataset
     parser.add_argument('--dataset_list', nargs='+', default=['whole_organ']) # 'organ_plusplus', 'organ_plus', 'single_organ', 'mri'
