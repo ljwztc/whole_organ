@@ -126,7 +126,7 @@ class ToTemplatelabel(Transform):
         # data_count=dict(zip(unique,count))
         # print(data_count)
         if tumor:
-            new_lbl[new_lbl == totemplate[1]] = totemplate[0]
+            new_lbl[new_lbl == totemplate[-1]] = totemplate[0]
         return new_lbl
 
 class ToTemplatelabeld(MapTransform):
@@ -149,7 +149,7 @@ class ToTemplatelabeld(MapTransform):
             template_key = d['name'][0:2] + '_' + d['name'][17:19]
         else:
             template_key = d['name'][0:2]
-        if template_key in ['04', '05', '10_03', '10_07', '10_08']:
+        if template_key in ['04', '05', '10_03', '10_07', '10_08', '14']:
             TUMOR = True
         d['label'] = self.totemplate(d['label'], TEMPLATE[template_key], tumor=TUMOR)
         return d
@@ -238,6 +238,12 @@ def generate_label(input_lbl, num_classes, name, TEMPLATE, raw_lbl):
         # for tumor case
         if template_key in ['04', '05', '10_03', '10_07', '10_08']:
             result[b, organ_list[1] - 1] = (raw_lbl[b][0] == 2)
+        if template_key in ['14']:
+            tumor_lbl = torch.zeros(raw_lbl.shape)
+            tumor_lbl[raw_lbl == 3] = 1
+            tumor_lbl[raw_lbl == 4] = 1
+            tumor_lbl[raw_lbl == 5] = 1
+            result[b, organ_list[-1] - 1] = tumor_lbl[b][0]
     return result
 
 label_process = Compose(
