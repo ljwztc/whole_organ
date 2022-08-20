@@ -33,6 +33,7 @@ TEMPLATE={
     '09': [1,2,3,4,5,6,7,8,9,11,12,13,14,21,22],
     '12': [6,4,16,17,2,3],  
     '13': [6,2,3,1,11,8,9,7,4,5,12,13,25], 
+    '14': [11, 28],
     '10_03': [6, 27], # post process
     '10_06': [30],
     '10_07': [11, 28], # post process
@@ -50,8 +51,9 @@ ORGAN_NAME = ['Spleen', 'R Kidney', 'L Kidney', 'Gall Bladder', 'Esophagus',
 
 def dice_score(preds, labels):  # on GPU
     assert preds.shape[0] == labels.shape[0], "predict & target batch size don't match"
-    predict = preds.contiguous().view(preds.shape[0], -1)
-    target = labels.contiguous().view(labels.shape[0], -1)
+    preds = torch.where(preds > 0.5, 1., 0.)
+    predict = preds.contiguous().view(1, -1)
+    target = labels.contiguous().view(1, -1)
 
     num = torch.sum(torch.mul(predict, target), dim=1)
     den = torch.sum(predict, dim=1) + torch.sum(target, dim=1) + 1
@@ -60,31 +62,6 @@ def dice_score(preds, labels):  # on GPU
 
     return dice.mean()
 
-def generate_label(input_lbl, num_classes, name, TEMPLATE):
-    """
-    Convert class index tensor to one hot encoding tensor with -1 (ignored).
-    Args:
-         input: A tensor of shape [bs, 1, *]
-         num_classes: An int of number of class
-    Returns:
-        A tensor of shape [bs, num_classes, *]
-    """
-    shape = np.array(input_lbl.shape)
-    shape[1] = num_classes
-    shape = tuple(shape)
-    result = torch.zeros(shape).cuda()
-    input_lbl = input_lbl.long()
-    result = result.scatter_(1, input_lbl, 1)
-
-    ## assign -1 to ignored
-    B = result.shape[0]
-    for b in range(B):
-        organ_list = TEMPLATE[name[b][0:2]]
-        for i in range(num_classes):
-            if (i+1) not in organ_list:
-                result[b, i] = -1
-    # print(name)
-    return result
 
 def _get_gaussian(patch_size, sigma_scale=1. / 8) -> np.ndarray:
     tmp = np.zeros(patch_size)

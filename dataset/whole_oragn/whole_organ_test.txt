@@ -339,7 +339,6 @@
 04_LiTS/img/liver_26.nii.gz	04_LiTS/label/liver_26.nii.gz
 04_LiTS/img/liver_27.nii.gz	04_LiTS/label/liver_27.nii.gz
 04_LiTS/img/liver_40.nii.gz	04_LiTS/label/liver_40.nii.gz
-04_LiTS/img/liver_49.nii.gz	04_LiTS/label/liver_49.nii.gz
 04_LiTS/img/liver_60.nii.gz	04_LiTS/label/liver_60.nii.gz
 04_LiTS/img/liver_62.nii.gz	04_LiTS/label/liver_62.nii.gz
 04_LiTS/img/liver_65.nii.gz	04_LiTS/label/liver_65.nii.gz

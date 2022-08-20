@@ -43,11 +43,11 @@ def validation(model, ValLoader, args):
             pred = sliding_window_inference(image, (args.roi_x, args.roi_y, args.roi_z), 1, model)
             pred_sigmoid = F.sigmoid(pred)
             # print(pred_sigmoid.shape, label.shape)
-
-        np.save(save_dir + '/predict/' + name[0].split('/')[0] + name[0].split('/')[-1] + '.npy', pred_sigmoid.cpu().numpy())
-        np.save(save_dir + '/label/' + name[0].split('/')[0] + name[0].split('/')[-1] + '.npy', label.numpy())
-        # TODO: save prediction to a file at /out/epoch_xxx/predict/case_name.npy
-        # TODO: save label to a file at /out/epoch_xxx/label/case_name.npy
+        if args.store_result:
+            np.save(save_dir + '/predict/' + name[0].split('/')[0] + name[0].split('/')[-1] + '.npy', pred_sigmoid.cpu().numpy())
+            np.save(save_dir + '/label/' + name[0].split('/')[0] + name[0].split('/')[-1] + '.npy', label.numpy())
+            # TODO: save prediction to a file at /out/epoch_xxx/predict/case_name.npy
+            # TODO: save label to a file at /out/epoch_xxx/label/case_name.npy
         
         B = pred_sigmoid.shape[0]
         for b in range(B):
@@ -92,14 +92,13 @@ def main():
     parser.add_argument('--resume', default='./out/epoch_0.pth', help='The path resume from checkpoint')
     parser.add_argument('--pretrain', default='./pretrained_weights/swin_unetr.base_5000ep_f48_lr2e-4_pretrained.pt', 
                         help='The path of pretrain model')
-
     ## hyperparameter
     parser.add_argument('--max_epoch', default=1000, type=int, help='Number of training epoches')
     parser.add_argument('--store_num', default=10, type=int, help='Store model how often')
     parser.add_argument('--lr', default=1e-4, type=float, help='Learning rate')
     parser.add_argument('--weight_decay', default=1e-5, type=float, help='Weight Decay')
     ## dataset
-    parser.add_argument('--dataset_list', nargs='+', default=['organ_plus', 'organ_plusplus', 'single_organ']) # 'organ_plusplus', 'organ_plus', 'single_organ', 'mri'
+    parser.add_argument('--dataset_list', nargs='+', default=['whole_organ']) # 'organ_plusplus', 'organ_plus', 'single_organ', 'mri'
     parser.add_argument('--data_root_path', default='/home/jliu288/data/whole_organ/', help='data root path')
     parser.add_argument('--data_txt_path', default='./dataset/whole_oragn/', help='data txt path')
     parser.add_argument('--batch_size', default=1, type=int, help='batch size')
@@ -115,6 +114,7 @@ def main():
     parser.add_argument('--roi_y', default=96, type=int, help='roi size in y direction')
     parser.add_argument('--roi_z', default=96, type=int, help='roi size in z direction')
     parser.add_argument('--num_samples', default=1, type=int, help='sample number in each ct')
+    parser.add_argument('--store_result', action="store_true", default=False, help='whether save prediction result')
 
     args = parser.parse_args()
 
