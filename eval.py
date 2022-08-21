@@ -29,7 +29,6 @@ def validation(model, ValLoader, args):
     if not os.path.isdir(save_dir):
         os.mkdir(save_dir)
         os.mkdir(save_dir+'/predict')
-        os.mkdir(save_dir+'/label')
     model.eval()
     dice_list = {}
     for key in TEMPLATE.keys():
@@ -44,8 +43,13 @@ def validation(model, ValLoader, args):
             pred_sigmoid = F.sigmoid(pred)
             # print(pred_sigmoid.shape, label.shape)
         if args.store_result:
-            np.save(save_dir + '/predict/' + name[0].split('/')[0] + name[0].split('/')[-1] + '.npy', pred_sigmoid.cpu().numpy())
-            np.save(save_dir + '/label/' + name[0].split('/')[0] + name[0].split('/')[-1] + '.npy', label.numpy())
+            pred_sigmoid_store = (pred_sigmoid.cpu().numpy() * 256).astype(np.uint8)
+            label_store = (label.numpy()).astype(np.uint8)
+            np.savez_compressed(save_dir + '/predict/' + name[0].split('/')[0] + name[0].split('/')[-1], 
+                            pred=pred_sigmoid_store, label=label_store)
+            ## load data
+            # data = np.load('/out/epoch_80/predict/****.npz')
+            # pred, label = data['pred'], data['label']
             # TODO: save prediction to a file at /out/epoch_xxx/predict/case_name.npy
             # TODO: save label to a file at /out/epoch_xxx/label/case_name.npy
         
