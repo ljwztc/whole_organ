@@ -195,7 +195,7 @@ def main():
                         help='distributed training or not')
     parser.add_argument("--local_rank", type=int)
     parser.add_argument("--device")
-    parser.add_argument("--epoch", default=0)
+    parser.add_argument("--epoch", default=0, type=int)
     ## model load
     parser.add_argument('--resume', default=None, help='The path resume from checkpoint')
     parser.add_argument('--pretrain', default='./pretrained_weights/swin_unetr.base_5000ep_f48_lr2e-4_pretrained.pt', 
@@ -206,16 +206,16 @@ def main():
     parser.add_argument('--store_num', default=10, type=int, help='Store model how often')
     parser.add_argument('--warmup_epoch', default=100, type=int, help='number of warmup epochs')
     parser.add_argument('--lr', default=4e-4, type=float, help='Learning rate')
-    parser.add_argument('--weight_decay', default=1e-5, help='Weight Decay')
-    parser.add_argument('--pseudo_weight', default=0.3, help='pseudo label weight')
-    parser.add_argument('--consis_weight', default=0.3, help='pseudo label weight')
+    parser.add_argument('--weight_decay', default=1e-5, type=float, help='Weight Decay')
+    parser.add_argument('--pseudo_weight', default=0.3, type=float, help='pseudo label weight')
+    parser.add_argument('--consis_weight', default=0.3, type=float, help='pseudo label weight')
     
     ## dataset
     parser.add_argument('--dataset_list', nargs='+', default=['whole_organ']) # 'organ_plusplus', 'organ_plus', 'single_organ', 'mri'
     parser.add_argument('--data_root_path', default='/home/jliu288/data/whole_organ/', help='data root path')
     parser.add_argument('--data_txt_path', default='./dataset/whole_oragn/', help='data txt path')
-    parser.add_argument('--batch_size', default=1, help='batch size')
-    parser.add_argument('--num_workers', default=8, help='workers numebr for DataLoader')
+    parser.add_argument('--batch_size', default=1, type=int, help='batch size')
+    parser.add_argument('--num_workers', default=8, type=int, help='workers numebr for DataLoader')
     parser.add_argument('--a_min', default=-175, type=float, help='a_min in ScaleIntensityRanged')
     parser.add_argument('--a_max', default=250, type=float, help='a_max in ScaleIntensityRanged')
     parser.add_argument('--b_min', default=0.0, type=float, help='b_min in ScaleIntensityRanged')
