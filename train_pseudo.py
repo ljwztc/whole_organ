@@ -22,7 +22,8 @@ from monai.transforms.utils import allow_missing_keys_mode
 from model.SwinUNETR_partial import SwinUNETR
 from dataset.dataloader import get_loader
 from utils import loss
-from utils.utils import dice_score, check_data, generate_label, TEMPLATE
+from utils.utils import dice_score, check_data, TEMPLATE
+from optimizers.lr_scheduler import LinearWarmupCosineAnnealingLR
 
 
 torch.multiprocessing.set_sharing_strategy('file_system')
@@ -108,20 +109,6 @@ def process(args):
     model.load_state_dict(store_dict)
     print('Use pretrained weights')
 
-    if args.resume:
-        checkpoint = torch.load(args.resume)
-        if args.dist:
-            model.load_state_dict(checkpoint)
-        else:
-            store_dict = model.state_dict()
-            for key in checkpoint.keys():
-                store_dict['.'.join(key.split('.')[1:])] = checkpoint[key]
-            model.load_state_dict(store_dict)
-        # model.load_state_dict(checkpoint['net'])
-        # optimizer.load_state_dict(checkpoint['optimizer'])
-        # args.epoch = checkpoint['epoch']
-        print('success resume from ', args.resume)
-
     model.to(args.device)
     model.train()
     if args.dist:
@@ -137,7 +124,11 @@ def process(args):
                     dropout_path_rate=0.0,
                     use_checkpoint=False,
                     )
-    
+    teacher_model.to(args.device)
+    teacher_model.eval()
+    if args.dist:
+        teacher_model = DistributedDataParallel(teacher_model, device_ids=[args.device])
+
     checkpoint = torch.load(args.teacher_dir)['net']
     if args.dist:
         teacher_model.load_state_dict(checkpoint)
@@ -147,14 +138,30 @@ def process(args):
             store_dict['.'.join(key.split('.')[1:])] = checkpoint[key]
         teacher_model.load_state_dict(store_dict)
     print(f'load teacher model from {args.teacher_dir}')
-    teacher_model.to(args.device)
-    teacher_model.eval()
 
     # criterion and optimizer
     # loss_function = DiceCELoss(to_onehot_y=True, softmax=True)
     loss_seg_DICE = loss.DiceLoss(num_classes=NUM_CLASS).to(args.device)
     loss_seg_CE = loss.Multi_BCELoss(num_classes=NUM_CLASS).to(args.device)
     optimizer = torch.optim.AdamW(model.parameters(), lr=args.lr, weight_decay=args.weight_decay)
+
+    scheduler = LinearWarmupCosineAnnealingLR(optimizer, warmup_epochs=args.warmup_epoch, max_epochs=args.max_epoch)
+
+    if args.resume:
+        checkpoint = torch.load(args.resume)
+        if args.dist:
+            model.load_state_dict(checkpoint['net'])
+        else:
+            store_dict = model.state_dict()
+            model_dict = checkpoint['net']
+            for key in model_dict.keys():
+                store_dict['.'.join(key.split('.')[1:])] = model_dict[key]
+            model.load_state_dict(store_dict)
+        optimizer.load_state_dict(checkpoint['optimizer'])
+        args.epoch = checkpoint['epoch']
+        scheduler.load_state_dict(checkpoint['scheduler'])
+        
+        print('success resume from ', args.resume)
 
     torch.backends.cudnn.benchmark = True
 
@@ -164,16 +171,19 @@ def process(args):
         if args.dist:
             dist.barrier()
             train_sampler.set_epoch(args.epoch)
+        scheduler.step()
         train(args, train_loader, model, teacher_model, optimizer, loss_seg_DICE, loss_seg_CE)
-        if (args.epoch % args.store_num == 0 and args.epoch != 0) and dist.get_rank() == 0:
+
+        if (args.epoch % args.store_num == 0) and dist.get_rank() == 0:
             checkpoint = {
                 "net": model.state_dict(),
                 'optimizer':optimizer.state_dict(),
+                'scheduler': scheduler.state_dict(),
                 "epoch": args.epoch
             }
             if not os.path.isdir("out/"):
                 os.mkdir("out/")
-            torch.save(checkpoint, 'out/' + 'epoch_' + str(args.epoch) + '.pth')
+            torch.save(checkpoint, 'out/' + '2stage_epoch_' + str(args.epoch) + '.pth')
             print('save model success')
         args.epoch += 1
     dist.destroy_process_group()
@@ -190,17 +200,18 @@ def main():
     parser.add_argument('--resume', default=None, help='The path resume from checkpoint')
     parser.add_argument('--pretrain', default='./pretrained_weights/swin_unetr.base_5000ep_f48_lr2e-4_pretrained.pt', 
                         help='The path of pretrain model')
-    parser.add_argument('--teacher_dir', default='out/epoch_0.pth', help='The teacher model path')
+    parser.add_argument('--teacher_dir', default='out/epoch_80.pth', help='The teacher model path')
     ## hyperparameter
-    parser.add_argument('--max_epoch', default=1000, help='Number of training epoches')
-    parser.add_argument('--store_num', default=10, help='Store model how often')
-    parser.add_argument('--lr', default=1e-4, help='Learning rate')
-    parser.add_argument('--weight_decay', default=1e-5, help='Weight Decay') 
+    parser.add_argument('--max_epoch', default=4000, type=int, help='Number of training epoches')
+    parser.add_argument('--store_num', default=10, type=int, help='Store model how often')
+    parser.add_argument('--warmup_epoch', default=100, type=int, help='number of warmup epochs')
+    parser.add_argument('--lr', default=4e-4, type=float, help='Learning rate')
+    parser.add_argument('--weight_decay', default=1e-5, help='Weight Decay')
     parser.add_argument('--pseudo_weight', default=0.3, help='pseudo label weight')
     parser.add_argument('--consis_weight', default=0.3, help='pseudo label weight')
     
     ## dataset
-    parser.add_argument('--dataset_list', nargs='+', default=['organ_plus', 'organ_plusplus', 'single_organ']) # 'organ_plusplus', 'organ_plus', 'single_organ', 'mri'
+    parser.add_argument('--dataset_list', nargs='+', default=['whole_organ']) # 'organ_plusplus', 'organ_plus', 'single_organ', 'mri'
     parser.add_argument('--data_root_path', default='/home/jliu288/data/whole_organ/', help='data root path')
     parser.add_argument('--data_txt_path', default='./dataset/whole_oragn/', help='data txt path')
     parser.add_argument('--batch_size', default=1, help='batch size')
@@ -215,7 +226,7 @@ def main():
     parser.add_argument('--roi_x', default=96, type=int, help='roi size in x direction')
     parser.add_argument('--roi_y', default=96, type=int, help='roi size in y direction')
     parser.add_argument('--roi_z', default=96, type=int, help='roi size in z direction')
-    parser.add_argument('--num_samples', default=2, type=int, help='sample number in each ct')
+    parser.add_argument('--num_samples', default=1, type=int, help='sample number in each ct')
 
     args = parser.parse_args()
 
@@ -224,4 +235,4 @@ def main():
 if __name__ == "__main__":
     main()
 
-# python -m torch.distributed.launch --nproc_per_node=2 --master_port=1234 train_cond.py --dist True
+# python -m torch.distributed.launch --nproc_per_node=2 --master_port=1234 train_pseudo.py --dist True
