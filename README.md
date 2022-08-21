@@ -23,6 +23,11 @@ Check README in pretrained_weights
 CUDA_VISIBLE_DEVICES=0,1,4,5,6,7 python -W ignore -m torch.distributed.launch --nproc_per_node=6 --master_port=1234 train.py --dist True --data_root_path /mnt/medical_data/PublicAbdominalData/ --resume out/epoch_10.pth --num_workers 12 --num_samples 4
 ```
 
+## Train for pseudo_label
+```
+CUDA_VISIBLE_DEVICES=0,1,4,5,6,7 python -W ignore -m torch.distributed.launch --nproc_per_node=6 --master_port=1234 train_pseudo.py --dist True --data_root_path /mnt/medical_data/PublicAbdominalData/ --teacher_dir out/epoch_200.pth --num_workers 12 --num_samples 4
+```
+
 ## Test
 ```
 CUDA_VISIBLE_DEVICES=7 python -W ignore eval.py --resume ./out/epoch_61.pth --data_root_path /mnt/medical_data、PublicAbdominalData/ --store_result
