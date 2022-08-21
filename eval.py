@@ -50,8 +50,6 @@ def validation(model, ValLoader, args):
             ## load data
             # data = np.load('/out/epoch_80/predict/****.npz')
             # pred, label = data['pred'], data['label']
-            # TODO: save prediction to a file at /out/epoch_xxx/predict/case_name.npy
-            # TODO: save label to a file at /out/epoch_xxx/label/case_name.npy
         
         B = pred_sigmoid.shape[0]
         for b in range(B):
@@ -80,7 +78,7 @@ def validation(model, ValLoader, args):
     np.save(save_dir + '/result.npy', dice_list)
     # load
     # dice_list = np.load(/out/epoch_xxx/result.npy, allow_pickle=True)
-    # TODO: save content at /out/epoch_xxx/result.npy
+
 
 
 
