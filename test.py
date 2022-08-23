@@ -38,7 +38,7 @@ def validation(model, ValLoader, args):
         # print(label.shape)
         with torch.no_grad():
             # with torch.autocast(device_type="cuda", dtype=torch.float16):
-            pred = sliding_window_inference(image, (args.roi_x, args.roi_y, args.roi_z), 1, model)
+            pred = sliding_window_inference(image, (args.roi_x, args.roi_y, args.roi_z), 1, model, overlap=0.5, mode='gaussian')
             pred_sigmoid = F.sigmoid(pred)
             # print(pred_sigmoid.shape, label.shape)
         if args.store_result:
@@ -59,9 +59,10 @@ def validation(model, ValLoader, args):
                 template_key = name[b][0:2]
             organ_list = TEMPLATE[template_key]
             for organ in organ_list:
-                dice_organ = dice_score(pred_sigmoid[b,organ-1,:,:,:], label[b,organ-1,:,:,:].cuda())
-                dice_list[template_key][0][organ-1] += dice_organ.item()
-                dice_list[template_key][1][organ-1] += 1
+                if torch.sum(label[b,organ-1,:,:,:].cuda()) != 0:
+                    dice_organ = dice_score(pred_sigmoid[b,organ-1,:,:,:], label[b,organ-1,:,:,:].cuda())
+                    dice_list[template_key][0][organ-1] += dice_organ.item()
+                    dice_list[template_key][1][organ-1] += 1
     
     ave_organ_dice = np.zeros((2, NUM_CLASS))
     if args.local_rank == 0:
