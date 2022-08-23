@@ -165,7 +165,7 @@ def process(args):
 
     torch.backends.cudnn.benchmark = True
 
-    train_loader, train_sampler, _ = get_loader(args)
+    train_loader, train_sampler, val_loader, _ = get_loader(args)
 
     while args.epoch < args.max_epoch:
         if args.dist:

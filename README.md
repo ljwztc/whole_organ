@@ -35,5 +35,6 @@ CUDA_VISIBLE_DEVICES=7 python -W ignore eval.py --resume ./out/epoch_61.pth --da
 
 ## FQA
 
-1. How to add new datasets to the respository?
+Q1: How to add new datasets to the respository?  
+A1： 1. Add the corresponding trasnsfer template to `label_transfer.py` 2. Add the txt including relative path to `dataset/dataset_list` 3. Add the list of included organ to the template in `utils/utils.py`  
 2. 

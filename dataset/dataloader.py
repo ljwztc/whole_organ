@@ -209,6 +209,24 @@ def get_loader(args):
     train_loader = DataLoader(train_dataset, batch_size=args.batch_size, shuffle=(train_sampler is None), num_workers=args.num_workers, 
                                 collate_fn=list_data_collate, sampler=train_sampler)
     
+    val_img = []
+    val_lbl = []
+    val_post_lbl = []
+    val_name = []
+    for item in args.dataset_list:
+        for line in open(args.data_txt_path + item +'_val.txt'):
+            name = line.strip().split()[1].split('.')[0]
+            val_img.append(args.data_root_path + line.strip().split()[0])
+            val_lbl.append(args.data_root_path + line.strip().split()[1])
+            val_post_lbl.append(args.data_root_path + name.replace('label', 'post_label') + '.h5')
+            val_name.append(name)
+    data_dicts_val = [{'image': image, 'label': label, 'post_label': post_label, 'name': name}
+                for image, label, post_label, name in zip(val_img, val_lbl, val_post_lbl, val_name)]
+    print('val len {}'.format(len(data_dicts_val)))
+
+    val_dataset = Dataset(data=data_dicts_val, transform=val_transforms)
+    val_loader = DataLoader(val_dataset, batch_size=1, shuffle=False, num_workers=4, collate_fn=list_data_collate)
+    
     test_img = []
     test_lbl = []
     test_post_lbl = []
@@ -227,7 +245,7 @@ def get_loader(args):
     test_dataset = Dataset(data=data_dicts_test, transform=val_transforms)
     test_loader = DataLoader(test_dataset, batch_size=1, shuffle=False, num_workers=4, collate_fn=list_data_collate)
 
-    return train_loader, train_sampler, test_loader
+    return train_loader, train_sampler, val_loader, test_loader
 
 if __name__ == "__main__":
     train_loader, test_loader = partial_label_dataloader()

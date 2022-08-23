@@ -65,6 +65,55 @@ def train(args, train_loader, model, optimizer, loss_seg_DICE, loss_seg_CE):
     
     return loss_dice_ave/len(epoch_iterator), loss_bce_ave/len(epoch_iterator)
 
+def validation(model, ValLoader, args):
+    model.eval()
+    dice_list = {}
+    for key in TEMPLATE.keys():
+        dice_list[key] = np.zeros((2, NUM_CLASS)) # 1st row for dice, 2nd row for count
+    for index, batch in enumerate(tqdm(ValLoader)):
+        # print('%d processd' % (index))
+        image, label, name = batch["image"].cuda(), batch["post_label"], batch["name"]
+        with torch.no_grad():
+            pred = sliding_window_inference(image, (args.roi_x, args.roi_y, args.roi_z), 1, model)
+            pred_sigmoid = F.sigmoid(pred)
+        
+        B = pred_sigmoid.shape[0]
+        for b in range(B):
+            dataset_index = int(name[b][0:2])
+            if dataset_index == 10:
+                template_key = name[b][0:2] + '_' + name[b][17:19]
+            else:
+                template_key = name[b][0:2]
+            organ_list = TEMPLATE[template_key]
+            for organ in organ_list:
+                dice_organ = dice_score(pred_sigmoid[b,organ-1,:,:,:], label[b,organ-1,:,:,:].cuda())
+                dice_list[template_key][0][organ-1] += dice_organ.item()
+                dice_list[template_key][1][organ-1] += 1
+    
+    ave_organ_dice = np.zeros((2, NUM_CLASS))
+    if args.local_rank == 0:
+        with open('out/'+args.log_name+f'/val_{args.epoch}.txt', 'w') as f:
+            for key in TEMPLATE.keys():
+                organ_list = TEMPLATE[key]
+                content = 'Task%s| '%(key)
+                for organ in organ_list:
+                    dice = dice_list[key][0][organ-1] / dice_list[key][1][organ-1]
+                    content += '%s: %.4f, '%(ORGAN_NAME[organ-1], dice)
+                    ave_organ_dice[0][organ-1] += dice_list[key][0][organ-1]
+                    ave_organ_dice[1][organ-1] += dice_list[key][1][organ-1]
+                print(content)
+                f.write(content)
+                f.write('\n')
+            content = 'Average | '
+            for i in range(NUM_CLASS):
+                content += '%s: %.4f, '%(ORGAN_NAME[i], ave_organ_dice[0][organ-1] / ave_organ_dice[1][organ-1])
+            print(content)
+            f.write(content)
+            f.write('\n')
+            
+            
+
+
 def process(args):
     rank = 0
 
@@ -126,9 +175,9 @@ def process(args):
 
     torch.backends.cudnn.benchmark = True
 
-    train_loader, train_sampler, _ = get_loader(args)
+    train_loader, train_sampler, val_loader, _ = get_loader(args)
 
-    if dist.get_rank() == 0:
+    if rank == 0:
         writer = SummaryWriter(log_dir='out/' + args.log_name)
         print('Writing Tensorboard logs to ', 'out/' + args.log_name)
 
@@ -138,23 +187,28 @@ def process(args):
             train_sampler.set_epoch(args.epoch)
         scheduler.step()
 
+        validation(model, val_loader, args)
+
         loss_dice, loss_bce = train(args, train_loader, model, optimizer, loss_seg_DICE, loss_seg_CE)
-        if dist.get_rank() == 0:
+        if rank == 0:
             writer.add_scalar('train_dice_loss', loss_dice, args.epoch)
             writer.add_scalar('train_bce_loss', loss_bce, args.epoch)
             writer.add_scalar('lr', scheduler.get_lr(), args.epoch)
 
-        if (args.epoch % args.store_num == 0) and dist.get_rank() == 0:
-            checkpoint = {
-                "net": model.state_dict(),
-                'optimizer':optimizer.state_dict(),
-                'scheduler': scheduler.state_dict(),
-                "epoch": args.epoch
-            }
-            if not os.path.isdir("out/"):
-                os.mkdir("out/")
-            torch.save(checkpoint, 'out/' + 'epoch_' + str(args.epoch) + '.pth')
-            print('save model success')
+        if (args.epoch % args.store_num == 0 and args.epoch != 0):
+            validation(model, val_loader, args)
+            if rank == 0:
+                checkpoint = {
+                    "net": model.state_dict(),
+                    'optimizer':optimizer.state_dict(),
+                    'scheduler': scheduler.state_dict(),
+                    "epoch": args.epoch
+                }
+                if not os.path.isdir("out/"):
+                    os.mkdir("out/")
+                torch.save(checkpoint, 'out/' + 'epoch_' + str(args.epoch) + '.pth')
+                print('save model success')
+
         args.epoch += 1
 
     dist.destroy_process_group()
@@ -168,7 +222,7 @@ def main():
     parser.add_argument("--device")
     parser.add_argument("--epoch", default=0)
     ## logging
-    parser.add_argument('--log_name', default='whole_organ', help='The path resume from checkpoint')
+    parser.add_argument('--log_name', default='PAOT', help='The path resume from checkpoint')
     ## model load
     parser.add_argument('--resume', default=None, help='The path resume from checkpoint')
     parser.add_argument('--pretrain', default='./pretrained_weights/swin_unetr.base_5000ep_f48_lr2e-4_pretrained.pt', 
@@ -180,9 +234,9 @@ def main():
     parser.add_argument('--lr', default=4e-4, type=float, help='Learning rate')
     parser.add_argument('--weight_decay', default=1e-5, help='Weight Decay')
     ## dataset
-    parser.add_argument('--dataset_list', nargs='+', default=['whole_organ']) # 'organ_plusplus', 'organ_plus', 'single_organ', 'mri'
+    parser.add_argument('--dataset_list', nargs='+', default=['PAOT']) # 'PAOT', 'felix'
     parser.add_argument('--data_root_path', default='/home/jliu288/data/whole_organ/', help='data root path')
-    parser.add_argument('--data_txt_path', default='./dataset/whole_oragn/', help='data txt path')
+    parser.add_argument('--data_txt_path', default='./dataset/dataset_list/', help='data txt path')
     parser.add_argument('--batch_size', default=1, help='batch size')
     parser.add_argument('--num_workers', default=8, type=int, help='workers numebr for DataLoader')
     parser.add_argument('--a_min', default=-175, type=float, help='a_min in ScaleIntensityRanged')
