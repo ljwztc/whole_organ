@@ -47,8 +47,7 @@ from monai.utils.enums import TransformBackends
 from monai.config.type_definitions import NdarrayOrTensor
 
 ORGAN_DATASET_DIR = '/home/jliu288/data/whole_organ/'
-ORGAN_LIST = 'dataset/whole_oragn/whole_organ.txt'
-## 'dataset/whole_oragn/organ_plusplus.txt', 'dataset/whole_oragn/organ_plus.txt', 'dataset/whole_oragn/single_organ.txt'
+ORGAN_LIST = 'dataset/dataset_list/PAOT.txt'
 NUM_WORKER = 8
 
 TEMPLATE={
