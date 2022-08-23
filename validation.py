@@ -32,7 +32,7 @@ def validation(model, ValLoader, args, i):
     for index, batch in enumerate(tqdm(ValLoader)):
         # print('%d processd' % (index))
         image, label, name = batch["image"].cuda(), batch["post_label"], batch["name"]
-        print(name, label.shape)
+        # print(name, label.shape)
         with torch.no_grad():
             pred = sliding_window_inference(image, (args.roi_x, args.roi_y, args.roi_z), 1, model)
             pred_sigmoid = F.sigmoid(pred)
