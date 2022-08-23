@@ -73,6 +73,7 @@ def validation(model, ValLoader, args):
     for index, batch in enumerate(tqdm(ValLoader)):
         # print('%d processd' % (index))
         image, label, name = batch["image"].cuda(), batch["post_label"], batch["name"]
+        print(name, image.shape)
         with torch.no_grad():
             pred = sliding_window_inference(image, (args.roi_x, args.roi_y, args.roi_z), 1, model)
             pred_sigmoid = F.sigmoid(pred)
@@ -187,27 +188,23 @@ def process(args):
             train_sampler.set_epoch(args.epoch)
         scheduler.step()
 
-        validation(model, val_loader, args)
-
         loss_dice, loss_bce = train(args, train_loader, model, optimizer, loss_seg_DICE, loss_seg_CE)
         if rank == 0:
             writer.add_scalar('train_dice_loss', loss_dice, args.epoch)
             writer.add_scalar('train_bce_loss', loss_bce, args.epoch)
             writer.add_scalar('lr', scheduler.get_lr(), args.epoch)
 
-        if (args.epoch % args.store_num == 0 and args.epoch != 0):
-            validation(model, val_loader, args)
-            if rank == 0:
-                checkpoint = {
-                    "net": model.state_dict(),
-                    'optimizer':optimizer.state_dict(),
-                    'scheduler': scheduler.state_dict(),
-                    "epoch": args.epoch
-                }
-                if not os.path.isdir("out/"):
-                    os.mkdir("out/")
-                torch.save(checkpoint, 'out/' + 'epoch_' + str(args.epoch) + '.pth')
-                print('save model success')
+        if (args.epoch % args.store_num == 0 and args.epoch != 0) and rank == 0:
+            checkpoint = {
+                "net": model.state_dict(),
+                'optimizer':optimizer.state_dict(),
+                'scheduler': scheduler.state_dict(),
+                "epoch": args.epoch
+            }
+            if not os.path.isdir('out/' + args.log_name):
+                os.mkdir('out/' + args.log_name)
+            torch.save(checkpoint, 'out/' + args.log_name + '/epoch_' + str(args.epoch) + '.pth')
+            print('save model success')
 
         args.epoch += 1
 

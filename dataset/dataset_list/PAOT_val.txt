@@ -27,7 +27,6 @@
 05_KiTS/img/img0009.nii.gz	05_KiTS/label/label0009.nii.gz
 05_KiTS/img/img0014.nii.gz	05_KiTS/label/label0014.nii.gz
 05_KiTS/img/img0026.nii.gz	05_KiTS/label/label0026.nii.gz
-05_KiTS/img/img0028.nii.gz	05_KiTS/label/label0028.nii.gz
 05_KiTS/img/img0042.nii.gz	05_KiTS/label/label0042.nii.gz
 05_KiTS/img/img0057.nii.gz	05_KiTS/label/label0057.nii.gz
 05_KiTS/img/img0067.nii.gz	05_KiTS/label/label0067.nii.gz
@@ -58,10 +57,8 @@
 07_WORD/img/word_0030.nii.gz	07_WORD/label/word_0030.nii.gz
 07_WORD/img/word_0040.nii.gz	07_WORD/label/word_0040.nii.gz
 07_WORD/img/word_0061.nii.gz	07_WORD/label/word_0061.nii.gz
-07_WORD/img/word_0072.nii.gz	07_WORD/label/word_0072.nii.gz
 07_WORD/img/word_0075.nii.gz	07_WORD/label/word_0075.nii.gz
 07_WORD/img/word_0082.nii.gz	07_WORD/label/word_0082.nii.gz
-07_WORD/img/word_0102.nii.gz	07_WORD/label/word_0102.nii.gz
 07_WORD/img/word_0105.nii.gz	07_WORD/label/word_0105.nii.gz
 07_WORD/img/word_0107.nii.gz	07_WORD/label/word_0107.nii.gz
 07_WORD/img/word_0119.nii.gz	07_WORD/label/word_0119.nii.gz
@@ -78,7 +75,6 @@
 08_AbdomenCT-1K/img/Case_00042_0000.nii.gz	08_AbdomenCT-1K/label/Case_00042.nii.gz
 08_AbdomenCT-1K/img/Case_00045_0000.nii.gz	08_AbdomenCT-1K/label/Case_00045.nii.gz
 08_AbdomenCT-1K/img/Case_00047_0000.nii.gz	08_AbdomenCT-1K/label/Case_00047.nii.gz
-08_AbdomenCT-1K/img/Case_00052_0000.nii.gz	08_AbdomenCT-1K/label/Case_00052.nii.gz
 08_AbdomenCT-1K/img/Case_00072_0000.nii.gz	08_AbdomenCT-1K/label/Case_00072.nii.gz
 08_AbdomenCT-1K/img/Case_00073_0000.nii.gz	08_AbdomenCT-1K/label/Case_00073.nii.gz
 08_AbdomenCT-1K/img/Case_00078_0000.nii.gz	08_AbdomenCT-1K/label/Case_00078.nii.gz

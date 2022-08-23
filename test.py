@@ -25,10 +25,9 @@ NUM_CLASS = 31
 
 
 def validation(model, ValLoader, args):
-    save_dir = 'out/' + args.resume.split('/')[-1].split('.')[0]
+    save_dir = 'out/' + args.log_name + '/validation'
     if not os.path.isdir(save_dir):
         os.mkdir(save_dir)
-        os.mkdir(save_dir+'/predict')
     model.eval()
     dice_list = {}
     for key in TEMPLATE.keys():
@@ -64,13 +63,23 @@ def validation(model, ValLoader, args):
                 dice_list[template_key][0][organ-1] += dice_organ.item()
                 dice_list[template_key][1][organ-1] += 1
     
-    with open(save_dir + '/result.txt', 'w') as f:
-        for key in TEMPLATE.keys():
-            organ_list = TEMPLATE[key]
-            content = 'Task%s| '%(key)
-            for organ in organ_list:
-                dice = dice_list[key][0][organ-1] / dice_list[key][1][organ-1]
-                content += '%s: %.4f, '%(ORGAN_NAME[organ-1], dice)
+    ave_organ_dice = np.zeros((2, NUM_CLASS))
+    if args.local_rank == 0:
+        with open('out/'+args.log_name+f'/val_{args.epoch}.txt', 'w') as f:
+            for key in TEMPLATE.keys():
+                organ_list = TEMPLATE[key]
+                content = 'Task%s| '%(key)
+                for organ in organ_list:
+                    dice = dice_list[key][0][organ-1] / dice_list[key][1][organ-1]
+                    content += '%s: %.4f, '%(ORGAN_NAME[organ-1], dice)
+                    ave_organ_dice[0][organ-1] += dice_list[key][0][organ-1]
+                    ave_organ_dice[1][organ-1] += dice_list[key][1][organ-1]
+                print(content)
+                f.write(content)
+                f.write('\n')
+            content = 'Average | '
+            for i in range(NUM_CLASS):
+                content += '%s: %.4f, '%(ORGAN_NAME[i], ave_organ_dice[0][i] / ave_organ_dice[1][i])
             print(content)
             f.write(content)
             f.write('\n')
@@ -90,6 +99,8 @@ def main():
     parser.add_argument("--local_rank", type=int)
     parser.add_argument("--device")
     parser.add_argument("--epoch", default=0)
+    ## logging
+    parser.add_argument('--log_name', default='PAOT', help='The path resume from checkpoint')
     ## model load
     parser.add_argument('--resume', default='./out/epoch_0.pth', help='The path resume from checkpoint')
     parser.add_argument('--pretrain', default='./pretrained_weights/swin_unetr.base_5000ep_f48_lr2e-4_pretrained.pt', 
