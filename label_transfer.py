@@ -218,7 +218,7 @@ def generate_label(input_lbl, num_classes, name, TEMPLATE, raw_lbl):
         if dataset_index == 5:
             organ_list = [2,3,26]
         elif dataset_index == 7:
-            organ_list = [6,1,3,2,7,4,5,11,14,17,18,12,13,19,20,22,23]
+            organ_list = [6,1,3,2,7,4,5,11,14,18,19,12,13,20,21,23,24]
         elif dataset_index == 8:
             organ_list = [6, 2, 3, 1, 11]
         elif dataset_index == 12:
@@ -237,7 +237,7 @@ def generate_label(input_lbl, num_classes, name, TEMPLATE, raw_lbl):
         
         # for tumor case
         if template_key in ['04', '05', '10_03', '10_07', '10_08']:
-            result[b, organ_list[1] - 1] = (raw_lbl[b][0] == 2)
+            result[b, organ_list[-1] - 1] = (raw_lbl[b][0] == 2)
         if template_key in ['14']:
             tumor_lbl = torch.zeros(raw_lbl.shape)
             tumor_lbl[raw_lbl == 3] = 1
