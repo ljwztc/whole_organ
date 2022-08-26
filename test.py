@@ -42,7 +42,7 @@ def validation(model, ValLoader, args):
             pred_sigmoid = F.sigmoid(pred)
             # print(pred_sigmoid.shape, label.shape)
         if args.store_result:
-            pred_sigmoid_store = (pred_sigmoid.cpu().numpy() * 256).astype(np.uint8)
+            pred_sigmoid_store = (pred_sigmoid.cpu().numpy() * 255).astype(np.uint8)
             label_store = (label.numpy()).astype(np.uint8)
             np.savez_compressed(save_dir + '/predict/' + name[0].split('/')[0] + name[0].split('/')[-1], 
                             pred=pred_sigmoid_store, label=label_store)
