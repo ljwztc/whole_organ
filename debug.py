@@ -25,9 +25,10 @@ NUM_CLASS = 31
 
 
 def validation(model, ValLoader, args):
-    save_dir = 'out/' + args.log_name + '/validation'
+    save_dir = 'out/' + args.log_name + '/test'
     if not os.path.isdir(save_dir):
         os.mkdir(save_dir)
+        os.mkdir(save_dir+'/predict')
     model.eval()
     dice_list = {}
     for key in TEMPLATE.keys():
@@ -66,7 +67,7 @@ def validation(model, ValLoader, args):
     
     ave_organ_dice = np.zeros((2, NUM_CLASS))
 
-    with open('out/'+args.log_name+f'/val_{args.epoch}.txt', 'w') as f:
+    with open('out/'+args.log_name+f'/test_{args.epoch}.txt', 'w') as f:
         for key in TEMPLATE.keys():
             organ_list = TEMPLATE[key]
             content = 'Task%s| '%(key)
@@ -101,9 +102,9 @@ def main():
     parser.add_argument("--device")
     parser.add_argument("--epoch", default=0)
     ## logging
-    parser.add_argument('--log_name', default='PAOT', help='The path resume from checkpoint')
+    parser.add_argument('--log_name', default='whole_organ', help='The path resume from checkpoint')
     ## model load
-    parser.add_argument('--resume', default='./out/epoch_0.pth', help='The path resume from checkpoint')
+    parser.add_argument('--resume', default='./out/jhu_epoch_220.pth', help='The path resume from checkpoint')
     parser.add_argument('--pretrain', default='./pretrained_weights/swin_unetr.base_5000ep_f48_lr2e-4_pretrained.pt', 
                         help='The path of pretrain model')
     ## hyperparameter
@@ -112,9 +113,9 @@ def main():
     parser.add_argument('--lr', default=1e-4, type=float, help='Learning rate')
     parser.add_argument('--weight_decay', default=1e-5, type=float, help='Weight Decay')
     ## dataset
-    parser.add_argument('--dataset_list', nargs='+', default=['PAOT']) # 'PAOT', 'felix'
+    parser.add_argument('--dataset_list', nargs='+', default=['whole_organ']) # 'PAOT', 'felix'
     parser.add_argument('--data_root_path', default='/home/jliu288/data/whole_organ/', help='data root path')
-    parser.add_argument('--data_txt_path', default='./dataset/dataset_list/', help='data txt path')
+    parser.add_argument('--data_txt_path', default='./dataset/miscellany/', help='data txt path')
     parser.add_argument('--batch_size', default=1, type=int, help='batch size')
     parser.add_argument('--num_workers', default=8, type=int, help='workers numebr for DataLoader')
     parser.add_argument('--a_min', default=-175, type=float, help='a_min in ScaleIntensityRanged')

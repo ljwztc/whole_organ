@@ -303,6 +303,7 @@
 12_CT-ORG/img/volume-129.nii.gz	12_CT-ORG/label/labels-129.nii.gz
 12_CT-ORG/img/volume-13.nii.gz	12_CT-ORG/label/labels-13.nii.gz
 12_CT-ORG/img/volume-133.nii.gz	12_CT-ORG/label/labels-133.nii.gz
+12_CT-ORG/img/volume-20.nii.gz	12_CT-ORG/label/labels-20.nii.gz
 12_CT-ORG/img/volume-30.nii.gz	12_CT-ORG/label/labels-30.nii.gz
 12_CT-ORG/img/volume-32.nii.gz	12_CT-ORG/label/labels-32.nii.gz
 12_CT-ORG/img/volume-39.nii.gz	12_CT-ORG/label/labels-39.nii.gz
