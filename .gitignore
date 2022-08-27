@@ -3,4 +3,4 @@ pretrained_weights/*.pt
 __pycache__
 out
 *.out
-debug.py
+debug*
