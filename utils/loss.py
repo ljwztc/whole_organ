@@ -51,6 +51,11 @@ class DiceLoss(nn.Module):
             dataset_index = int(name[b][0:2])
             if dataset_index == 10:
                 template_key = name[b][0:2] + '_' + name[b][17:19]
+            elif dataset_index == 1:
+                if int(name[b][-2:]) >= 60:
+                    template_key = '01_2'
+                else:
+                    template_key = '01'
             else:
                 template_key = name[b][0:2]
             organ_list = TEMPLATE[template_key]
@@ -82,6 +87,11 @@ class Multi_BCELoss(nn.Module):
             dataset_index = int(name[b][0:2])
             if dataset_index == 10:
                 template_key = name[b][0:2] + '_' + name[b][17:19]
+            elif dataset_index == 1:
+                if int(name[b][-2:]) >= 60:
+                    template_key = '01_2'
+                else:
+                    template_key = '01'
             else:
                 template_key = name[b][0:2]
             organ_list = TEMPLATE[template_key]
