@@ -1,6 +1,13 @@
 # Partial-labeled Abdominal Organ and Tumor (PAOT)
 ## Installation
 
+#### ASU Agave
+```
+module load anaconda/py3
+conda create -n organ python=3.8
+source activate organ
+```
+
 ```
 git clone https://github.com/ljwztc/whole_organ.git
 cd whole_organ/
