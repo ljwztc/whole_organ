@@ -1,6 +1,13 @@
 # Partial-labeled Abdominal Organ and Tumor (PAOT)
 ## Installation
 
+#### ASU Agave
+```
+module load anaconda/py3
+conda create -n organ python=3.8
+source activate organ
+```
+
 ```
 git clone https://github.com/ljwztc/whole_organ.git
 cd whole_organ/
@@ -16,8 +23,6 @@ cd ../
 2. Modify the ORGAN_DATASET_DIR value in label_transfer.py (line 47) and NUM_WORKER (line 50)
 3. ```python -W ignore label_transfer.py```
 
-
-Check README in pretrained_weights
 
 ## Train
 ```
