@@ -28,6 +28,7 @@ def validation(model, ValLoader, args):
     save_dir = 'out/' + args.log_name + f'/test_{args.epoch}'
     if not os.path.isdir(save_dir):
         os.mkdir(save_dir)
+        os.mkdir(save_dir+'/predict')
     model.eval()
     dice_list = {}
     for key in TEMPLATE.keys():
@@ -83,8 +84,10 @@ def validation(model, ValLoader, args):
         for i in range(NUM_CLASS):
             content += '%s: %.4f, '%(ORGAN_NAME[i], ave_organ_dice[0][i] / ave_organ_dice[1][i])
         print(content)
-        print(np.mean(ave_organ_dice[0] / ave_organ_dice[1]))
         f.write(content)
+        f.write('\n')
+        print(np.mean(ave_organ_dice[0] / ave_organ_dice[1]))
+        f.write('%s: %.4f, '%('average', np.mean(ave_organ_dice[0] / ave_organ_dice[1])))
         f.write('\n')
         
     
@@ -106,7 +109,7 @@ def main():
     ## logging
     parser.add_argument('--log_name', default='PAOT', help='The path resume from checkpoint')
     ## model load
-    parser.add_argument('--resume', default='./out/jhu_epoch_220.pth', help='The path resume from checkpoint')
+    parser.add_argument('--resume', default='./out/PAOT/epoch_100.pth', help='The path resume from checkpoint')
     parser.add_argument('--pretrain', default='./pretrained_weights/swin_unetr.base_5000ep_f48_lr2e-4_pretrained.pt', 
                         help='The path of pretrain model')
     ## hyperparameter

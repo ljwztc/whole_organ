@@ -90,8 +90,8 @@ def main():
     ## logging
     parser.add_argument('--log_name', default='PAOT', help='The path resume from checkpoint')
     ## model load
-    parser.add_argument('--start_epoch', default=40, type=int, help='Number of start epoches')
-    parser.add_argument('--end_epoch', default=60, type=int, help='Number of end epoches')
+    parser.add_argument('--start_epoch', default=70, type=int, help='Number of start epoches')
+    parser.add_argument('--end_epoch', default=100, type=int, help='Number of end epoches')
     parser.add_argument('--epoch_interval', default=10, type=int, help='Number of start epoches')
 
     ## hyperparameter
