@@ -25,7 +25,7 @@ NUM_CLASS = 31
 
 
 def validation(model, ValLoader, args):
-    save_dir = 'out/' + args.log_name + '/validation'
+    save_dir = 'out/' + args.log_name + f'/test_{args.epoch}'
     if not os.path.isdir(save_dir):
         os.mkdir(save_dir)
     model.eval()
@@ -63,10 +63,11 @@ def validation(model, ValLoader, args):
                     dice_organ = dice_score(pred_sigmoid[b,organ-1,:,:,:], label[b,organ-1,:,:,:].cuda())
                     dice_list[template_key][0][organ-1] += dice_organ.item()
                     dice_list[template_key][1][organ-1] += 1
+        torch.cuda.empty_cache()
     
     ave_organ_dice = np.zeros((2, NUM_CLASS))
 
-    with open('out/'+args.log_name+f'/val_{args.epoch}.txt', 'w') as f:
+    with open('out/'+args.log_name+f'/test_{args.epoch}.txt', 'w') as f:
         for key in TEMPLATE.keys():
             organ_list = TEMPLATE[key]
             content = 'Task%s| '%(key)
@@ -82,8 +83,10 @@ def validation(model, ValLoader, args):
         for i in range(NUM_CLASS):
             content += '%s: %.4f, '%(ORGAN_NAME[i], ave_organ_dice[0][i] / ave_organ_dice[1][i])
         print(content)
+        print(np.mean(ave_organ_dice[0] / ave_organ_dice[1]))
         f.write(content)
         f.write('\n')
+        
     
     np.save(save_dir + '/result.npy', dice_list)
     # load
@@ -103,7 +106,7 @@ def main():
     ## logging
     parser.add_argument('--log_name', default='PAOT', help='The path resume from checkpoint')
     ## model load
-    parser.add_argument('--resume', default='./out/epoch_0.pth', help='The path resume from checkpoint')
+    parser.add_argument('--resume', default='./out/jhu_epoch_220.pth', help='The path resume from checkpoint')
     parser.add_argument('--pretrain', default='./pretrained_weights/swin_unetr.base_5000ep_f48_lr2e-4_pretrained.pt', 
                         help='The path of pretrain model')
     ## hyperparameter
@@ -145,7 +148,9 @@ def main():
     
     #Load pre-trained weights
     store_dict = model.state_dict()
-    load_dict = torch.load(args.resume)['net']
+    checkpoint = torch.load(args.resume)
+    load_dict = checkpoint['net']
+    args.epoch = checkpoint['epoch']
 
     for key, value in load_dict.items():
         name = '.'.join(key.split('.')[1:])

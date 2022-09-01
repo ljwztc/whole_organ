@@ -34,7 +34,7 @@ def validation(model, ValLoader, args, i):
         image, label, name = batch["image"].cuda(), batch["post_label"], batch["name"]
         # print(name, label.shape)
         with torch.no_grad():
-            pred = sliding_window_inference(image, (args.roi_x, args.roi_y, args.roi_z), 1, model, overlap=0.5, mode='gaussian')
+            pred = sliding_window_inference(image, (args.roi_x, args.roi_y, args.roi_z), 1, model, overlap=args.overlap, mode='gaussian')
             pred_sigmoid = F.sigmoid(pred)
         
         B = pred_sigmoid.shape[0]
@@ -50,6 +50,7 @@ def validation(model, ValLoader, args, i):
                     dice_organ = dice_score(pred_sigmoid[b,organ-1,:,:,:], label[b,organ-1,:,:,:].cuda())
                     dice_list[template_key][0][organ-1] += dice_organ.item()
                     dice_list[template_key][1][organ-1] += 1
+        torch.cuda.empty_cache()
     
     ave_organ_dice = np.zeros((2, NUM_CLASS))
 
@@ -89,8 +90,8 @@ def main():
     ## logging
     parser.add_argument('--log_name', default='PAOT', help='The path resume from checkpoint')
     ## model load
-    parser.add_argument('--start_epoch', default=70, type=int, help='Number of start epoches')
-    parser.add_argument('--end_epoch', default=80, type=int, help='Number of end epoches')
+    parser.add_argument('--start_epoch', default=40, type=int, help='Number of start epoches')
+    parser.add_argument('--end_epoch', default=60, type=int, help='Number of end epoches')
     parser.add_argument('--epoch_interval', default=10, type=int, help='Number of start epoches')
 
     ## hyperparameter
@@ -116,6 +117,7 @@ def main():
     parser.add_argument('--roi_z', default=96, type=int, help='roi size in z direction')
     parser.add_argument('--num_samples', default=1, type=int, help='sample number in each ct')
     parser.add_argument('--store_result', action="store_true", default=False, help='whether save prediction result')
+    parser.add_argument('--overlap', default=0.5, type=float, help='overlap for sliding_window_inference')
 
     args = parser.parse_args()
 
