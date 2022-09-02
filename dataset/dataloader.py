@@ -35,7 +35,7 @@ import numpy as np
 import torch
 from typing import IO, TYPE_CHECKING, Any, Callable, Dict, Hashable, List, Mapping, Optional, Sequence, Tuple, Union
 
-from monai.data import DataLoader, Dataset, list_data_collate, DistributedSampler
+from monai.data import DataLoader, Dataset, list_data_collate, DistributedSampler, CacheDataset
 
 from monai.config import DtypeLike, KeysCollection
 from monai.transforms.transform import Transform, MapTransform
@@ -204,7 +204,10 @@ def get_loader(args):
                 for image, label, post_label, name in zip(train_img, train_lbl, train_post_lbl, train_name)]
     print('train len {}'.format(len(data_dicts_train)))
 
-    train_dataset = Dataset(data=data_dicts_train, transform=train_transforms)
+    if args.cache_dataset:
+        train_dataset = CacheDataset(data=data_dicts_train, transform=train_transforms, cache_rate=args.cache_rate)
+    else:
+        train_dataset = Dataset(data=data_dicts_train, transform=train_transforms)
     train_sampler = DistributedSampler(dataset=train_dataset, even_divisible=True, shuffle=True) if args.dist else None
     train_loader = DataLoader(train_dataset, batch_size=args.batch_size, shuffle=(train_sampler is None), num_workers=args.num_workers, 
                                 collate_fn=list_data_collate, sampler=train_sampler)
@@ -224,7 +227,10 @@ def get_loader(args):
                 for image, label, post_label, name in zip(val_img, val_lbl, val_post_lbl, val_name)]
     print('val len {}'.format(len(data_dicts_val)))
 
-    val_dataset = Dataset(data=data_dicts_val, transform=val_transforms)
+    if args.cache_dataset:
+        val_dataset = CacheDataset(data=data_dicts_val, transform=val_transforms, cache_rate=args.cache_rate)
+    else:
+        val_dataset = Dataset(data=data_dicts_val, transform=train_transforms)
     val_loader = DataLoader(val_dataset, batch_size=1, shuffle=False, num_workers=4, collate_fn=list_data_collate)
     
     test_img = []
@@ -242,7 +248,10 @@ def get_loader(args):
                 for image, label, post_label, name in zip(test_img, test_lbl, test_post_lbl, test_name)]
     print('test len {}'.format(len(data_dicts_test)))
 
-    test_dataset = Dataset(data=data_dicts_test, transform=val_transforms)
+    if args.cache_dataset:
+        test_dataset = CacheDataset(data=data_dicts_test, transform=val_transforms, cache_rate=args.cache_rate)
+    else:
+        test_dataset = Dataset(data=data_dicts_test, transform=train_transforms)
     test_loader = DataLoader(test_dataset, batch_size=1, shuffle=False, num_workers=4, collate_fn=list_data_collate)
 
     return train_loader, train_sampler, val_loader, test_loader

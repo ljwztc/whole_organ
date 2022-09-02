@@ -90,8 +90,8 @@ def main():
     ## logging
     parser.add_argument('--log_name', default='PAOT', help='The path resume from checkpoint')
     ## model load
-    parser.add_argument('--start_epoch', default=70, type=int, help='Number of start epoches')
-    parser.add_argument('--end_epoch', default=100, type=int, help='Number of end epoches')
+    parser.add_argument('--start_epoch', default=110, type=int, help='Number of start epoches')
+    parser.add_argument('--end_epoch', default=140, type=int, help='Number of end epoches')
     parser.add_argument('--epoch_interval', default=10, type=int, help='Number of start epoches')
 
     ## hyperparameter
@@ -116,6 +116,8 @@ def main():
     parser.add_argument('--roi_y', default=96, type=int, help='roi size in y direction')
     parser.add_argument('--roi_z', default=96, type=int, help='roi size in z direction')
     parser.add_argument('--num_samples', default=1, type=int, help='sample number in each ct')
+    parser.add_argument('--cache_dataset', action="store_true", default=False, help='whether use cache dataset')
+    parser.add_argument('--cache_rate', default=0.6, type=float, help='The percentage of cached data in total')
     parser.add_argument('--store_result', action="store_true", default=False, help='whether save prediction result')
     parser.add_argument('--overlap', default=0.5, type=float, help='overlap for sliding_window_inference')
 
