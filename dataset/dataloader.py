@@ -47,6 +47,84 @@ from monai.data.image_reader import ImageReader
 from monai.utils.enums import PostFix
 DEFAULT_POST_FIX = PostFix.meta()
 
+class UniformDataset(Dataset):
+    def __init__(self, data, transform, datasetkey):
+        super().__init__(data=data, transform=transform)
+        self.dataset_split(data, datasetkey)
+        self.datasetkey = datasetkey
+    
+    def dataset_split(self, data, datasetkey):
+        self.data_dic = {}
+        for key in datasetkey:
+            self.data_dic[key] = []
+        for img in data:
+            name = img['name']
+            dataset_index = int(name[0:2])
+            if dataset_index == 10:
+                key = name[0:2] + '_' + name[17:19]
+            else:
+                key = name[0:2]
+            self.data_dic[key].append(img)
+        
+        self.datasetnum = []
+        for key, item in self.data_dic.items():
+            assert len(item) != 0, f'the dataset {key} has no data'
+            self.datasetnum.append(len(item))
+        self.datasetlen = len(datasetkey)
+    
+    def _transform(self, set_key, data_index):
+        data_i = self.data_dic[set_key][data_index]
+        return apply_transform(self.transform, data_i) if self.transform is not None else data_i
+    
+    def __getitem__(self, index):
+        ## the index generated outside is only used to select the dataset
+        ## the corresponding data in each dataset is selelcted by the np.random.randint function
+        set_index = index % self.datasetlen
+        set_key = self.datasetkey[set_index]
+        # data_index = int(index / self.__len__() * self.datasetnum[set_index])
+        data_index = np.random.randint(self.datasetnum[set_index], size=1)[0]
+        return self._transform(set_key, data_index)
+        
+
+class UniformCacheDataset(CacheDataset):
+    def __init__(self, data, transform, cache_rate, datasetkey):
+        super().__init__(data=data, transform=transform, cache_rate=cache_rate)
+        self.datasetkey = datasetkey
+        self.data_statis()
+    
+    def data_statis(self):
+        data_num_dic = {}
+        for key in self.datasetkey:
+            data_num_dic[key] = 0
+
+        for img in self.data:
+            name = img['name']
+            dataset_index = int(name[0:2])
+            if dataset_index == 10:
+                key = name[0:2] + '_' + name[17:19]
+            else:
+                key = name[0:2]
+            data_num_dic[key] += 1
+
+        self.data_num = []
+        for key, item in data_num_dic.items():
+            assert item != 0, f'the dataset {key} has no data'
+            self.data_num.append(item)
+        
+        self.datasetlen = len(self.datasetkey)
+    
+    def index_uniform(self, index):
+        ## the index generated outside is only used to select the dataset
+        ## the corresponding data in each dataset is selelcted by the np.random.randint function
+        set_index = index % self.datasetlen
+        data_index = np.random.randint(self.data_num[set_index], size=1)[0]
+        post_index = int(sum(self.data_num[:set_index]) + data_index)
+        return post_index
+
+    def __getitem__(self, index):
+        post_index = self.index_uniform(index)
+        # print(post_index, self.__len__())
+        return self._transform(post_index)
 
 class LoadImageh5d(MapTransform):
     def __init__(
@@ -188,6 +266,7 @@ def get_loader(args):
         ]
     )
 
+    ## training dict part
     train_img = []
     train_lbl = []
     train_post_lbl = []
@@ -204,14 +283,8 @@ def get_loader(args):
                 for image, label, post_label, name in zip(train_img, train_lbl, train_post_lbl, train_name)]
     print('train len {}'.format(len(data_dicts_train)))
 
-    if args.cache_dataset:
-        train_dataset = CacheDataset(data=data_dicts_train, transform=train_transforms, cache_rate=args.cache_rate)
-    else:
-        train_dataset = Dataset(data=data_dicts_train, transform=train_transforms)
-    train_sampler = DistributedSampler(dataset=train_dataset, even_divisible=True, shuffle=True) if args.dist else None
-    train_loader = DataLoader(train_dataset, batch_size=args.batch_size, shuffle=(train_sampler is None), num_workers=args.num_workers, 
-                                collate_fn=list_data_collate, sampler=train_sampler)
-    
+
+    ## validation dict part
     val_img = []
     val_lbl = []
     val_post_lbl = []
@@ -227,12 +300,8 @@ def get_loader(args):
                 for image, label, post_label, name in zip(val_img, val_lbl, val_post_lbl, val_name)]
     print('val len {}'.format(len(data_dicts_val)))
 
-    if args.cache_dataset:
-        val_dataset = CacheDataset(data=data_dicts_val, transform=val_transforms, cache_rate=args.cache_rate)
-    else:
-        val_dataset = Dataset(data=data_dicts_val, transform=train_transforms)
-    val_loader = DataLoader(val_dataset, batch_size=1, shuffle=False, num_workers=4, collate_fn=list_data_collate)
-    
+
+    ## test dict part
     test_img = []
     test_lbl = []
     test_post_lbl = []
@@ -248,13 +317,48 @@ def get_loader(args):
                 for image, label, post_label, name in zip(test_img, test_lbl, test_post_lbl, test_name)]
     print('test len {}'.format(len(data_dicts_test)))
 
-    if args.cache_dataset:
-        test_dataset = CacheDataset(data=data_dicts_test, transform=val_transforms, cache_rate=args.cache_rate)
-    else:
-        test_dataset = Dataset(data=data_dicts_test, transform=train_transforms)
-    test_loader = DataLoader(test_dataset, batch_size=1, shuffle=False, num_workers=4, collate_fn=list_data_collate)
-
-    return train_loader, train_sampler, val_loader, test_loader
+    if args.phase == 'train':
+        if args.cache_dataset:
+            if args.uniform_sample:
+                train_dataset = UniformCacheDataset(data=data_dicts_train, 
+                                            transform=train_transforms,
+                                            cache_rate=args.cache_rate,
+                                            datasetkey=['01', '02', '03', '04', '05', 
+                                            '07', '08', '09', '12', '13', '10_03', 
+                                            '10_06', '10_07', '10_08', '10_09', '10_10'])
+            else:
+                train_dataset = CacheDataset(data=data_dicts_train, transform=train_transforms, cache_rate=args.cache_rate)
+        else:
+            if args.uniform_sample:
+                train_dataset = UniformDataset(data=data_dicts_train, 
+                                            transform=train_transforms, 
+                                            datasetkey=['01', '02', '03', '04', '05', 
+                                            '07', '08', '09', '12', '13', '10_03', 
+                                            '10_06', '10_07', '10_08', '10_09', '10_10'])
+            else:
+                train_dataset = Dataset(data=data_dicts_train, transform=train_transforms)
+        train_sampler = DistributedSampler(dataset=train_dataset, even_divisible=True, shuffle=True) if args.dist else None
+        train_loader = DataLoader(train_dataset, batch_size=args.batch_size, shuffle=(train_sampler is None), num_workers=args.num_workers, 
+                                    collate_fn=list_data_collate, sampler=train_sampler)
+        return train_loader, train_sampler, 0, 0
+    
+    
+    if args.phase == 'validation':
+        if args.cache_dataset:
+            val_dataset = CacheDataset(data=data_dicts_val, transform=val_transforms, cache_rate=args.cache_rate)
+        else:
+            val_dataset = Dataset(data=data_dicts_val, transform=train_transforms)
+        val_loader = DataLoader(val_dataset, batch_size=1, shuffle=False, num_workers=4, collate_fn=list_data_collate)
+        return 0, 0, val_loader, 0
+    
+    
+    if args.phase == 'test':
+        if args.cache_dataset:
+            test_dataset = CacheDataset(data=data_dicts_test, transform=val_transforms, cache_rate=args.cache_rate)
+        else:
+            test_dataset = Dataset(data=data_dicts_test, transform=train_transforms)
+        test_loader = DataLoader(test_dataset, batch_size=1, shuffle=False, num_workers=4, collate_fn=list_data_collate)
+        return 0, 0, 0, test_loader
 
 if __name__ == "__main__":
     train_loader, test_loader = partial_label_dataloader()

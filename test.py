@@ -134,6 +134,8 @@ def main():
     parser.add_argument('--roi_y', default=96, type=int, help='roi size in y direction')
     parser.add_argument('--roi_z', default=96, type=int, help='roi size in z direction')
     parser.add_argument('--num_samples', default=1, type=int, help='sample number in each ct')
+
+    parser.add_argument('--phase', default='test', help='train or validation or test')
     parser.add_argument('--cache_dataset', action="store_true", default=False, help='whether use cache dataset')
     parser.add_argument('--store_result', action="store_true", default=False, help='whether save prediction result')
     parser.add_argument('--cache_rate', default=0.6, type=float, help='The percentage of cached data in total')

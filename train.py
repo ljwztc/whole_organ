@@ -42,12 +42,7 @@ def train(args, train_loader, model, optimizer, loss_seg_DICE, loss_seg_CE):
     for step, batch in enumerate(epoch_iterator):
         x, y, name = batch["image"].to(args.device), batch["post_label"].float().to(args.device), batch['name']
         logit_map = model(x)
-        # print(name, model.organ_embedding.weight[2])
-        # print(torch.unique(y))
 
-
-        # minusone = torch.ones(y.shape).cuda() * -1
-        # y = torch.where(y>250,minusone,y) # assign -1 to 255 element, sucurity version of y[y == 255] = -1
         term_seg_Dice = loss_seg_DICE.forward(logit_map, y, name, TEMPLATE)
         term_seg_BCE = loss_seg_CE.forward(logit_map, y, name, TEMPLATE)
         loss = term_seg_BCE + term_seg_Dice
@@ -234,7 +229,7 @@ def main():
     parser.add_argument('--dataset_list', nargs='+', default=['PAOT']) # 'PAOT', 'felix'
     parser.add_argument('--data_root_path', default='/home/jliu288/data/whole_organ/', help='data root path')
     parser.add_argument('--data_txt_path', default='./dataset/dataset_list/', help='data txt path')
-    parser.add_argument('--batch_size', default=1, help='batch size')
+    parser.add_argument('--batch_size', default=2, help='batch size')
     parser.add_argument('--num_workers', default=8, type=int, help='workers numebr for DataLoader')
     parser.add_argument('--a_min', default=-175, type=float, help='a_min in ScaleIntensityRanged')
     parser.add_argument('--a_max', default=250, type=float, help='a_max in ScaleIntensityRanged')
@@ -247,6 +242,9 @@ def main():
     parser.add_argument('--roi_y', default=96, type=int, help='roi size in y direction')
     parser.add_argument('--roi_z', default=96, type=int, help='roi size in z direction')
     parser.add_argument('--num_samples', default=1, type=int, help='sample number in each ct')
+
+    parser.add_argument('--phase', default='train', help='train or validation or test')
+    parser.add_argument('--uniform_sample', action="store_true", default=False, help='whether utilize uniform sample strategy')
     parser.add_argument('--cache_dataset', action="store_true", default=False, help='whether use cache dataset')
     parser.add_argument('--cache_rate', default=0.6, type=float, help='The percentage of cached data in total')
 
