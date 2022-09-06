@@ -158,7 +158,7 @@ def main():
 
         torch.backends.cudnn.benchmark = True
 
-        _, _, validation_loader, _ = get_loader(args)
+        validation_loader, val_transforms = get_loader(args)
 
         validation(model, validation_loader, args, i)
 

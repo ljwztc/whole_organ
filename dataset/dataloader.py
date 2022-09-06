@@ -320,27 +320,18 @@ def get_loader(args):
     if args.phase == 'train':
         if args.cache_dataset:
             if args.uniform_sample:
-                train_dataset = UniformCacheDataset(data=data_dicts_train, 
-                                            transform=train_transforms,
-                                            cache_rate=args.cache_rate,
-                                            datasetkey=['01', '02', '03', '04', '05', 
-                                            '07', '08', '09', '12', '13', '10_03', 
-                                            '10_06', '10_07', '10_08', '10_09', '10_10'])
+                train_dataset = UniformCacheDataset(data=data_dicts_train, transform=train_transforms, cache_rate=args.cache_rate, datasetkey=args.datasetkey)
             else:
                 train_dataset = CacheDataset(data=data_dicts_train, transform=train_transforms, cache_rate=args.cache_rate)
         else:
             if args.uniform_sample:
-                train_dataset = UniformDataset(data=data_dicts_train, 
-                                            transform=train_transforms, 
-                                            datasetkey=['01', '02', '03', '04', '05', 
-                                            '07', '08', '09', '12', '13', '10_03', 
-                                            '10_06', '10_07', '10_08', '10_09', '10_10'])
+                train_dataset = UniformDataset(data=data_dicts_train, transform=train_transforms, datasetkey=args.datasetkey)
             else:
                 train_dataset = Dataset(data=data_dicts_train, transform=train_transforms)
         train_sampler = DistributedSampler(dataset=train_dataset, even_divisible=True, shuffle=True) if args.dist else None
         train_loader = DataLoader(train_dataset, batch_size=args.batch_size, shuffle=(train_sampler is None), num_workers=args.num_workers, 
                                     collate_fn=list_data_collate, sampler=train_sampler)
-        return train_loader, train_sampler, 0, 0
+        return train_loader, train_sampler
     
     
     if args.phase == 'validation':
@@ -349,7 +340,7 @@ def get_loader(args):
         else:
             val_dataset = Dataset(data=data_dicts_val, transform=val_transforms)
         val_loader = DataLoader(val_dataset, batch_size=1, shuffle=False, num_workers=4, collate_fn=list_data_collate)
-        return 0, 0, val_loader, 0
+        return val_loader, val_transforms
     
     
     if args.phase == 'test':
@@ -358,7 +349,7 @@ def get_loader(args):
         else:
             test_dataset = Dataset(data=data_dicts_test, transform=val_transforms)
         test_loader = DataLoader(test_dataset, batch_size=1, shuffle=False, num_workers=4, collate_fn=list_data_collate)
-        return 0, 0, 0, test_loader
+        return test_loader, val_transforms
 
 if __name__ == "__main__":
     train_loader, test_loader = partial_label_dataloader()

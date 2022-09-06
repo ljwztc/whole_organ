@@ -171,7 +171,7 @@ def process(args):
 
     torch.backends.cudnn.benchmark = True
 
-    train_loader, train_sampler, val_loader, _ = get_loader(args)
+    train_loader, train_sampler = get_loader(args)
 
     if rank == 0:
         writer = SummaryWriter(log_dir='out/' + args.log_name)
@@ -250,6 +250,10 @@ def main():
 
     parser.add_argument('--phase', default='train', help='train or validation or test')
     parser.add_argument('--uniform_sample', action="store_true", default=False, help='whether utilize uniform sample strategy')
+    parser.add_argument('--datasetkey', nargs='+', default=['01', '02', '03', '04', '05', 
+                                            '07', '08', '09', '12', '13', '10_03', 
+                                            '10_06', '10_07', '10_08', '10_09', '10_10'],
+                                            help='the content for ')
     parser.add_argument('--cache_dataset', action="store_true", default=False, help='whether use cache dataset')
     parser.add_argument('--cache_rate', default=0.6, type=float, help='The percentage of cached data in total')
 
