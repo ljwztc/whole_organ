@@ -347,7 +347,7 @@ def get_loader(args):
         if args.cache_dataset:
             val_dataset = CacheDataset(data=data_dicts_val, transform=val_transforms, cache_rate=args.cache_rate)
         else:
-            val_dataset = Dataset(data=data_dicts_val, transform=train_transforms)
+            val_dataset = Dataset(data=data_dicts_val, transform=val_transforms)
         val_loader = DataLoader(val_dataset, batch_size=1, shuffle=False, num_workers=4, collate_fn=list_data_collate)
         return 0, 0, val_loader, 0
     
@@ -356,7 +356,7 @@ def get_loader(args):
         if args.cache_dataset:
             test_dataset = CacheDataset(data=data_dicts_test, transform=val_transforms, cache_rate=args.cache_rate)
         else:
-            test_dataset = Dataset(data=data_dicts_test, transform=train_transforms)
+            test_dataset = Dataset(data=data_dicts_test, transform=val_transforms)
         test_loader = DataLoader(test_dataset, batch_size=1, shuffle=False, num_workers=4, collate_fn=list_data_collate)
         return 0, 0, 0, test_loader
 
