@@ -88,10 +88,10 @@ def main():
     parser.add_argument("--device")
     parser.add_argument("--epoch", default=0)
     ## logging
-    parser.add_argument('--log_name', default='PAOT', help='The path resume from checkpoint')
+    parser.add_argument('--log_name', default='jhu', help='The path resume from checkpoint')
     ## model load
-    parser.add_argument('--start_epoch', default=150, type=int, help='Number of start epoches')
-    parser.add_argument('--end_epoch', default=160, type=int, help='Number of end epoches')
+    parser.add_argument('--start_epoch', default=60, type=int, help='Number of start epoches')
+    parser.add_argument('--end_epoch', default=100, type=int, help='Number of end epoches')
     parser.add_argument('--epoch_interval', default=10, type=int, help='Number of start epoches')
 
     ## hyperparameter
@@ -100,7 +100,12 @@ def main():
     parser.add_argument('--lr', default=1e-4, type=float, help='Learning rate')
     parser.add_argument('--weight_decay', default=1e-5, type=float, help='Weight Decay')
     ## dataset
-    parser.add_argument('--dataset_list', nargs='+', default=['PAOT']) # 'PAOT', 'felix'
+    parser.add_argument('--dataset_list', nargs='+', default=['PAOT_123457891213', 'PAOT_10_inner']) # 'PAOT', 'felix'
+    ### please check this argment carefully
+    ### PAOT: include PAOT_123457891213 and PAOT_10
+    ### PAOT_123457891213: include 1 2 3 4 5 7 8 9 12 13
+    ### PAOT_10_inner: same with NVIDIA for comparison
+    ### PAOT_10: original division
     parser.add_argument('--data_root_path', default='/home/jliu288/data/whole_organ/', help='data root path')
     parser.add_argument('--data_txt_path', default='./dataset/dataset_list/', help='data txt path')
     parser.add_argument('--batch_size', default=1, type=int, help='batch size')
