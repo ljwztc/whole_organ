@@ -50,6 +50,10 @@ ORGAN_NAME = ['Spleen', 'R Kidney', 'L Kidney', 'Gall Bladder', 'Esophagus',
                 'Bladder', 'Prostate', 'L head of femur', 'R head of femur', 'celiac truck',
                 'kidney tumor', 'liver tumor', 'pancreas tumor', 'Hepatic Vessel tumor', 'Lung tumor', 'Colon tumor']
 
+Combine_mapping = {
+    '01': 
+}
+
 def dice_score(preds, labels):  # on GPU
     assert preds.shape[0] == labels.shape[0], "predict & target batch size don't match"
     preds = torch.where(preds > 0.5, 1., 0.)
