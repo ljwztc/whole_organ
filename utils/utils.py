@@ -51,7 +51,7 @@ ORGAN_NAME = ['Spleen', 'R Kidney', 'L Kidney', 'Gall Bladder', 'Esophagus',
                 'kidney tumor', 'liver tumor', 'pancreas tumor', 'Hepatic Vessel tumor', 'Lung tumor', 'Colon tumor']
 
 Combine_mapping = {
-    '01': 
+    '01': 1
 }
 
 def dice_score(preds, labels):  # on GPU
