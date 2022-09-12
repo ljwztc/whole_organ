@@ -71,6 +71,7 @@ MERGE_MAPPING_v1 = {
     '10_10': [(31,1)],
     '12': [(2,4), (4,2), (6,1), (16,3), (17,3)],  
     '13': [(1,3), (2,2), (4,8), (5,9), (6,1), (7,7), (8,5), (9,6), (11,4), (12,10), (13,11), (25,12)],
+}
 
 def visualize_label(batch, save_dir, input_transform):
     ### function: save the prediction result into dir
