@@ -24,7 +24,7 @@ from monai.metrics import DiceMetric
 from model.SwinUNETR_partial import SwinUNETR
 from dataset.dataloader import get_loader
 from utils import loss
-from utils.utils import dice_score, check_data, TEMPLATE
+from utils.utils import dice_score, check_data, TEMPLATE, get_key
 from optimizers.lr_scheduler import LinearWarmupCosineAnnealingLR
 
 
@@ -75,11 +75,7 @@ def validation(model, ValLoader, args):
         
         B = pred_sigmoid.shape[0]
         for b in range(B):
-            dataset_index = int(name[b][0:2])
-            if dataset_index == 10:
-                template_key = name[b][0:2] + '_' + name[b][17:19]
-            else:
-                template_key = name[b][0:2]
+            template_key = get_key(name[b])
             organ_list = TEMPLATE[template_key]
             for organ in organ_list:
                 dice_organ = dice_score(pred_sigmoid[b,organ-1,:,:,:], label[b,organ-1,:,:,:].cuda())
@@ -214,7 +210,7 @@ def main():
     parser.add_argument("--device")
     parser.add_argument("--epoch", default=0)
     ## logging
-    parser.add_argument('--log_name', default='PAOT', help='The path resume from checkpoint')
+    parser.add_argument('--log_name', default='PAOT_v2', help='The path resume from checkpoint')
     ## model load
     parser.add_argument('--resume', default=None, help='The path resume from checkpoint')
     parser.add_argument('--pretrain', default='./pretrained_weights/swin_unetr.base_5000ep_f48_lr2e-4_pretrained.pt', 

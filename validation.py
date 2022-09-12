@@ -17,7 +17,7 @@ from monai.inferers import sliding_window_inference
 from model.SwinUNETR_partial import SwinUNETR
 from dataset.dataloader import get_loader
 from utils import loss
-from utils.utils import dice_score, TEMPLATE, ORGAN_NAME
+from utils.utils import dice_score, TEMPLATE, ORGAN_NAME, merge_label, visualize_label, get_key
 
 torch.multiprocessing.set_sharing_strategy('file_system')
 
@@ -39,11 +39,7 @@ def validation(model, ValLoader, args, i):
         
         B = pred_sigmoid.shape[0]
         for b in range(B):
-            dataset_index = int(name[b][0:2])
-            if dataset_index == 10:
-                template_key = name[b][0:2] + '_' + name[b][17:19]
-            else:
-                template_key = name[b][0:2]
+            template_key = get_key(name[b])
             organ_list = TEMPLATE[template_key]
             for organ in organ_list:
                 if torch.sum(label[b,organ-1,:,:,:].cuda()) != 0:
@@ -88,10 +84,10 @@ def main():
     parser.add_argument("--device")
     parser.add_argument("--epoch", default=0)
     ## logging
-    parser.add_argument('--log_name', default='jhu', help='The path resume from checkpoint')
+    parser.add_argument('--log_name', default='PAOT', help='The path resume from checkpoint')
     ## model load
-    parser.add_argument('--start_epoch', default=60, type=int, help='Number of start epoches')
-    parser.add_argument('--end_epoch', default=100, type=int, help='Number of end epoches')
+    parser.add_argument('--start_epoch', default=320, type=int, help='Number of start epoches')
+    parser.add_argument('--end_epoch', default=410, type=int, help='Number of end epoches')
     parser.add_argument('--epoch_interval', default=10, type=int, help='Number of start epoches')
 
     ## hyperparameter

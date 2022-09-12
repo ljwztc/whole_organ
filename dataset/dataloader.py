@@ -35,6 +35,9 @@ import numpy as np
 import torch
 from typing import IO, TYPE_CHECKING, Any, Callable, Dict, Hashable, List, Mapping, Optional, Sequence, Tuple, Union
 
+sys.path.append("..") 
+from utils.utils import get_key
+
 from monai.data import DataLoader, Dataset, list_data_collate, DistributedSampler, CacheDataset
 
 from monai.config import DtypeLike, KeysCollection
@@ -58,12 +61,7 @@ class UniformDataset(Dataset):
         for key in datasetkey:
             self.data_dic[key] = []
         for img in data:
-            name = img['name']
-            dataset_index = int(name[0:2])
-            if dataset_index == 10:
-                key = name[0:2] + '_' + name[17:19]
-            else:
-                key = name[0:2]
+            key = get_key(img['name'])
             self.data_dic[key].append(img)
         
         self.datasetnum = []
@@ -98,12 +96,7 @@ class UniformCacheDataset(CacheDataset):
             data_num_dic[key] = 0
 
         for img in self.data:
-            name = img['name']
-            dataset_index = int(name[0:2])
-            if dataset_index == 10:
-                key = name[0:2] + '_' + name[17:19]
-            else:
-                key = name[0:2]
+            key = get_key(img['name'])
             data_num_dic[key] += 1
 
         self.data_num = []

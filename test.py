@@ -17,14 +17,14 @@ from monai.inferers import sliding_window_inference
 from model.SwinUNETR_partial import SwinUNETR
 from dataset.dataloader import get_loader
 from utils import loss
-from utils.utils import dice_score, TEMPLATE, ORGAN_NAME
+from utils.utils import dice_score, TEMPLATE, ORGAN_NAME, visualize_label, merge_label, get_key
 
 torch.multiprocessing.set_sharing_strategy('file_system')
 
 NUM_CLASS = 31
 
 
-def validation(model, ValLoader, args):
+def validation(model, ValLoader, val_transforms, args):
     save_dir = 'out/' + args.log_name + f'/test_{args.epoch}'
     if not os.path.isdir(save_dir):
         os.mkdir(save_dir)
@@ -41,29 +41,36 @@ def validation(model, ValLoader, args):
             # with torch.autocast(device_type="cuda", dtype=torch.float16):
             pred = sliding_window_inference(image, (args.roi_x, args.roi_y, args.roi_z), 1, model, overlap=0.5, mode='gaussian')
             pred_sigmoid = F.sigmoid(pred)
-            # print(pred_sigmoid.shape, label.shape)
-        if args.store_result:
-            pred_sigmoid_store = (pred_sigmoid.cpu().numpy() * 255).astype(np.uint8)
-            label_store = (label.numpy()).astype(np.uint8)
-            np.savez_compressed(save_dir + '/predict/' + name[0].split('/')[0] + name[0].split('/')[-1], 
-                            pred=pred_sigmoid_store, label=label_store)
-            ## load data
-            # data = np.load('/out/epoch_80/predict/****.npz')
-            # pred, label = data['pred'], data['label']
         
+
         B = pred_sigmoid.shape[0]
         for b in range(B):
-            dataset_index = int(name[b][0:2])
-            if dataset_index == 10:
-                template_key = name[b][0:2] + '_' + name[b][17:19]
-            else:
-                template_key = name[b][0:2]
+            content = 'case%s| '%(name[b])
+            template_key = get_key(name[b])
             organ_list = TEMPLATE[template_key]
             for organ in organ_list:
                 if torch.sum(label[b,organ-1,:,:,:].cuda()) != 0:
                     dice_organ = dice_score(pred_sigmoid[b,organ-1,:,:,:], label[b,organ-1,:,:,:].cuda())
                     dice_list[template_key][0][organ-1] += dice_organ.item()
                     dice_list[template_key][1][organ-1] += 1
+                    content += '%s: %.4f, '%(ORGAN_NAME[organ-1], dice_organ.item())
+            print(content)
+        
+        if args.store_result:
+            pred_sigmoid_store = (pred_sigmoid.cpu().numpy() * 255).astype(np.uint8)
+            label_store = (label.numpy()).astype(np.uint8)
+            np.savez_compressed(save_dir + '/predict/' + name[0].split('/')[0] + name[0].split('/')[-1], 
+                            pred=pred_sigmoid_store, label=label_store)
+            ### testing phase for this function
+            one_channel_label = merge_label(pred_sigmoid, name)
+            batch['one_channel_label'] = one_channel_label.cpu()
+            # print(batch['label'].shape, batch['one_channel_label'].shape)
+            # print(torch.unique(batch['label']), torch.unique(batch['one_channel_label']))
+            visualize_label(batch, save_dir + '/output/' + name[0].split('/')[0] , val_transforms)
+            ## load data
+            # data = np.load('/out/epoch_80/predict/****.npz')
+            # pred, label = data['pred'], data['label']
+            
         torch.cuda.empty_cache()
     
     ave_organ_dice = np.zeros((2, NUM_CLASS))
@@ -109,7 +116,7 @@ def main():
     ## logging
     parser.add_argument('--log_name', default='PAOT', help='The path resume from checkpoint')
     ## model load
-    parser.add_argument('--resume', default='./out/PAOT/epoch_140.pth', help='The path resume from checkpoint')
+    parser.add_argument('--resume', default='./out/PAOT/epoch_320.pth', help='The path resume from checkpoint')
     parser.add_argument('--pretrain', default='./pretrained_weights/swin_unetr.base_5000ep_f48_lr2e-4_pretrained.pt', 
                         help='The path of pretrain model')
     ## hyperparameter
@@ -118,7 +125,7 @@ def main():
     parser.add_argument('--lr', default=1e-4, type=float, help='Learning rate')
     parser.add_argument('--weight_decay', default=1e-5, type=float, help='Weight Decay')
     ## dataset
-    parser.add_argument('--dataset_list', nargs='+', default=['PAOT_123457891213', 'PAOT_10_inner']) # 'PAOT', 'felix'
+    parser.add_argument('--dataset_list', nargs='+', default=['PAOT_123457891213', 'PAOT_10']) # 'PAOT', 'felix'
     ### please check this argment carefully
     ### PAOT: include PAOT_123457891213 and PAOT_10
     ### PAOT_123457891213: include 1 2 3 4 5 7 8 9 12 13
@@ -177,7 +184,7 @@ def main():
 
     test_loader, val_transforms = get_loader(args)
 
-    validation(model, test_loader, args)
+    validation(model, test_loader, val_transforms, args)
 
 if __name__ == "__main__":
     main()
