@@ -260,4 +260,4 @@ def main():
 if __name__ == "__main__":
     main()
 
-# python -m torch.distributed.launch --nproc_per_node=2 --master_port=1234 train.py --dist True
+# python -m torch.distributed.launch --nproc_per_node=2 --master_port=1234 train.py --dist True --uniform_sample
