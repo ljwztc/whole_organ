@@ -1,7 +1,9 @@
-01_Multi-Atlas_Labeling/img/img0010.nii.gz	01_Multi-Atlas_Labeling/label/label0010.nii.gz
-01_Multi-Atlas_Labeling/img/img0036.nii.gz	01_Multi-Atlas_Labeling/label/label0036.nii.gz
-01_Multi-Atlas_Labeling/img/img0066.nii.gz	01_Multi-Atlas_Labeling/label/label0066.nii.gz
-01_Multi-Atlas_Labeling/img/img0077.nii.gz	01_Multi-Atlas_Labeling/label/label0077.nii.gz
+01_Multi-Atlas_Labeling/img/img0023.nii.gz	01_Multi-Atlas_Labeling/label/label0023.nii.gz
+01_Multi-Atlas_Labeling/img/img0024.nii.gz	01_Multi-Atlas_Labeling/label/label0024.nii.gz
+01_Multi-Atlas_Labeling/img/img0025.nii.gz	01_Multi-Atlas_Labeling/label/label0025.nii.gz
+01_Multi-Atlas_Labeling/img/img0026.nii.gz	01_Multi-Atlas_Labeling/label/label0026.nii.gz
+01_Multi-Atlas_Labeling/img/img0027.nii.gz	01_Multi-Atlas_Labeling/label/label0027.nii.gz
+01_Multi-Atlas_Labeling/img/img0028.nii.gz	01_Multi-Atlas_Labeling/label/label0028.nii.gz
 02_TCIA_Pancreas-CT/img/PANCREAS_0016.nii.gz	02_TCIA_Pancreas-CT/multiorgan_label/label0016.nii.gz
 02_TCIA_Pancreas-CT/img/PANCREAS_0018.nii.gz	02_TCIA_Pancreas-CT/multiorgan_label/label0018.nii.gz
 02_TCIA_Pancreas-CT/img/PANCREAS_0029.nii.gz	02_TCIA_Pancreas-CT/multiorgan_label/label0029.nii.gz

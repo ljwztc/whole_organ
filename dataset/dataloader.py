@@ -302,10 +302,12 @@ def get_loader(args):
     for item in args.dataset_list:
         for line in open(args.data_txt_path + item +'_test.txt'):
             name = line.strip().split()[1].split('.')[0]
-            test_img.append(args.data_root_path + line.strip().split()[0])
-            test_lbl.append(args.data_root_path + line.strip().split()[1])
-            test_post_lbl.append(args.data_root_path + name.replace('label', 'post_label') + '.h5')
-            test_name.append(name)
+            dataset_index = int(name[0:2])
+            if dataset_index == 1:
+                test_img.append(args.data_root_path + line.strip().split()[0])
+                test_lbl.append(args.data_root_path + line.strip().split()[1])
+                test_post_lbl.append(args.data_root_path + name.replace('label', 'post_label') + '.h5')
+                test_name.append(name)
     data_dicts_test = [{'image': image, 'label': label, 'post_label': post_label, 'name': name}
                 for image, label, post_label, name in zip(test_img, test_lbl, test_post_lbl, test_name)]
     print('test len {}'.format(len(data_dicts_test)))

@@ -59,7 +59,7 @@ TEMPLATE={
     '07': [6,1,3,2,7,4,5,11,14,18,19,12,20,21,23,24],
     '08': [6, 2, 1, 11],
     '09': [1,2,3,4,5,6,7,8,9,11,12,13,14,21,22],
-    '12': [6,4,16,2],  
+    '12': [6,21,16,2],  
     '13': [6,2,1,11,8,9,7,4,5,12,13,25], 
     '14': [11,11,28,28,28],     # Felix data, post process
     '10_03': [6, 27],   # post process
@@ -221,7 +221,7 @@ def generate_label(input_lbl, num_classes, name, TEMPLATE, raw_lbl):
         elif dataset_index == 8:
             organ_list = [6, 2, 3, 1, 11]
         elif dataset_index == 12:
-            organ_list = [6,4,16,17,2,3]
+            organ_list = [6,21,16,17,2,3]
         elif dataset_index == 13:
             organ_list = [6,2,3,1,11,8,9,7,4,5,12,13,25]
         else:

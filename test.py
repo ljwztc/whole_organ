@@ -50,10 +50,11 @@ def validation(model, ValLoader, val_transforms, args):
             organ_list = TEMPLATE[template_key]
             for organ in organ_list:
                 if torch.sum(label[b,organ-1,:,:,:].cuda()) != 0:
-                    dice_organ = dice_score(pred_sigmoid[b,organ-1,:,:,:], label[b,organ-1,:,:,:].cuda())
+                    dice_organ, recall, precision = dice_score(pred_sigmoid[b,organ-1,:,:,:], label[b,organ-1,:,:,:].cuda())
                     dice_list[template_key][0][organ-1] += dice_organ.item()
                     dice_list[template_key][1][organ-1] += 1
                     content += '%s: %.4f, '%(ORGAN_NAME[organ-1], dice_organ.item())
+                    print('%s: dice %.4f, recall %.4f, precision %.4f.'%(ORGAN_NAME[organ-1], dice_organ.item(), recall.item(), precision.item()))
             print(content)
         
         if args.store_result:
@@ -62,8 +63,13 @@ def validation(model, ValLoader, val_transforms, args):
             np.savez_compressed(save_dir + '/predict/' + name[0].split('/')[0] + name[0].split('/')[-1], 
                             pred=pred_sigmoid_store, label=label_store)
             ### testing phase for this function
-            one_channel_label = merge_label(pred_sigmoid, name)
-            batch['one_channel_label'] = one_channel_label.cpu()
+            pred_bmask = torch.where(pred_sigmoid > 0.5, 1., 0.)
+            one_channel_label_v1, one_channel_label_v2 = merge_label(pred_bmask, name)
+            batch['one_channel_label_v1'] = one_channel_label_v1.cpu()
+            batch['one_channel_label_v2'] = one_channel_label_v2.cpu()
+
+            _, split_label = merge_label(batch["post_label"], name)
+            batch['split_label'] = split_label.cpu()
             # print(batch['label'].shape, batch['one_channel_label'].shape)
             # print(torch.unique(batch['label']), torch.unique(batch['one_channel_label']))
             visualize_label(batch, save_dir + '/output/' + name[0].split('/')[0] , val_transforms)

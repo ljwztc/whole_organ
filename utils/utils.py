@@ -35,7 +35,7 @@ TEMPLATE={
     '07': [6,1,3,2,7,4,5,11,14,18,19,12,13,20,21,23,24],
     '08': [6, 2, 3, 1, 11],
     '09': [1,2,3,4,5,6,7,8,9,11,12,13,14,21,22],
-    '12': [6,4,16,17,2,3],  
+    '12': [6,21,16,17,2,3],  
     '13': [6,2,3,1,11,8,9,7,4,5,12,13,25], 
     '14': [11, 28],
     '10_03': [6, 27], # post process
@@ -61,7 +61,7 @@ MERGE_MAPPING_v1 = {
     '04': [(6,1), (27,2)],
     '05': [(2,1), (3,1), (26, 2)],
     '07': [(1,2), (2,4), (3,3), (4,6), (5,7), (6,1), (7,5), (11,8), (12,12), (13,12), (14,9), (18,10), (19,11), (20,13), (21,14), (23,15), (24,16)],
-    '08': [(1,3), (2,2), (6,1), (11,4)],
+    '08': [(1,3), (2,2), (3,2), (6,1), (11,4)],
     '09': [(1,1), (2,2), (3,3), (4,4), (5,5), (6,6), (7,7), (8,8), (9,9), (11,10), (12,11), (13,12), (14,13), (21,14), (22,15)],
     '10_03': [(6,1), (26,2)],
     '10_06': [(30,1)],
@@ -69,8 +69,29 @@ MERGE_MAPPING_v1 = {
     '10_08': [(15,1), (29,2)],
     '10_09': [(1,1)],
     '10_10': [(31,1)],
-    '12': [(2,4), (4,2), (6,1), (16,3), (17,3)],  
-    '13': [(1,3), (2,2), (4,8), (5,9), (6,1), (7,7), (8,5), (9,6), (11,4), (12,10), (13,11), (25,12)],
+    '12': [(2,4), (3,4), (21,2), (6,1), (16,3), (17,3)],  
+    '13': [(1,3), (2,2), (3,2), (4,8), (5,9), (6,1), (7,7), (8,5), (9,6), (11,4), (12,10), (13,11), (25,12)],
+}
+
+## split left and right organ more than dataset defined
+## expand on the original class number 
+MERGE_MAPPING_v2 = {
+    '01': [(1,1), (2,2), (3,3), (4,4), (5,5), (6,6), (7,7), (8,8), (9,9), (10,10), (11,11), (12,12), (13,13), (14,14)],
+    '02': [(1,1), (3,3), (4,4), (5,5), (6,6), (7,7), (11,11), (14,14)],
+    '03': [(6,1)],
+    '04': [(6,1), (27,2)],
+    '05': [(2,1), (3,3), (26, 2)],
+    '07': [(1,2), (2,4), (3,3), (4,6), (5,7), (6,1), (7,5), (11,8), (12,12), (13,17), (14,9), (18,10), (19,11), (20,13), (21,14), (23,15), (24,16)],
+    '08': [(1,3), (2,2), (3,5), (6,1), (11,4)],
+    '09': [(1,1), (2,2), (3,3), (4,4), (5,5), (6,6), (7,7), (8,8), (9,9), (11,10), (12,11), (13,12), (14,13), (21,14), (22,15)],
+    '10_03': [(6,1), (26,2)],
+    '10_06': [(30,1)],
+    '10_07': [(11,1), (28,2)],
+    '10_08': [(15,1), (29,2)],
+    '10_09': [(1,1)],
+    '10_10': [(31,1)],
+    '12': [(2,4), (3,5), (21,2), (6,1), (16,3), (17,6)],  
+    '13': [(1,3), (2,2), (3,13), (4,8), (5,9), (6,1), (7,7), (8,5), (9,6), (11,4), (12,10), (13,11), (25,12)],
 }
 
 def visualize_label(batch, save_dir, input_transform):
@@ -82,7 +103,7 @@ def visualize_label(batch, save_dir, input_transform):
     ## input_transform: the dataloader transform
     post_transforms = Compose([
         Invertd(
-            keys=["label", 'one_channel_label'],
+            keys=["label", 'one_channel_label_v1', 'one_channel_label_v2', 'split_label'],
             transform=input_transform,
             orig_keys="image",
             nearest_interp=True,
@@ -91,13 +112,25 @@ def visualize_label(batch, save_dir, input_transform):
         SaveImaged(keys="label", 
                 meta_keys="label_meta_dict" , 
                 output_dir=save_dir, 
-                output_postfix="original", 
+                output_postfix="gt", 
                 resample=False
         ),
-        SaveImaged(keys='one_channel_label', 
+        SaveImaged(keys='split_label', 
                 meta_keys="label_meta_dict" , 
                 output_dir=save_dir, 
-                output_postfix="result", 
+                output_postfix="split_gt", 
+                resample=False
+        ),
+        SaveImaged(keys='one_channel_label_v1', 
+                meta_keys="label_meta_dict" , 
+                output_dir=save_dir, 
+                output_postfix="result_v1", 
+                resample=False
+        ),
+        SaveImaged(keys='one_channel_label_v2', 
+                meta_keys="label_meta_dict" , 
+                output_dir=save_dir, 
+                output_postfix="result_v2", 
                 resample=False
         ),
     ])
@@ -105,21 +138,25 @@ def visualize_label(batch, save_dir, input_transform):
     batch = [post_transforms(i) for i in decollate_batch(batch)]
 
 
-def merge_label(pred_sigmoid, name):
-    B, C, W, H, D = pred_sigmoid.shape
-    merged_label = torch.zeros(B,1,W,H,D).cuda()
-    pred_bmask = torch.where(pred_sigmoid > 0.5, 1., 0.)
+def merge_label(pred_bmask, name):
+    B, C, W, H, D = pred_bmask.shape
+    merged_label_v1 = torch.zeros(B,1,W,H,D).cuda()
+    merged_label_v2 = torch.zeros(B,1,W,H,D).cuda()
     for b in range(B):
         template_key = get_key(name[b])
-        transfer_mapping = MERGE_MAPPING_v1[template_key]
+        transfer_mapping_v1 = MERGE_MAPPING_v1[template_key]
+        transfer_mapping_v2 = MERGE_MAPPING_v2[template_key]
         organ_index = []
-        for item in transfer_mapping:
+        for item in transfer_mapping_v1:
             src, tgt = item
-            merged_label[b][0][pred_bmask[b][src-1]==1] = tgt
+            merged_label_v1[b][0][pred_bmask[b][src-1]==1] = tgt
+        for item in transfer_mapping_v2:
+            src, tgt = item
+            merged_label_v2[b][0][pred_bmask[b][src-1]==1] = tgt
             # organ_index.append(src-1)
         # organ_index = torch.tensor(organ_index).cuda()
         # predicted_prob = pred_sigmoid[b][organ_index]
-    return merged_label
+    return merged_label_v1, merged_label_v2
 
 
 
@@ -134,17 +171,26 @@ def get_key(name):
     return template_key
 
 def dice_score(preds, labels):  # on GPU
+    ### preds: w,h,d; label: w,h,d
     assert preds.shape[0] == labels.shape[0], "predict & target batch size don't match"
     preds = torch.where(preds > 0.5, 1., 0.)
     predict = preds.contiguous().view(1, -1)
     target = labels.contiguous().view(1, -1)
 
-    num = torch.sum(torch.mul(predict, target), dim=1)
-    den = torch.sum(predict, dim=1) + torch.sum(target, dim=1) + 1
+    tp = torch.sum(torch.mul(predict, target))
+    fn = torch.sum(torch.mul(predict!=1, target))
+    fp = torch.sum(torch.mul(predict, target!=1))
+    tn = torch.sum(torch.mul(predict!=1, target!=1))
 
-    dice = 2 * num / den
+    den = torch.sum(predict) + torch.sum(target) + 1
 
-    return dice.mean()
+    dice = 2 * tp / den
+    recall = tp/(tp+fn)
+    precision = tp/(tp+fp)
+
+    # print(dice, recall, precision)
+
+    return dice, recall, precision
 
 
 def _get_gaussian(patch_size, sigma_scale=1. / 8) -> np.ndarray:

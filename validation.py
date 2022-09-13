@@ -43,7 +43,7 @@ def validation(model, ValLoader, args, i):
             organ_list = TEMPLATE[template_key]
             for organ in organ_list:
                 if torch.sum(label[b,organ-1,:,:,:].cuda()) != 0:
-                    dice_organ = dice_score(pred_sigmoid[b,organ-1,:,:,:], label[b,organ-1,:,:,:].cuda())
+                    dice_organ, _, _ = dice_score(pred_sigmoid[b,organ-1,:,:,:], label[b,organ-1,:,:,:].cuda())
                     dice_list[template_key][0][organ-1] += dice_organ.item()
                     dice_list[template_key][1][organ-1] += 1
         torch.cuda.empty_cache()
