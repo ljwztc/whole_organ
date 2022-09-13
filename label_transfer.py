@@ -46,16 +46,22 @@ from monai.transforms.transform import Transform, MapTransform
 from monai.utils.enums import TransformBackends
 from monai.config.type_definitions import NdarrayOrTensor
 
+from utils.utils import get_key
+
 ORGAN_DATASET_DIR = '/home/jliu288/data/whole_organ/'
 ORGAN_LIST = 'dataset/dataset_list/PAOT.txt'
 NUM_WORKER = 8
+NUM_CLASS = 32
+TRANSFER_LIST = ['05', '12']
+## full list
+# TRANSFER_LIST = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10_03', '10_06', '10_07', '10_08', '10_09', '10_10', '12', '13', '14']
 
 TEMPLATE={
     '01': [1,2,3,4,5,6,7,8,9,10,11,12,13,14],
     '02': [1,0,3,4,5,6,7,0,0,0,11,0,0,14],
     '03': [6],
     '04': [6,27],       # post process
-    '05': [2,26],       # post process
+    '05': [2,26,32],       # post process
     '07': [6,1,3,2,7,4,5,11,14,18,19,12,20,21,23,24],
     '08': [6, 2, 1, 11],
     '09': [1,2,3,4,5,6,7,8,9,11,12,13,14,21,22],
@@ -68,6 +74,14 @@ TEMPLATE={
     '10_08': [15, 29],  # post process
     '10_09': [1],
     '10_10': [31]
+}
+
+POST_TUMOR_DICT = {
+    '04': [(2,27)],
+    '05': [(2,26), (3,32)],
+    '10_03': [(2,27)], 
+    '10_07': [(2,28)],
+    '10_08': [(2,29)]
 }
 
 def rl_split(input_data, organ_index, right_index, left_index, name):
@@ -114,7 +128,7 @@ def rl_split(input_data, organ_index, right_index, left_index, name):
 class ToTemplatelabel(Transform):
     backend = [TransformBackends.TORCH, TransformBackends.NUMPY]
 
-    def __call__(self, lbl: NdarrayOrTensor, totemplate: List, tumor=False) -> NdarrayOrTensor:
+    def __call__(self, lbl: NdarrayOrTensor, totemplate: List, tumor=False, tumor_list=None) -> NdarrayOrTensor:
         new_lbl = np.zeros(lbl.shape)
         for src, tgt in enumerate(totemplate):
             new_lbl[lbl == (src+1)] = tgt
@@ -125,7 +139,8 @@ class ToTemplatelabel(Transform):
         # data_count=dict(zip(unique,count))
         # print(data_count)
         if tumor:
-            new_lbl[new_lbl == totemplate[-1]] = totemplate[0]
+            for src, item in tumor_list:
+                new_lbl[new_lbl == item] = totemplate[0]
         return new_lbl
 
 class ToTemplatelabeld(MapTransform):
@@ -141,6 +156,7 @@ class ToTemplatelabeld(MapTransform):
         d = dict(data)
         dataset_index = int(d['name'][0:2])
         TUMOR = False
+        tumor_list = None
         if dataset_index == 1 or dataset_index == 2:
             template_key = d['name'][0:2]
             pass
@@ -150,7 +166,8 @@ class ToTemplatelabeld(MapTransform):
             template_key = d['name'][0:2]
         if template_key in ['04', '05', '10_03', '10_07', '10_08', '14']:
             TUMOR = True
-        d['label'] = self.totemplate(d['label'], TEMPLATE[template_key], tumor=TUMOR)
+            tumor_list = POST_TUMOR_DICT[template_key]
+        d['label'] = self.totemplate(d['label'], TEMPLATE[template_key], tumor=TUMOR, tumor_list=tumor_list)
         return d
 
 class RL_Split(Transform):
@@ -215,7 +232,7 @@ def generate_label(input_lbl, num_classes, name, TEMPLATE, raw_lbl):
         
         # for organ split case
         if dataset_index == 5:
-            organ_list = [2,3,26]
+            organ_list = [2,3,26,32]
         elif dataset_index == 7:
             organ_list = [6,1,3,2,7,4,5,11,14,18,19,12,13,20,21,23,24]
         elif dataset_index == 8:
@@ -236,7 +253,10 @@ def generate_label(input_lbl, num_classes, name, TEMPLATE, raw_lbl):
         
         # for tumor case
         if template_key in ['04', '05', '10_03', '10_07', '10_08']:
-            result[b, organ_list[-1] - 1] = (raw_lbl[b][0] == 2)
+            tumor_list = POST_TUMOR_DICT[template_key]
+            for src, item in tumor_list:
+                result[b, item - 1] = (raw_lbl[b][0] == src)
+
         if template_key in ['14']:
             tumor_lbl = torch.zeros(raw_lbl.shape)
             tumor_lbl[raw_lbl == 3] = 1
@@ -264,9 +284,11 @@ train_lbl = []
 train_name = []
 
 for line in open(ORGAN_LIST):
-    train_img.append(ORGAN_DATASET_DIR + line.strip().split()[0])
-    train_lbl.append(ORGAN_DATASET_DIR + line.strip().split()[1])
-    train_name.append(line.strip().split()[1].split('.')[0])
+    key = get_key(line.strip().split()[0])
+    if key in TRANSFER_LIST:
+        train_img.append(ORGAN_DATASET_DIR + line.strip().split()[0])
+        train_lbl.append(ORGAN_DATASET_DIR + line.strip().split()[1])
+        train_name.append(line.strip().split()[1].split('.')[0])
 data_dicts_train = [{'image': image, 'label': label, 'label_raw': label, 'name': name}
             for image, label, name in zip(train_img, train_lbl, train_name)]
 print('train len {}'.format(len(data_dicts_train)))
@@ -274,8 +296,6 @@ print('train len {}'.format(len(data_dicts_train)))
 train_dataset = Dataset(data=data_dicts_train, transform=label_process)
 train_loader = DataLoader(train_dataset, batch_size=1, shuffle=False, num_workers=NUM_WORKER, 
                             collate_fn=list_data_collate)
-
-NUM_CLASS = 31
 
 for index, batch in enumerate(train_loader):
     x, y, y_raw, name = batch["image"], batch["label"], batch['label_raw'], batch['name']

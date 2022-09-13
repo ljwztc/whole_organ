@@ -17,11 +17,9 @@ from monai.inferers import sliding_window_inference
 from model.SwinUNETR_partial import SwinUNETR
 from dataset.dataloader import get_loader
 from utils import loss
-from utils.utils import dice_score, TEMPLATE, ORGAN_NAME, visualize_label, merge_label, get_key
+from utils.utils import dice_score, TEMPLATE, ORGAN_NAME, visualize_label, merge_label, get_key, NUM_CLASS
 
 torch.multiprocessing.set_sharing_strategy('file_system')
-
-NUM_CLASS = 31
 
 
 def validation(model, ValLoader, val_transforms, args):

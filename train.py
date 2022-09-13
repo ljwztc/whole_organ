@@ -24,13 +24,12 @@ from monai.metrics import DiceMetric
 from model.SwinUNETR_partial import SwinUNETR
 from dataset.dataloader import get_loader
 from utils import loss
-from utils.utils import dice_score, check_data, TEMPLATE, get_key
+from utils.utils import dice_score, check_data, TEMPLATE, get_key, NUM_CLASS
 from optimizers.lr_scheduler import LinearWarmupCosineAnnealingLR
 
 
 torch.multiprocessing.set_sharing_strategy('file_system')
 
-NUM_CLASS = 31
 
 def train(args, train_loader, model, optimizer, loss_seg_DICE, loss_seg_CE):
     model.train()
