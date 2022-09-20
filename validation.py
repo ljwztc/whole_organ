@@ -82,10 +82,10 @@ def main():
     parser.add_argument("--device")
     parser.add_argument("--epoch", default=0)
     ## logging
-    parser.add_argument('--log_name', default='PAOT', help='The path resume from checkpoint')
+    parser.add_argument('--log_name', default='PAOT_v2', help='The path resume from checkpoint')
     ## model load
-    parser.add_argument('--start_epoch', default=320, type=int, help='Number of start epoches')
-    parser.add_argument('--end_epoch', default=410, type=int, help='Number of end epoches')
+    parser.add_argument('--start_epoch', default=120, type=int, help='Number of start epoches')
+    parser.add_argument('--end_epoch', default=150, type=int, help='Number of end epoches')
     parser.add_argument('--epoch_interval', default=10, type=int, help='Number of start epoches')
 
     ## hyperparameter

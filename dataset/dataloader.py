@@ -82,7 +82,7 @@ class UniformDataset(Dataset):
         # data_index = int(index / self.__len__() * self.datasetnum[set_index])
         data_index = np.random.randint(self.datasetnum[set_index], size=1)[0]
         return self._transform(set_key, data_index)
-        
+
 
 class UniformCacheDataset(CacheDataset):
     def __init__(self, data, transform, cache_rate, datasetkey):

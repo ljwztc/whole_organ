@@ -78,7 +78,7 @@ class Multi_BCELoss(nn.Module):
         self.criterion = nn.BCEWithLogitsLoss()
 
     def forward(self, predict, target, name, TEMPLATE):
-        assert predict.shape == target.shape, 'predict & target shape do not match'
+        assert predict.shape[2:] == target.shape[2:], 'predict & target shape do not match'
 
         total_loss = []
         B = predict.shape[0]

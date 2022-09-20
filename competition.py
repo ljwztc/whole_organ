@@ -7,9 +7,10 @@ from tqdm import tqdm
 import os
 import argparse
 import time
+import glob
 
 from monai.losses import DiceCELoss
-from monai.data import load_decathlon_datalist, decollate_batch
+from monai.data import load_decathlon_datalist, decollate_batch, list_data_collate, Dataset, DataLoader
 from monai.transforms import AsDiscrete
 from monai.metrics import DiceMetric
 from monai.inferers import sliding_window_inference
@@ -17,98 +18,74 @@ from monai.inferers import sliding_window_inference
 from model.SwinUNETR_partial import SwinUNETR
 from dataset.dataloader import get_loader
 from utils import loss
-from utils.utils import dice_score, threshold_organ, visualize_label, merge_label, get_key
-from utils.utils import TEMPLATE, ORGAN_NAME, NUM_CLASS
-
-NUM_CLASS = 31
+from utils.utils import dice_score, TEMPLATE, ORGAN_NAME, visualize_label, merge_label, get_key
 
 torch.multiprocessing.set_sharing_strategy('file_system')
 
+from monai.transforms import (
+    AsDiscrete,
+    AddChanneld,
+    Compose,
+    CropForegroundd,
+    LoadImaged,
+    Orientationd,
+    RandFlipd,
+    RandCropByPosNegLabeld,
+    RandShiftIntensityd,
+    ScaleIntensityRanged,
+    Spacingd,
+    RandRotate90d,
+    ToTensord,
+    CenterSpatialCropd,
+    Resized,
+    SpatialPadd,
+    apply_transform,
+)
+from monai.data import decollate_batch
+from monai.transforms import Invertd, SaveImaged
+
+NUM_CLASS = 31
 
 def validation(model, ValLoader, val_transforms, args):
-    save_dir = 'out/' + args.log_name + f'/test_{args.epoch}'
+    save_dir = 'out/' + args.log_name
     if not os.path.isdir(save_dir):
         os.mkdir(save_dir)
-        os.mkdir(save_dir+'/predict')
     model.eval()
-    dice_list = {}
-    for key in TEMPLATE.keys():
-        dice_list[key] = np.zeros((2, NUM_CLASS)) # 1st row for dice, 2nd row for count
     for index, batch in enumerate(tqdm(ValLoader)):
         # print('%d processd' % (index))
-        image, label, name = batch["image"].cuda(), batch["post_label"], batch["name"]
+        image, name = batch["image"].cuda(), batch["name"]
+        print(image.shape)
         # print(label.shape)
         with torch.no_grad():
             # with torch.autocast(device_type="cuda", dtype=torch.float16):
-            pred = sliding_window_inference(image, (args.roi_x, args.roi_y, args.roi_z), 1, model, overlap=0.5, mode='gaussian')
+            pred = sliding_window_inference(image, (args.roi_x, args.roi_y, args.roi_z), 1, model, overlap=0.25, mode='gaussian', device=torch.device('cpu'))
             pred_sigmoid = F.sigmoid(pred)
+
         
-        pred_hard = threshold_organ(pred_sigmoid)
+        ### testing phase for this function
+        pred_bmask = torch.where(pred_sigmoid > 0.5, 1., 0.)
+        one_channel_label_v1, _ = merge_label(pred_bmask, ['08_'])
+        batch['one_channel_label_v1'] = one_channel_label_v1.cpu()
 
-        B = pred_sigmoid.shape[0]
-        for b in range(B):
-            content = 'case%s| '%(name[b])
-            template_key = get_key(name[b])
-            organ_list = TEMPLATE[template_key]
+        post_transforms = Compose([
+            Invertd(
+                keys=['one_channel_label_v1'],
+                transform=val_transforms,
+                orig_keys="image",
+                nearest_interp=True,
+                to_tensor=True,
+            ),
+            SaveImaged(keys='one_channel_label_v1', 
+                    output_dir=save_dir + '/output/' + name[0].split('.')[0], 
+                    output_postfix="result", 
+                    resample=False
+            ),
+        ])
+    
+        batch = [post_transforms(i) for i in decollate_batch(batch)]
 
-            for organ in organ_list:
-                if torch.sum(label[b,organ-1,:,:,:].cuda()) != 0:
-                    dice_organ, recall, precision = dice_score(pred_hard[b,organ-1,:,:,:], label[b,organ-1,:,:,:].cuda())
-                    dice_list[template_key][0][organ-1] += dice_organ.item()
-                    dice_list[template_key][1][organ-1] += 1
-                    content += '%s: %.4f, '%(ORGAN_NAME[organ-1], dice_organ.item())
-                    print('%s: dice %.4f, recall %.4f, precision %.4f.'%(ORGAN_NAME[organ-1], dice_organ.item(), recall.item(), precision.item()))
-            print(content)
-        
-        if args.store_result:
-            pred_sigmoid_store = (pred_sigmoid.cpu().numpy() * 255).astype(np.uint8)
-            label_store = (label.numpy()).astype(np.uint8)
-            np.savez_compressed(save_dir + '/predict/' + name[0].split('/')[0] + name[0].split('/')[-1], 
-                            pred=pred_sigmoid_store, label=label_store)
-            ### testing phase for this function
-            one_channel_label_v1, one_channel_label_v2 = merge_label(pred_hard, name)
-            batch['one_channel_label_v1'] = one_channel_label_v1.cpu()
-            batch['one_channel_label_v2'] = one_channel_label_v2.cpu()
-
-            _, split_label = merge_label(batch["post_label"], name)
-            batch['split_label'] = split_label.cpu()
-            # print(batch['label'].shape, batch['one_channel_label'].shape)
-            # print(torch.unique(batch['label']), torch.unique(batch['one_channel_label']))
-            visualize_label(batch, save_dir + '/output/' + name[0].split('/')[0] , val_transforms)
-            ## load data
-            # data = np.load('/out/epoch_80/predict/****.npz')
-            # pred, label = data['pred'], data['label']
             
         torch.cuda.empty_cache()
-    
-    ave_organ_dice = np.zeros((2, NUM_CLASS))
-
-    with open('out/'+args.log_name+f'/test_{args.epoch}.txt', 'w') as f:
-        for key in TEMPLATE.keys():
-            organ_list = TEMPLATE[key]
-            content = 'Task%s| '%(key)
-            for organ in organ_list:
-                dice = dice_list[key][0][organ-1] / dice_list[key][1][organ-1]
-                content += '%s: %.4f, '%(ORGAN_NAME[organ-1], dice)
-                ave_organ_dice[0][organ-1] += dice_list[key][0][organ-1]
-                ave_organ_dice[1][organ-1] += dice_list[key][1][organ-1]
-            print(content)
-            f.write(content)
-            f.write('\n')
-        content = 'Average | '
-        for i in range(NUM_CLASS):
-            content += '%s: %.4f, '%(ORGAN_NAME[i], ave_organ_dice[0][i] / ave_organ_dice[1][i])
-        print(content)
-        f.write(content)
-        f.write('\n')
-        print(np.mean(ave_organ_dice[0] / ave_organ_dice[1]))
-        f.write('%s: %.4f, '%('average', np.mean(ave_organ_dice[0] / ave_organ_dice[1])))
-        f.write('\n')
-        
-    
-    np.save(save_dir + '/result.npy', dice_list)
-    # load
-    # dice_list = np.load(/out/epoch_xxx/result.npy, allow_pickle=True)
 
 
 
@@ -122,18 +99,16 @@ def main():
     parser.add_argument("--device")
     parser.add_argument("--epoch", default=0)
     ## logging
-    parser.add_argument('--log_name', default='PAOT', help='The path resume from checkpoint')
+    parser.add_argument('--log_name', default='Abdomen1K', help='The path resume from checkpoint')
     ## model load
-    parser.add_argument('--resume', default='./out/PAOT/epoch_320.pth', help='The path resume from checkpoint')
+    parser.add_argument('--resume', default='./out/PAOT/epoch_410.pth', help='The path resume from checkpoint')
     parser.add_argument('--pretrain', default='./pretrained_weights/swin_unetr.base_5000ep_f48_lr2e-4_pretrained.pt', 
                         help='The path of pretrain model')
-
     ## hyperparameter
     parser.add_argument('--max_epoch', default=1000, type=int, help='Number of training epoches')
     parser.add_argument('--store_num', default=10, type=int, help='Store model how often')
     parser.add_argument('--lr', default=1e-4, type=float, help='Learning rate')
     parser.add_argument('--weight_decay', default=1e-5, type=float, help='Weight Decay')
-
     ## dataset
     parser.add_argument('--dataset_list', nargs='+', default=['PAOT_123457891213', 'PAOT_10_inner']) # 'PAOT', 'felix'
     ### please check this argment carefully
@@ -192,7 +167,48 @@ def main():
 
     torch.backends.cudnn.benchmark = True
 
-    test_loader, val_transforms = get_loader(args)
+    ## for dataset
+    val_transforms = Compose(
+        [
+            LoadImaged(keys=["image"]),
+            AddChanneld(keys=["image"]),
+            Orientationd(keys=["image"], axcodes="RAS"),
+            # ToTemplatelabeld(keys=['label']),
+            # RL_Splitd(keys=['label']),
+            Spacingd(
+                keys=["image"],
+                pixdim=(args.space_x, args.space_y, args.space_z),
+                mode=("bilinear"),
+            ), # process h5 to here
+            ScaleIntensityRanged(
+                keys=["image"],
+                a_min=args.a_min,
+                a_max=args.a_max,
+                b_min=args.b_min,
+                b_max=args.b_max,
+                clip=True,
+            ),
+            CropForegroundd(keys=["image"], source_key="image"),
+            ToTensord(keys=["image"]),
+        ]
+    )
+
+    ## test dict part
+    test_dir = '/home/jliu288/data/whole_organ/TestImage'
+    test_set = glob.glob(test_dir + '/**.nii.gz')
+    test_img = []
+    test_name = []
+    for item in test_set:
+        test_img.append(item)
+        test_name.append(item.split('/')[-1])
+    data_dicts_test = [{'image': image, 'name': name}
+                for image, name in zip(test_img, test_name)]
+    print('test len {}'.format(len(data_dicts_test)))
+
+
+    test_dataset = Dataset(data=data_dicts_test, transform=val_transforms)
+    test_loader = DataLoader(test_dataset, batch_size=1, shuffle=False, num_workers=4, collate_fn=list_data_collate)
+
 
     validation(model, test_loader, val_transforms, args)
 

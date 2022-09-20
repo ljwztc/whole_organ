@@ -27,6 +27,8 @@ from monai.transforms import Invertd, SaveImaged
 
 NUM_CLASS = 32
 
+
+
 TEMPLATE={
     '01': [1,2,3,4,5,6,7,8,9,10,11,12,13,14],
     '01_2': [1,3,4,5,6,7,11,14],
@@ -48,12 +50,12 @@ TEMPLATE={
     '10_10': [31]
 }
 
-ORGAN_NAME = ['Spleen', 'R Kidney', 'L Kidney', 'Gall Bladder', 'Esophagus', 
-                'Liver', 'Stomach', 'Arota', 'postcava', 'Portal vein and splenic vein',
-                'Pancreas', 'R Adrenal Gland', 'L Adrenal Gland', 'Duodenum', 'Hepatic Vessel',
+ORGAN_NAME = ['Spleen', 'Right Kidney', 'Left Kidney', 'Gall Bladder', 'Esophagus', 
+                'Liver', 'Stomach', 'Arota', 'Postcava', 'Portal Vein and Splenic Vein',
+                'Pancreas', 'Right Adrenal Gland', 'Left Adrenal Gland', 'Duodenum', 'Hepatic Vessel',
                 'R Lung', 'L Lung', 'Colon', 'Intestine', 'Rectum', 
-                'Bladder', 'Prostate', 'L head of femur', 'R head of femur', 'celiac truck',
-                'kidney tumor', 'liver tumor', 'pancreas tumor', 'Hepatic Vessel tumor', 'Lung tumor', 'Colon tumor']
+                'Bladder', 'Prostate', 'Left Head of Femur', 'Right Head of Femur', 'Celiac Truck',
+                'Kidney Tumor', 'Liver Tumor', 'Pancreas Tumor', 'Hepatic Vessel Tumor', 'Lung Tumor', 'Colon Tumor', 'Kidney Cyst']
 
 ## mapping to original setting
 MERGE_MAPPING_v1 = {
@@ -95,6 +97,57 @@ MERGE_MAPPING_v2 = {
     '12': [(2,4), (3,5), (21,2), (6,1), (16,3), (17,6)],  
     '13': [(1,3), (2,2), (3,13), (4,8), (5,9), (6,1), (7,7), (8,5), (9,6), (11,4), (12,10), (13,11), (25,12)],
 }
+
+THRESHOLD_DIC = {
+    'Spleen': 0.5,
+    'Right Kidney': 0.5,
+    'Left Kidney': 0.5,
+    'Gall Bladder': 0.5,
+    'Esophagus': 0.5, 
+    'Liver': 0.5,
+    'Stomach': 0.5,
+    'Arota': 0.5, 
+    'Postcava': 0.5, 
+    'Portal Vein and Splenic Vein': 0.5,
+    'Pancreas': 0.5, 
+    'Right Adrenal Gland': 0.5, 
+    'Left Adrenal Gland': 0.5, 
+    'Duodenum': 0.5, 
+    'Hepatic Vessel': 0.5,
+    'Right Lung': 0.5, 
+    'Left Lung': 0.5, 
+    'Colon': 0.5, 
+    'Intestine': 0.5, 
+    'Rectum': 0.5, 
+    'Bladder': 0.5, 
+    'Prostate': 0.5, 
+    'Left Head of Femur': 0.5, 
+    'Right Head of Femur': 0.5, 
+    'Celiac Truck': 0.5,
+    'Kidney Tumor': 0.5, 
+    'Liver Tumor': 0.5, 
+    'Pancreas Tumor': 0.5, 
+    'Hepatic Vessel Tumor': 0.5, 
+    'Lung Tumor': 0.5, 
+    'Colon Tumor': 0.5, 
+    #'Kidney Cyst': 0.5
+}
+
+
+
+
+def threshold_organ(data):
+    ### threshold the sigmoid value to hard label
+    ## data: sigmoid value
+    ## threshold_list: a list of organ threshold
+    B = data.shape[0]
+    threshold_list = []
+    for key, value in THRESHOLD_DIC.items():
+        threshold_list.append(value)
+    threshold_list = torch.tensor(threshold_list).repeat(B, 1).reshape(B,len(threshold_list),1,1,1).cuda()
+    pred_hard = data > threshold_list
+    return pred_hard
+
 
 def visualize_label(batch, save_dir, input_transform):
     ### function: save the prediction result into dir
@@ -161,7 +214,6 @@ def merge_label(pred_bmask, name):
     return merged_label_v1, merged_label_v2
 
 
-
 def get_key(name):
     ## input: name
     ## output: the corresponding key
@@ -171,6 +223,7 @@ def get_key(name):
     else:
         template_key = name[0:2]
     return template_key
+
 
 def dice_score(preds, labels):  # on GPU
     ### preds: w,h,d; label: w,h,d
@@ -210,6 +263,7 @@ def _get_gaussian(patch_size, sigma_scale=1. / 8) -> np.ndarray:
 
     return gaussian_importance_map
 
+
 def multi_net(net_list, img, task_id):
     # img = torch.from_numpy(img).cuda()
 
@@ -221,6 +275,7 @@ def multi_net(net_list, img, task_id):
         padded_prediction += padded_prediction_i
     padded_prediction /= len(net_list)
     return padded_prediction#.cpu().data.numpy()
+
 
 def check_data(dataset_check):
     img = dataset_check[0]["image"]
@@ -238,3 +293,6 @@ def check_data(dataset_check):
     plt.title("label")
     plt.imshow(label[0, :, :, 150].detach().cpu())
     plt.show()
+
+if __name__ == "__main__":
+    threshold_organ(torch.zeros(1,12,1))    
