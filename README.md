@@ -75,5 +75,5 @@ CUDA_VISIBLE_DEVICES=7 python -W ignore test.py
 ## FQA
 
 Q1: How to add new datasets to the respository?  
-A1： 1. Add the corresponding trasnsfer template to `label_transfer.py` 2. Add the txt including relative path to `dataset/dataset_list` 3. Add the list of included organ to the template in `utils/utils.py` Update NUM_CLASS in the train.py 
+A1： 1. Add the corresponding trasnsfer template to `label_transfer.py` 2. Add the txt including relative path to `dataset/dataset_list` 3. Add the list of included organ to the template in `utils/utils.py` Update NUM_CLASS in `utils/utils.py`
 2. 
