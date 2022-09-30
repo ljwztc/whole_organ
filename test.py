@@ -19,13 +19,13 @@ from dataset.dataloader import get_loader
 from utils import loss
 from utils.utils import dice_score, threshold_organ, visualize_label, merge_label, get_key
 from utils.utils import TEMPLATE, ORGAN_NAME, NUM_CLASS
-
-NUM_CLASS = 31
+from utils.utils import organ_post_process, threshold_organ
 
 torch.multiprocessing.set_sharing_strategy('file_system')
 
 
 def validation(model, ValLoader, val_transforms, args):
+    args.epoch = '340_ttt'
     save_dir = 'out/' + args.log_name + f'/test_{args.epoch}'
     if not os.path.isdir(save_dir):
         os.mkdir(save_dir)
@@ -43,17 +43,22 @@ def validation(model, ValLoader, val_transforms, args):
             pred = sliding_window_inference(image, (args.roi_x, args.roi_y, args.roi_z), 1, model, overlap=0.5, mode='gaussian')
             pred_sigmoid = F.sigmoid(pred)
         
+        #pred_hard = threshold_organ(pred_sigmoid, organ=args.threshold_organ, threshold=args.threshold)
         pred_hard = threshold_organ(pred_sigmoid)
+        pred_hard = pred_hard.cpu()
+        torch.cuda.empty_cache()
 
-        B = pred_sigmoid.shape[0]
+        B = pred_hard.shape[0]
         for b in range(B):
             content = 'case%s| '%(name[b])
             template_key = get_key(name[b])
             organ_list = TEMPLATE[template_key]
+            pred_hard_post = organ_post_process(pred_hard.numpy(), organ_list)
+            pred_hard_post = torch.tensor(pred_hard_post)
 
             for organ in organ_list:
                 if torch.sum(label[b,organ-1,:,:,:].cuda()) != 0:
-                    dice_organ, recall, precision = dice_score(pred_hard[b,organ-1,:,:,:], label[b,organ-1,:,:,:].cuda())
+                    dice_organ, recall, precision = dice_score(pred_hard_post[b,organ-1,:,:,:].cuda(), label[b,organ-1,:,:,:].cuda())
                     dice_list[template_key][0][organ-1] += dice_organ.item()
                     dice_list[template_key][1][organ-1] += 1
                     content += '%s: %.4f, '%(ORGAN_NAME[organ-1], dice_organ.item())
@@ -66,7 +71,7 @@ def validation(model, ValLoader, val_transforms, args):
             np.savez_compressed(save_dir + '/predict/' + name[0].split('/')[0] + name[0].split('/')[-1], 
                             pred=pred_sigmoid_store, label=label_store)
             ### testing phase for this function
-            one_channel_label_v1, one_channel_label_v2 = merge_label(pred_hard, name)
+            one_channel_label_v1, one_channel_label_v2 = merge_label(pred_hard_post, name)
             batch['one_channel_label_v1'] = one_channel_label_v1.cpu()
             batch['one_channel_label_v2'] = one_channel_label_v2.cpu()
 
@@ -122,9 +127,9 @@ def main():
     parser.add_argument("--device")
     parser.add_argument("--epoch", default=0)
     ## logging
-    parser.add_argument('--log_name', default='PAOT', help='The path resume from checkpoint')
+    parser.add_argument('--log_name', default='PAOT_v2', help='The path resume from checkpoint')
     ## model load
-    parser.add_argument('--resume', default='./out/PAOT/epoch_320.pth', help='The path resume from checkpoint')
+    parser.add_argument('--resume', default='./out/PAOT_v2/epoch_340.pth', help='The path resume from checkpoint')
     parser.add_argument('--pretrain', default='./pretrained_weights/swin_unetr.base_5000ep_f48_lr2e-4_pretrained.pt', 
                         help='The path of pretrain model')
 
@@ -161,6 +166,9 @@ def main():
     parser.add_argument('--cache_dataset', action="store_true", default=False, help='whether use cache dataset')
     parser.add_argument('--store_result', action="store_true", default=False, help='whether save prediction result')
     parser.add_argument('--cache_rate', default=0.6, type=float, help='The percentage of cached data in total')
+
+    parser.add_argument('--threshold_organ', default='Pancreas Tumor')
+    parser.add_argument('--threshold', default=0.6, type=float)
 
     args = parser.parse_args()
 

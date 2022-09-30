@@ -18,7 +18,9 @@ from monai.inferers import sliding_window_inference
 from model.SwinUNETR_partial import SwinUNETR
 from dataset.dataloader import get_loader
 from utils import loss
-from utils.utils import dice_score, TEMPLATE, ORGAN_NAME, visualize_label, merge_label, get_key
+from utils.utils import dice_score, threshold_organ, visualize_label, merge_label, get_key
+from utils.utils import TEMPLATE, ORGAN_NAME, NUM_CLASS
+from utils.utils import organ_post_process, threshold_organ
 
 torch.multiprocessing.set_sharing_strategy('file_system')
 
@@ -44,8 +46,6 @@ from monai.transforms import (
 from monai.data import decollate_batch
 from monai.transforms import Invertd, SaveImaged
 
-NUM_CLASS = 31
-
 def validation(model, ValLoader, val_transforms, args):
     save_dir = 'out/' + args.log_name
     if not os.path.isdir(save_dir):
@@ -54,17 +54,25 @@ def validation(model, ValLoader, val_transforms, args):
     for index, batch in enumerate(tqdm(ValLoader)):
         # print('%d processd' % (index))
         image, name = batch["image"].cuda(), batch["name"]
-        print(image.shape)
         # print(label.shape)
         with torch.no_grad():
             # with torch.autocast(device_type="cuda", dtype=torch.float16):
             pred = sliding_window_inference(image, (args.roi_x, args.roi_y, args.roi_z), 1, model, overlap=0.25, mode='gaussian', device=torch.device('cpu'))
-            pred_sigmoid = F.sigmoid(pred)
-
+            pred_sigmoid = F.sigmoid(pred).cuda()
         
+        pred_hard = threshold_organ(pred_sigmoid)
+        pred_hard = pred_hard.cpu()
+        torch.cuda.empty_cache()
+
+        B = pred_hard.shape[0]
+        for b in range(B):
+            template_key = get_key(name[b])
+            organ_list = TEMPLATE[template_key]
+            pred_hard_post = organ_post_process(pred_hard.numpy(), organ_list)
+            pred_hard_post = torch.tensor(pred_hard_post)
+
         ### testing phase for this function
-        pred_bmask = torch.where(pred_sigmoid > 0.5, 1., 0.)
-        one_channel_label_v1, _ = merge_label(pred_bmask, ['08_'])
+        one_channel_label_v1, _ = merge_label(pred_hard_post, name)
         batch['one_channel_label_v1'] = one_channel_label_v1.cpu()
 
         post_transforms = Compose([
@@ -76,7 +84,7 @@ def validation(model, ValLoader, val_transforms, args):
                 to_tensor=True,
             ),
             SaveImaged(keys='one_channel_label_v1', 
-                    output_dir=save_dir + '/output/' + name[0].split('.')[0], 
+                    output_dir=save_dir + '/output/' + name[0].split('/')[-1].split('.')[0], 
                     output_postfix="result", 
                     resample=False
             ),
@@ -99,9 +107,9 @@ def main():
     parser.add_argument("--device")
     parser.add_argument("--epoch", default=0)
     ## logging
-    parser.add_argument('--log_name', default='Abdomen1K', help='The path resume from checkpoint')
+    parser.add_argument('--log_name', default='MSD', help='The path resume from checkpoint')
     ## model load
-    parser.add_argument('--resume', default='./out/PAOT/epoch_410.pth', help='The path resume from checkpoint')
+    parser.add_argument('--resume', default='./out/PAOT_v2/epoch_430.pth', help='The path resume from checkpoint')
     parser.add_argument('--pretrain', default='./pretrained_weights/swin_unetr.base_5000ep_f48_lr2e-4_pretrained.pt', 
                         help='The path of pretrain model')
     ## hyperparameter
@@ -161,7 +169,7 @@ def main():
         store_dict[name] = value
 
     model.load_state_dict(store_dict)
-    print('Use pretrained weights')
+    print(f'Use {args.resume} weights')
 
     model.cuda()
 
@@ -194,13 +202,15 @@ def main():
     )
 
     ## test dict part
-    test_dir = '/home/jliu288/data/whole_organ/TestImage'
-    test_set = glob.glob(test_dir + '/**.nii.gz')
+    test_dir = '/home/jliu288/data/whole_organ/10_Decathlon'
+    test_data = glob.glob(test_dir + '/Task**')
     test_img = []
     test_name = []
-    for item in test_set:
-        test_img.append(item)
-        test_name.append(item.split('/')[-1])
+    for dataset in test_data:
+        test_set = glob.glob(dataset + '/imagesTs/**.nii.gz')
+        for item in test_set:
+            test_img.append(item)
+            test_name.append('/'.join(item.split('/')[-4:]))
     data_dicts_test = [{'image': image, 'name': name}
                 for image, name in zip(test_img, test_name)]
     print('test len {}'.format(len(data_dicts_test)))

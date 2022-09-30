@@ -1,0 +1,888 @@
+Use pretrained weights
+train len 2202
+val len 409
+test len 26
+{'Spleen': 0.5, 'Right Kidney': 0.5, 'Left Kidney': 0.5, 'Gall Bladder': 0.5, 'Esophagus': 0.5, 'Liver': 0.5, 'Stomach': 0.5, 'Arota': 0.5, 'Postcava': 0.5, 'Portal Vein and Splenic Vein': 0.5, 'Pancreas': 0.5, 'Right Adrenal Gland': 0.5, 'Left Adrenal Gland': 0.5, 'Duodenum': 0.5, 'Hepatic Vessel': 0.5, 'Right Lung': 0.5, 'Left Lung': 0.5, 'Colon': 0.5, 'Intestine': 0.5, 'Rectum': 0.5, 'Bladder': 0.5, 'Prostate': 0.5, 'Left Head of Femur': 0.5, 'Right Head of Femur': 0.5, 'Celiac Truck': 0.5, 'Kidney Tumor': 0.5, 'Liver Tumor': 0.4, 'Pancreas Tumor': 0.5, 'Hepatic Vessel Tumor': 0.5, 'Lung Tumor': 0.5, 'Colon Tumor': 0.5, 'Kidney Cyst': 0.5}
+Liver: dice 0.9763, recall 0.9641, precision 0.9888.
+case10_Decathlon/Task03_Liver/labelsTr/liver_38| Liver: 0.9763, 
+{'Spleen': 0.5, 'Right Kidney': 0.5, 'Left Kidney': 0.5, 'Gall Bladder': 0.5, 'Esophagus': 0.5, 'Liver': 0.5, 'Stomach': 0.5, 'Arota': 0.5, 'Postcava': 0.5, 'Portal Vein and Splenic Vein': 0.5, 'Pancreas': 0.5, 'Right Adrenal Gland': 0.5, 'Left Adrenal Gland': 0.5, 'Duodenum': 0.5, 'Hepatic Vessel': 0.5, 'Right Lung': 0.5, 'Left Lung': 0.5, 'Colon': 0.5, 'Intestine': 0.5, 'Rectum': 0.5, 'Bladder': 0.5, 'Prostate': 0.5, 'Left Head of Femur': 0.5, 'Right Head of Femur': 0.5, 'Celiac Truck': 0.5, 'Kidney Tumor': 0.5, 'Liver Tumor': 0.4, 'Pancreas Tumor': 0.5, 'Hepatic Vessel Tumor': 0.5, 'Lung Tumor': 0.5, 'Colon Tumor': 0.5, 'Kidney Cyst': 0.5}
+Liver: dice 0.9397, recall 0.9217, precision 0.9584.
+Liver Tumor: dice 0.3212, recall 0.6968, precision 0.2087.
+case10_Decathlon/Task03_Liver/labelsTr/liver_49| Liver: 0.9397, Liver Tumor: 0.3212, 
+{'Spleen': 0.5, 'Right Kidney': 0.5, 'Left Kidney': 0.5, 'Gall Bladder': 0.5, 'Esophagus': 0.5, 'Liver': 0.5, 'Stomach': 0.5, 'Arota': 0.5, 'Postcava': 0.5, 'Portal Vein and Splenic Vein': 0.5, 'Pancreas': 0.5, 'Right Adrenal Gland': 0.5, 'Left Adrenal Gland': 0.5, 'Duodenum': 0.5, 'Hepatic Vessel': 0.5, 'Right Lung': 0.5, 'Left Lung': 0.5, 'Colon': 0.5, 'Intestine': 0.5, 'Rectum': 0.5, 'Bladder': 0.5, 'Prostate': 0.5, 'Left Head of Femur': 0.5, 'Right Head of Femur': 0.5, 'Celiac Truck': 0.5, 'Kidney Tumor': 0.5, 'Liver Tumor': 0.4, 'Pancreas Tumor': 0.5, 'Hepatic Vessel Tumor': 0.5, 'Lung Tumor': 0.5, 'Colon Tumor': 0.5, 'Kidney Cyst': 0.5}
+Liver: dice 0.9503, recall 0.9719, precision 0.9296.
+case10_Decathlon/Task03_Liver/labelsTr/liver_34| Liver: 0.9503, 
+{'Spleen': 0.5, 'Right Kidney': 0.5, 'Left Kidney': 0.5, 'Gall Bladder': 0.5, 'Esophagus': 0.5, 'Liver': 0.5, 'Stomach': 0.5, 'Arota': 0.5, 'Postcava': 0.5, 'Portal Vein and Splenic Vein': 0.5, 'Pancreas': 0.5, 'Right Adrenal Gland': 0.5, 'Left Adrenal Gland': 0.5, 'Duodenum': 0.5, 'Hepatic Vessel': 0.5, 'Right Lung': 0.5, 'Left Lung': 0.5, 'Colon': 0.5, 'Intestine': 0.5, 'Rectum': 0.5, 'Bladder': 0.5, 'Prostate': 0.5, 'Left Head of Femur': 0.5, 'Right Head of Femur': 0.5, 'Celiac Truck': 0.5, 'Kidney Tumor': 0.5, 'Liver Tumor': 0.4, 'Pancreas Tumor': 0.5, 'Hepatic Vessel Tumor': 0.5, 'Lung Tumor': 0.5, 'Colon Tumor': 0.5, 'Kidney Cyst': 0.5}
+Liver: dice 0.9826, recall 0.9873, precision 0.9780.
+Liver Tumor: dice 0.5326, recall 0.7287, precision 0.4215.
+case10_Decathlon/Task03_Liver/labelsTr/liver_112| Liver: 0.9826, Liver Tumor: 0.5326, 
+{'Spleen': 0.5, 'Right Kidney': 0.5, 'Left Kidney': 0.5, 'Gall Bladder': 0.5, 'Esophagus': 0.5, 'Liver': 0.5, 'Stomach': 0.5, 'Arota': 0.5, 'Postcava': 0.5, 'Portal Vein and Splenic Vein': 0.5, 'Pancreas': 0.5, 'Right Adrenal Gland': 0.5, 'Left Adrenal Gland': 0.5, 'Duodenum': 0.5, 'Hepatic Vessel': 0.5, 'Right Lung': 0.5, 'Left Lung': 0.5, 'Colon': 0.5, 'Intestine': 0.5, 'Rectum': 0.5, 'Bladder': 0.5, 'Prostate': 0.5, 'Left Head of Femur': 0.5, 'Right Head of Femur': 0.5, 'Celiac Truck': 0.5, 'Kidney Tumor': 0.5, 'Liver Tumor': 0.4, 'Pancreas Tumor': 0.5, 'Hepatic Vessel Tumor': 0.5, 'Lung Tumor': 0.5, 'Colon Tumor': 0.5, 'Kidney Cyst': 0.5}
+Liver: dice 0.9568, recall 0.9196, precision 0.9971.
+Liver Tumor: dice 0.8185, recall 0.7638, precision 0.8825.
+case10_Decathlon/Task03_Liver/labelsTr/liver_57| Liver: 0.9568, Liver Tumor: 0.8185, 
+{'Spleen': 0.5, 'Right Kidney': 0.5, 'Left Kidney': 0.5, 'Gall Bladder': 0.5, 'Esophagus': 0.5, 'Liver': 0.5, 'Stomach': 0.5, 'Arota': 0.5, 'Postcava': 0.5, 'Portal Vein and Splenic Vein': 0.5, 'Pancreas': 0.5, 'Right Adrenal Gland': 0.5, 'Left Adrenal Gland': 0.5, 'Duodenum': 0.5, 'Hepatic Vessel': 0.5, 'Right Lung': 0.5, 'Left Lung': 0.5, 'Colon': 0.5, 'Intestine': 0.5, 'Rectum': 0.5, 'Bladder': 0.5, 'Prostate': 0.5, 'Left Head of Femur': 0.5, 'Right Head of Femur': 0.5, 'Celiac Truck': 0.5, 'Kidney Tumor': 0.5, 'Liver Tumor': 0.4, 'Pancreas Tumor': 0.5, 'Hepatic Vessel Tumor': 0.5, 'Lung Tumor': 0.5, 'Colon Tumor': 0.5, 'Kidney Cyst': 0.5}
+Liver: dice 0.9805, recall 0.9870, precision 0.9740.
+Liver Tumor: dice 0.8808, recall 0.8382, precision 0.9280.
+case10_Decathlon/Task03_Liver/labelsTr/liver_124| Liver: 0.9805, Liver Tumor: 0.8808, 
+{'Spleen': 0.5, 'Right Kidney': 0.5, 'Left Kidney': 0.5, 'Gall Bladder': 0.5, 'Esophagus': 0.5, 'Liver': 0.5, 'Stomach': 0.5, 'Arota': 0.5, 'Postcava': 0.5, 'Portal Vein and Splenic Vein': 0.5, 'Pancreas': 0.5, 'Right Adrenal Gland': 0.5, 'Left Adrenal Gland': 0.5, 'Duodenum': 0.5, 'Hepatic Vessel': 0.5, 'Right Lung': 0.5, 'Left Lung': 0.5, 'Colon': 0.5, 'Intestine': 0.5, 'Rectum': 0.5, 'Bladder': 0.5, 'Prostate': 0.5, 'Left Head of Femur': 0.5, 'Right Head of Femur': 0.5, 'Celiac Truck': 0.5, 'Kidney Tumor': 0.5, 'Liver Tumor': 0.4, 'Pancreas Tumor': 0.5, 'Hepatic Vessel Tumor': 0.5, 'Lung Tumor': 0.5, 'Colon Tumor': 0.5, 'Kidney Cyst': 0.5}
+Liver: dice 0.9500, recall 0.9756, precision 0.9257.
+Liver Tumor: dice 0.7759, recall 0.7143, precision 0.8500.
+case10_Decathlon/Task03_Liver/labelsTr/liver_61| Liver: 0.9500, Liver Tumor: 0.7759, 
+{'Spleen': 0.5, 'Right Kidney': 0.5, 'Left Kidney': 0.5, 'Gall Bladder': 0.5, 'Esophagus': 0.5, 'Liver': 0.5, 'Stomach': 0.5, 'Arota': 0.5, 'Postcava': 0.5, 'Portal Vein and Splenic Vein': 0.5, 'Pancreas': 0.5, 'Right Adrenal Gland': 0.5, 'Left Adrenal Gland': 0.5, 'Duodenum': 0.5, 'Hepatic Vessel': 0.5, 'Right Lung': 0.5, 'Left Lung': 0.5, 'Colon': 0.5, 'Intestine': 0.5, 'Rectum': 0.5, 'Bladder': 0.5, 'Prostate': 0.5, 'Left Head of Femur': 0.5, 'Right Head of Femur': 0.5, 'Celiac Truck': 0.5, 'Kidney Tumor': 0.5, 'Liver Tumor': 0.4, 'Pancreas Tumor': 0.5, 'Hepatic Vessel Tumor': 0.5, 'Lung Tumor': 0.5, 'Colon Tumor': 0.5, 'Kidney Cyst': 0.5}
+Liver: dice 0.9773, recall 0.9699, precision 0.9848.
+Liver Tumor: dice 0.8748, recall 0.9134, precision 0.8395.
+case10_Decathlon/Task03_Liver/labelsTr/liver_10| Liver: 0.9773, Liver Tumor: 0.8748, 
+{'Spleen': 0.5, 'Right Kidney': 0.5, 'Left Kidney': 0.5, 'Gall Bladder': 0.5, 'Esophagus': 0.5, 'Liver': 0.5, 'Stomach': 0.5, 'Arota': 0.5, 'Postcava': 0.5, 'Portal Vein and Splenic Vein': 0.5, 'Pancreas': 0.5, 'Right Adrenal Gland': 0.5, 'Left Adrenal Gland': 0.5, 'Duodenum': 0.5, 'Hepatic Vessel': 0.5, 'Right Lung': 0.5, 'Left Lung': 0.5, 'Colon': 0.5, 'Intestine': 0.5, 'Rectum': 0.5, 'Bladder': 0.5, 'Prostate': 0.5, 'Left Head of Femur': 0.5, 'Right Head of Femur': 0.5, 'Celiac Truck': 0.5, 'Kidney Tumor': 0.5, 'Liver Tumor': 0.4, 'Pancreas Tumor': 0.5, 'Hepatic Vessel Tumor': 0.5, 'Lung Tumor': 0.5, 'Colon Tumor': 0.5, 'Kidney Cyst': 0.5}
+Liver: dice 0.9469, recall 0.9738, precision 0.9214.
+Liver Tumor: dice 0.5980, recall 0.4483, precision 0.9006.
+case10_Decathlon/Task03_Liver/labelsTr/liver_73| Liver: 0.9469, Liver Tumor: 0.5980, 
+{'Spleen': 0.5, 'Right Kidney': 0.5, 'Left Kidney': 0.5, 'Gall Bladder': 0.5, 'Esophagus': 0.5, 'Liver': 0.5, 'Stomach': 0.5, 'Arota': 0.5, 'Postcava': 0.5, 'Portal Vein and Splenic Vein': 0.5, 'Pancreas': 0.5, 'Right Adrenal Gland': 0.5, 'Left Adrenal Gland': 0.5, 'Duodenum': 0.5, 'Hepatic Vessel': 0.5, 'Right Lung': 0.5, 'Left Lung': 0.5, 'Colon': 0.5, 'Intestine': 0.5, 'Rectum': 0.5, 'Bladder': 0.5, 'Prostate': 0.5, 'Left Head of Femur': 0.5, 'Right Head of Femur': 0.5, 'Celiac Truck': 0.5, 'Kidney Tumor': 0.5, 'Liver Tumor': 0.4, 'Pancreas Tumor': 0.5, 'Hepatic Vessel Tumor': 0.5, 'Lung Tumor': 0.5, 'Colon Tumor': 0.5, 'Kidney Cyst': 0.5}
+Liver: dice 0.9790, recall 0.9810, precision 0.9771.
+Liver Tumor: dice 0.8202, recall 0.8280, precision 0.8126.
+case10_Decathlon/Task03_Liver/labelsTr/liver_128| Liver: 0.9790, Liver Tumor: 0.8202, 
+{'Spleen': 0.5, 'Right Kidney': 0.5, 'Left Kidney': 0.5, 'Gall Bladder': 0.5, 'Esophagus': 0.5, 'Liver': 0.5, 'Stomach': 0.5, 'Arota': 0.5, 'Postcava': 0.5, 'Portal Vein and Splenic Vein': 0.5, 'Pancreas': 0.5, 'Right Adrenal Gland': 0.5, 'Left Adrenal Gland': 0.5, 'Duodenum': 0.5, 'Hepatic Vessel': 0.5, 'Right Lung': 0.5, 'Left Lung': 0.5, 'Colon': 0.5, 'Intestine': 0.5, 'Rectum': 0.5, 'Bladder': 0.5, 'Prostate': 0.5, 'Left Head of Femur': 0.5, 'Right Head of Femur': 0.5, 'Celiac Truck': 0.5, 'Kidney Tumor': 0.5, 'Liver Tumor': 0.4, 'Pancreas Tumor': 0.5, 'Hepatic Vessel Tumor': 0.5, 'Lung Tumor': 0.5, 'Colon Tumor': 0.5, 'Kidney Cyst': 0.5}
+Liver: dice 0.9751, recall 0.9642, precision 0.9862.
+Liver Tumor: dice 0.8618, recall 0.8964, precision 0.8299.
+case10_Decathlon/Task03_Liver/labelsTr/liver_9| Liver: 0.9751, Liver Tumor: 0.8618, 
+{'Spleen': 0.5, 'Right Kidney': 0.5, 'Left Kidney': 0.5, 'Gall Bladder': 0.5, 'Esophagus': 0.5, 'Liver': 0.5, 'Stomach': 0.5, 'Arota': 0.5, 'Postcava': 0.5, 'Portal Vein and Splenic Vein': 0.5, 'Pancreas': 0.5, 'Right Adrenal Gland': 0.5, 'Left Adrenal Gland': 0.5, 'Duodenum': 0.5, 'Hepatic Vessel': 0.5, 'Right Lung': 0.5, 'Left Lung': 0.5, 'Colon': 0.5, 'Intestine': 0.5, 'Rectum': 0.5, 'Bladder': 0.5, 'Prostate': 0.5, 'Left Head of Femur': 0.5, 'Right Head of Femur': 0.5, 'Celiac Truck': 0.5, 'Kidney Tumor': 0.5, 'Liver Tumor': 0.4, 'Pancreas Tumor': 0.5, 'Hepatic Vessel Tumor': 0.5, 'Lung Tumor': 0.5, 'Colon Tumor': 0.5, 'Kidney Cyst': 0.5}
+Liver: dice 0.9736, recall 0.9718, precision 0.9755.
+Liver Tumor: dice 0.4939, recall 0.7829, precision 0.3620.
+case10_Decathlon/Task03_Liver/labelsTr/liver_5| Liver: 0.9736, Liver Tumor: 0.4939, 
+{'Spleen': 0.5, 'Right Kidney': 0.5, 'Left Kidney': 0.5, 'Gall Bladder': 0.5, 'Esophagus': 0.5, 'Liver': 0.5, 'Stomach': 0.5, 'Arota': 0.5, 'Postcava': 0.5, 'Portal Vein and Splenic Vein': 0.5, 'Pancreas': 0.5, 'Right Adrenal Gland': 0.5, 'Left Adrenal Gland': 0.5, 'Duodenum': 0.5, 'Hepatic Vessel': 0.5, 'Right Lung': 0.5, 'Left Lung': 0.5, 'Colon': 0.5, 'Intestine': 0.5, 'Rectum': 0.5, 'Bladder': 0.5, 'Prostate': 0.5, 'Left Head of Femur': 0.5, 'Right Head of Femur': 0.5, 'Celiac Truck': 0.5, 'Kidney Tumor': 0.5, 'Liver Tumor': 0.4, 'Pancreas Tumor': 0.5, 'Hepatic Vessel Tumor': 0.5, 'Lung Tumor': 0.5, 'Colon Tumor': 0.5, 'Kidney Cyst': 0.5}
+Liver: dice 0.9695, recall 0.9642, precision 0.9748.
+Liver Tumor: dice 0.8866, recall 0.8051, precision 0.9866.
+case10_Decathlon/Task03_Liver/labelsTr/liver_80| Liver: 0.9695, Liver Tumor: 0.8866, 
+{'Spleen': 0.5, 'Right Kidney': 0.5, 'Left Kidney': 0.5, 'Gall Bladder': 0.5, 'Esophagus': 0.5, 'Liver': 0.5, 'Stomach': 0.5, 'Arota': 0.5, 'Postcava': 0.5, 'Portal Vein and Splenic Vein': 0.5, 'Pancreas': 0.5, 'Right Adrenal Gland': 0.5, 'Left Adrenal Gland': 0.5, 'Duodenum': 0.5, 'Hepatic Vessel': 0.5, 'Right Lung': 0.5, 'Left Lung': 0.5, 'Colon': 0.5, 'Intestine': 0.5, 'Rectum': 0.5, 'Bladder': 0.5, 'Prostate': 0.5, 'Left Head of Femur': 0.5, 'Right Head of Femur': 0.5, 'Celiac Truck': 0.5, 'Kidney Tumor': 0.5, 'Liver Tumor': 0.4, 'Pancreas Tumor': 0.5, 'Hepatic Vessel Tumor': 0.5, 'Lung Tumor': 0.5, 'Colon Tumor': 0.5, 'Kidney Cyst': 0.5}
+Liver: dice 0.9753, recall 0.9627, precision 0.9883.
+Liver Tumor: dice 0.5622, recall 0.5198, precision 0.6150.
+case10_Decathlon/Task03_Liver/labelsTr/liver_92| Liver: 0.9753, Liver Tumor: 0.5622, 
+{'Spleen': 0.5, 'Right Kidney': 0.5, 'Left Kidney': 0.5, 'Gall Bladder': 0.5, 'Esophagus': 0.5, 'Liver': 0.5, 'Stomach': 0.5, 'Arota': 0.5, 'Postcava': 0.5, 'Portal Vein and Splenic Vein': 0.5, 'Pancreas': 0.5, 'Right Adrenal Gland': 0.5, 'Left Adrenal Gland': 0.5, 'Duodenum': 0.5, 'Hepatic Vessel': 0.5, 'Right Lung': 0.5, 'Left Lung': 0.5, 'Colon': 0.5, 'Intestine': 0.5, 'Rectum': 0.5, 'Bladder': 0.5, 'Prostate': 0.5, 'Left Head of Femur': 0.5, 'Right Head of Femur': 0.5, 'Celiac Truck': 0.5, 'Kidney Tumor': 0.5, 'Liver Tumor': 0.4, 'Pancreas Tumor': 0.5, 'Hepatic Vessel Tumor': 0.5, 'Lung Tumor': 0.5, 'Colon Tumor': 0.5, 'Kidney Cyst': 0.5}
+Liver: dice 0.9626, recall 0.9412, precision 0.9850.
+Liver Tumor: dice 0.6468, recall 0.5911, precision 0.7146.
+case10_Decathlon/Task03_Liver/labelsTr/liver_0| Liver: 0.9626, Liver Tumor: 0.6468, 
+{'Spleen': 0.5, 'Right Kidney': 0.5, 'Left Kidney': 0.5, 'Gall Bladder': 0.5, 'Esophagus': 0.5, 'Liver': 0.5, 'Stomach': 0.5, 'Arota': 0.5, 'Postcava': 0.5, 'Portal Vein and Splenic Vein': 0.5, 'Pancreas': 0.5, 'Right Adrenal Gland': 0.5, 'Left Adrenal Gland': 0.5, 'Duodenum': 0.5, 'Hepatic Vessel': 0.5, 'Right Lung': 0.5, 'Left Lung': 0.5, 'Colon': 0.5, 'Intestine': 0.5, 'Rectum': 0.5, 'Bladder': 0.5, 'Prostate': 0.5, 'Left Head of Femur': 0.5, 'Right Head of Femur': 0.5, 'Celiac Truck': 0.5, 'Kidney Tumor': 0.5, 'Liver Tumor': 0.4, 'Pancreas Tumor': 0.5, 'Hepatic Vessel Tumor': 0.5, 'Lung Tumor': 0.5, 'Colon Tumor': 0.5, 'Kidney Cyst': 0.5}
+Liver: dice 0.9786, recall 0.9738, precision 0.9835.
+case10_Decathlon/Task03_Liver/labelsTr/liver_89| Liver: 0.9786, 
+{'Spleen': 0.5, 'Right Kidney': 0.5, 'Left Kidney': 0.5, 'Gall Bladder': 0.5, 'Esophagus': 0.5, 'Liver': 0.5, 'Stomach': 0.5, 'Arota': 0.5, 'Postcava': 0.5, 'Portal Vein and Splenic Vein': 0.5, 'Pancreas': 0.5, 'Right Adrenal Gland': 0.5, 'Left Adrenal Gland': 0.5, 'Duodenum': 0.5, 'Hepatic Vessel': 0.5, 'Right Lung': 0.5, 'Left Lung': 0.5, 'Colon': 0.5, 'Intestine': 0.5, 'Rectum': 0.5, 'Bladder': 0.5, 'Prostate': 0.5, 'Left Head of Femur': 0.5, 'Right Head of Femur': 0.5, 'Celiac Truck': 0.5, 'Kidney Tumor': 0.5, 'Liver Tumor': 0.4, 'Pancreas Tumor': 0.5, 'Hepatic Vessel Tumor': 0.5, 'Lung Tumor': 0.5, 'Colon Tumor': 0.5, 'Kidney Cyst': 0.5}
+Liver: dice 0.9801, recall 0.9880, precision 0.9723.
+Liver Tumor: dice 0.8842, recall 0.9414, precision 0.8336.
+case10_Decathlon/Task03_Liver/labelsTr/liver_97| Liver: 0.9801, Liver Tumor: 0.8842, 
+{'Spleen': 0.5, 'Right Kidney': 0.5, 'Left Kidney': 0.5, 'Gall Bladder': 0.5, 'Esophagus': 0.5, 'Liver': 0.5, 'Stomach': 0.5, 'Arota': 0.5, 'Postcava': 0.5, 'Portal Vein and Splenic Vein': 0.5, 'Pancreas': 0.5, 'Right Adrenal Gland': 0.5, 'Left Adrenal Gland': 0.5, 'Duodenum': 0.5, 'Hepatic Vessel': 0.5, 'Right Lung': 0.5, 'Left Lung': 0.5, 'Colon': 0.5, 'Intestine': 0.5, 'Rectum': 0.5, 'Bladder': 0.5, 'Prostate': 0.5, 'Left Head of Femur': 0.5, 'Right Head of Femur': 0.5, 'Celiac Truck': 0.5, 'Kidney Tumor': 0.5, 'Liver Tumor': 0.4, 'Pancreas Tumor': 0.5, 'Hepatic Vessel Tumor': 0.5, 'Lung Tumor': 0.5, 'Colon Tumor': 0.5, 'Kidney Cyst': 0.5}
+Liver: dice 0.9812, recall 0.9840, precision 0.9786.
+Liver Tumor: dice 0.5304, recall 0.4210, precision 0.7173.
+case10_Decathlon/Task03_Liver/labelsTr/liver_85| Liver: 0.9812, Liver Tumor: 0.5304, 
+{'Spleen': 0.5, 'Right Kidney': 0.5, 'Left Kidney': 0.5, 'Gall Bladder': 0.5, 'Esophagus': 0.5, 'Liver': 0.5, 'Stomach': 0.5, 'Arota': 0.5, 'Postcava': 0.5, 'Portal Vein and Splenic Vein': 0.5, 'Pancreas': 0.5, 'Right Adrenal Gland': 0.5, 'Left Adrenal Gland': 0.5, 'Duodenum': 0.5, 'Hepatic Vessel': 0.5, 'Right Lung': 0.5, 'Left Lung': 0.5, 'Colon': 0.5, 'Intestine': 0.5, 'Rectum': 0.5, 'Bladder': 0.5, 'Prostate': 0.5, 'Left Head of Femur': 0.5, 'Right Head of Femur': 0.5, 'Celiac Truck': 0.5, 'Kidney Tumor': 0.5, 'Liver Tumor': 0.4, 'Pancreas Tumor': 0.5, 'Hepatic Vessel Tumor': 0.5, 'Lung Tumor': 0.5, 'Colon Tumor': 0.5, 'Kidney Cyst': 0.5}
+Liver: dice 0.9466, recall 0.9485, precision 0.9446.
+Liver Tumor: dice 0.8094, recall 0.7278, precision 0.9119.
+case10_Decathlon/Task03_Liver/labelsTr/liver_52| Liver: 0.9466, Liver Tumor: 0.8094, 
+{'Spleen': 0.5, 'Right Kidney': 0.5, 'Left Kidney': 0.5, 'Gall Bladder': 0.5, 'Esophagus': 0.5, 'Liver': 0.5, 'Stomach': 0.5, 'Arota': 0.5, 'Postcava': 0.5, 'Portal Vein and Splenic Vein': 0.5, 'Pancreas': 0.5, 'Right Adrenal Gland': 0.5, 'Left Adrenal Gland': 0.5, 'Duodenum': 0.5, 'Hepatic Vessel': 0.5, 'Right Lung': 0.5, 'Left Lung': 0.5, 'Colon': 0.5, 'Intestine': 0.5, 'Rectum': 0.5, 'Bladder': 0.5, 'Prostate': 0.5, 'Left Head of Femur': 0.5, 'Right Head of Femur': 0.5, 'Celiac Truck': 0.5, 'Kidney Tumor': 0.5, 'Liver Tumor': 0.4, 'Pancreas Tumor': 0.5, 'Hepatic Vessel Tumor': 0.5, 'Lung Tumor': 0.5, 'Colon Tumor': 0.5, 'Kidney Cyst': 0.5}
+Liver: dice 0.9712, recall 0.9698, precision 0.9727.
+Liver Tumor: dice 0.7690, recall 0.8083, precision 0.7334.
+case10_Decathlon/Task03_Liver/labelsTr/liver_109| Liver: 0.9712, Liver Tumor: 0.7690, 
+{'Spleen': 0.5, 'Right Kidney': 0.5, 'Left Kidney': 0.5, 'Gall Bladder': 0.5, 'Esophagus': 0.5, 'Liver': 0.5, 'Stomach': 0.5, 'Arota': 0.5, 'Postcava': 0.5, 'Portal Vein and Splenic Vein': 0.5, 'Pancreas': 0.5, 'Right Adrenal Gland': 0.5, 'Left Adrenal Gland': 0.5, 'Duodenum': 0.5, 'Hepatic Vessel': 0.5, 'Right Lung': 0.5, 'Left Lung': 0.5, 'Colon': 0.5, 'Intestine': 0.5, 'Rectum': 0.5, 'Bladder': 0.5, 'Prostate': 0.5, 'Left Head of Femur': 0.5, 'Right Head of Femur': 0.5, 'Celiac Truck': 0.5, 'Kidney Tumor': 0.5, 'Liver Tumor': 0.4, 'Pancreas Tumor': 0.5, 'Hepatic Vessel Tumor': 0.5, 'Lung Tumor': 0.5, 'Colon Tumor': 0.5, 'Kidney Cyst': 0.5}
+Liver: dice 0.9634, recall 0.9907, precision 0.9376.
+Liver Tumor: dice 0.7743, recall 0.7770, precision 0.7721.
+case10_Decathlon/Task03_Liver/labelsTr/liver_31| Liver: 0.9634, Liver Tumor: 0.7743, 
+{'Spleen': 0.5, 'Right Kidney': 0.5, 'Left Kidney': 0.5, 'Gall Bladder': 0.5, 'Esophagus': 0.5, 'Liver': 0.5, 'Stomach': 0.5, 'Arota': 0.5, 'Postcava': 0.5, 'Portal Vein and Splenic Vein': 0.5, 'Pancreas': 0.5, 'Right Adrenal Gland': 0.5, 'Left Adrenal Gland': 0.5, 'Duodenum': 0.5, 'Hepatic Vessel': 0.5, 'Right Lung': 0.5, 'Left Lung': 0.5, 'Colon': 0.5, 'Intestine': 0.5, 'Rectum': 0.5, 'Bladder': 0.5, 'Prostate': 0.5, 'Left Head of Femur': 0.5, 'Right Head of Femur': 0.5, 'Celiac Truck': 0.5, 'Kidney Tumor': 0.5, 'Liver Tumor': 0.4, 'Pancreas Tumor': 0.5, 'Hepatic Vessel Tumor': 0.5, 'Lung Tumor': 0.5, 'Colon Tumor': 0.5, 'Kidney Cyst': 0.5}
+Liver: dice 0.9793, recall 0.9843, precision 0.9744.
+Liver Tumor: dice 0.8724, recall 0.8605, precision 0.8847.
+case10_Decathlon/Task03_Liver/labelsTr/liver_117| Liver: 0.9793, Liver Tumor: 0.8724, 
+{'Spleen': 0.5, 'Right Kidney': 0.5, 'Left Kidney': 0.5, 'Gall Bladder': 0.5, 'Esophagus': 0.5, 'Liver': 0.5, 'Stomach': 0.5, 'Arota': 0.5, 'Postcava': 0.5, 'Portal Vein and Splenic Vein': 0.5, 'Pancreas': 0.5, 'Right Adrenal Gland': 0.5, 'Left Adrenal Gland': 0.5, 'Duodenum': 0.5, 'Hepatic Vessel': 0.5, 'Right Lung': 0.5, 'Left Lung': 0.5, 'Colon': 0.5, 'Intestine': 0.5, 'Rectum': 0.5, 'Bladder': 0.5, 'Prostate': 0.5, 'Left Head of Femur': 0.5, 'Right Head of Femur': 0.5, 'Celiac Truck': 0.5, 'Kidney Tumor': 0.5, 'Liver Tumor': 0.4, 'Pancreas Tumor': 0.5, 'Hepatic Vessel Tumor': 0.5, 'Lung Tumor': 0.5, 'Colon Tumor': 0.5, 'Kidney Cyst': 0.5}
+Liver: dice 0.9739, recall 0.9783, precision 0.9695.
+Liver Tumor: dice 0.8092, recall 0.7285, precision 0.9102.
+case10_Decathlon/Task03_Liver/labelsTr/liver_40| Liver: 0.9739, Liver Tumor: 0.8092, 
+{'Spleen': 0.5, 'Right Kidney': 0.5, 'Left Kidney': 0.5, 'Gall Bladder': 0.5, 'Esophagus': 0.5, 'Liver': 0.5, 'Stomach': 0.5, 'Arota': 0.5, 'Postcava': 0.5, 'Portal Vein and Splenic Vein': 0.5, 'Pancreas': 0.5, 'Right Adrenal Gland': 0.5, 'Left Adrenal Gland': 0.5, 'Duodenum': 0.5, 'Hepatic Vessel': 0.5, 'Right Lung': 0.5, 'Left Lung': 0.5, 'Colon': 0.5, 'Intestine': 0.5, 'Rectum': 0.5, 'Bladder': 0.5, 'Prostate': 0.5, 'Left Head of Femur': 0.5, 'Right Head of Femur': 0.5, 'Celiac Truck': 0.5, 'Kidney Tumor': 0.5, 'Liver Tumor': 0.4, 'Pancreas Tumor': 0.5, 'Hepatic Vessel Tumor': 0.5, 'Lung Tumor': 0.5, 'Colon Tumor': 0.5, 'Kidney Cyst': 0.5}
+Liver: dice 0.9620, recall 0.9394, precision 0.9857.
+Liver Tumor: dice 0.7158, recall 0.9920, precision 0.5599.
+case10_Decathlon/Task03_Liver/labelsTr/liver_23| Liver: 0.9620, Liver Tumor: 0.7158, 
+{'Spleen': 0.5, 'Right Kidney': 0.5, 'Left Kidney': 0.5, 'Gall Bladder': 0.5, 'Esophagus': 0.5, 'Liver': 0.5, 'Stomach': 0.5, 'Arota': 0.5, 'Postcava': 0.5, 'Portal Vein and Splenic Vein': 0.5, 'Pancreas': 0.5, 'Right Adrenal Gland': 0.5, 'Left Adrenal Gland': 0.5, 'Duodenum': 0.5, 'Hepatic Vessel': 0.5, 'Right Lung': 0.5, 'Left Lung': 0.5, 'Colon': 0.5, 'Intestine': 0.5, 'Rectum': 0.5, 'Bladder': 0.5, 'Prostate': 0.5, 'Left Head of Femur': 0.5, 'Right Head of Femur': 0.5, 'Celiac Truck': 0.5, 'Kidney Tumor': 0.5, 'Liver Tumor': 0.4, 'Pancreas Tumor': 0.5, 'Hepatic Vessel Tumor': 0.5, 'Lung Tumor': 0.5, 'Colon Tumor': 0.5, 'Kidney Cyst': 0.5}
+Liver: dice 0.9826, recall 0.9902, precision 0.9751.
+case10_Decathlon/Task03_Liver/labelsTr/liver_105| Liver: 0.9826, 
+{'Spleen': 0.5, 'Right Kidney': 0.5, 'Left Kidney': 0.5, 'Gall Bladder': 0.5, 'Esophagus': 0.5, 'Liver': 0.5, 'Stomach': 0.5, 'Arota': 0.5, 'Postcava': 0.5, 'Portal Vein and Splenic Vein': 0.5, 'Pancreas': 0.5, 'Right Adrenal Gland': 0.5, 'Left Adrenal Gland': 0.5, 'Duodenum': 0.5, 'Hepatic Vessel': 0.5, 'Right Lung': 0.5, 'Left Lung': 0.5, 'Colon': 0.5, 'Intestine': 0.5, 'Rectum': 0.5, 'Bladder': 0.5, 'Prostate': 0.5, 'Left Head of Femur': 0.5, 'Right Head of Femur': 0.5, 'Celiac Truck': 0.5, 'Kidney Tumor': 0.5, 'Liver Tumor': 0.4, 'Pancreas Tumor': 0.5, 'Hepatic Vessel Tumor': 0.5, 'Lung Tumor': 0.5, 'Colon Tumor': 0.5, 'Kidney Cyst': 0.5}
+Liver: dice 0.9647, recall 0.9643, precision 0.9651.
+Liver Tumor: dice 0.9067, recall 0.8921, precision 0.9218.
+case10_Decathlon/Task03_Liver/labelsTr/liver_76| Liver: 0.9647, Liver Tumor: 0.9067, 
+Task01| Spleen: nan, Right Kidney: nan, Left Kidney: nan, Gall Bladder: nan, Esophagus: nan, Liver: nan, Stomach: nan, Arota: nan, Postcava: nan, Portal Vein and Splenic Vein: nan, Pancreas: nan, Right Adrenal Gland: nan, Left Adrenal Gland: nan, Duodenum: nan, 
+Task01_2| Spleen: nan, Left Kidney: nan, Gall Bladder: nan, Esophagus: nan, Liver: nan, Stomach: nan, Pancreas: nan, Duodenum: nan, 
+Task02| Spleen: nan, Left Kidney: nan, Gall Bladder: nan, Esophagus: nan, Liver: nan, Stomach: nan, Pancreas: nan, Duodenum: nan, 
+Task03| Liver: nan, 
+Task04| Liver: nan, Liver Tumor: nan, 
+Task05| Right Kidney: nan, Left Kidney: nan, Kidney Tumor: nan, Kidney Cyst: nan, 
+Task07| Liver: nan, Spleen: nan, Left Kidney: nan, Right Kidney: nan, Stomach: nan, Gall Bladder: nan, Esophagus: nan, Pancreas: nan, Duodenum: nan, Colon: nan, Intestine: nan, Right Adrenal Gland: nan, Left Adrenal Gland: nan, Rectum: nan, Bladder: nan, Left Head of Femur: nan, Right Head of Femur: nan, 
+Task08| Liver: nan, Right Kidney: nan, Left Kidney: nan, Spleen: nan, Pancreas: nan, 
+Task09| Spleen: nan, Right Kidney: nan, Left Kidney: nan, Gall Bladder: nan, Esophagus: nan, Liver: nan, Stomach: nan, Arota: nan, Postcava: nan, Pancreas: nan, Right Adrenal Gland: nan, Left Adrenal Gland: nan, Duodenum: nan, Bladder: nan, Prostate: nan, 
+Task12| Liver: nan, Bladder: nan, R Lung: nan, L Lung: nan, Right Kidney: nan, Left Kidney: nan, 
+Task13| Liver: nan, Right Kidney: nan, Left Kidney: nan, Spleen: nan, Pancreas: nan, Arota: nan, Postcava: nan, Stomach: nan, Gall Bladder: nan, Esophagus: nan, Right Adrenal Gland: nan, Left Adrenal Gland: nan, Celiac Truck: nan, 
+Task14| Pancreas: nan, Pancreas Tumor: nan, 
+Task10_03| Liver: 0.9684, Liver Tumor: 0.7339,  0.4
+Task10_06| Lung Tumor: nan, 
+Task10_07| Pancreas: nan, Pancreas Tumor: nan, 
+Task10_08| Hepatic Vessel: nan, Hepatic Vessel Tumor: nan, 
+Task10_09| Spleen: nan, 
+Task10_10| Colon Tumor: nan, 
+Average | Spleen: nan, Right Kidney: nan, Left Kidney: nan, Gall Bladder: nan, Esophagus: nan, Liver: 0.9684, Stomach: nan, Arota: nan, Postcava: nan, Portal Vein and Splenic Vein: nan, Pancreas: nan, Right Adrenal Gland: nan, Left Adrenal Gland: nan, Duodenum: nan, Hepatic Vessel: nan, R Lung: nan, L Lung: nan, Colon: nan, Intestine: nan, Rectum: nan, Bladder: nan, Prostate: nan, Left Head of Femur: nan, Right Head of Femur: nan, Celiac Truck: nan, Kidney Tumor: nan, Liver Tumor: 0.7339, Pancreas Tumor: nan, Hepatic Vessel Tumor: nan, Lung Tumor: nan, Colon Tumor: nan, Kidney Cyst: nan, 
+nan
+Use pretrained weights
+train len 2202
+val len 409
+test len 26
+{'Spleen': 0.5, 'Right Kidney': 0.5, 'Left Kidney': 0.5, 'Gall Bladder': 0.5, 'Esophagus': 0.5, 'Liver': 0.5, 'Stomach': 0.5, 'Arota': 0.5, 'Postcava': 0.5, 'Portal Vein and Splenic Vein': 0.5, 'Pancreas': 0.5, 'Right Adrenal Gland': 0.5, 'Left Adrenal Gland': 0.5, 'Duodenum': 0.5, 'Hepatic Vessel': 0.5, 'Right Lung': 0.5, 'Left Lung': 0.5, 'Colon': 0.5, 'Intestine': 0.5, 'Rectum': 0.5, 'Bladder': 0.5, 'Prostate': 0.5, 'Left Head of Femur': 0.5, 'Right Head of Femur': 0.5, 'Celiac Truck': 0.5, 'Kidney Tumor': 0.5, 'Liver Tumor': 0.45, 'Pancreas Tumor': 0.5, 'Hepatic Vessel Tumor': 0.5, 'Lung Tumor': 0.5, 'Colon Tumor': 0.5, 'Kidney Cyst': 0.5}
+Liver: dice 0.9763, recall 0.9641, precision 0.9888.
+case10_Decathlon/Task03_Liver/labelsTr/liver_38| Liver: 0.9763, 
+{'Spleen': 0.5, 'Right Kidney': 0.5, 'Left Kidney': 0.5, 'Gall Bladder': 0.5, 'Esophagus': 0.5, 'Liver': 0.5, 'Stomach': 0.5, 'Arota': 0.5, 'Postcava': 0.5, 'Portal Vein and Splenic Vein': 0.5, 'Pancreas': 0.5, 'Right Adrenal Gland': 0.5, 'Left Adrenal Gland': 0.5, 'Duodenum': 0.5, 'Hepatic Vessel': 0.5, 'Right Lung': 0.5, 'Left Lung': 0.5, 'Colon': 0.5, 'Intestine': 0.5, 'Rectum': 0.5, 'Bladder': 0.5, 'Prostate': 0.5, 'Left Head of Femur': 0.5, 'Right Head of Femur': 0.5, 'Celiac Truck': 0.5, 'Kidney Tumor': 0.5, 'Liver Tumor': 0.45, 'Pancreas Tumor': 0.5, 'Hepatic Vessel Tumor': 0.5, 'Lung Tumor': 0.5, 'Colon Tumor': 0.5, 'Kidney Cyst': 0.5}
+Liver: dice 0.9397, recall 0.9217, precision 0.9584.
+Liver Tumor: dice 0.3317, recall 0.6925, precision 0.2181.
+case10_Decathlon/Task03_Liver/labelsTr/liver_49| Liver: 0.9397, Liver Tumor: 0.3317, 
+{'Spleen': 0.5, 'Right Kidney': 0.5, 'Left Kidney': 0.5, 'Gall Bladder': 0.5, 'Esophagus': 0.5, 'Liver': 0.5, 'Stomach': 0.5, 'Arota': 0.5, 'Postcava': 0.5, 'Portal Vein and Splenic Vein': 0.5, 'Pancreas': 0.5, 'Right Adrenal Gland': 0.5, 'Left Adrenal Gland': 0.5, 'Duodenum': 0.5, 'Hepatic Vessel': 0.5, 'Right Lung': 0.5, 'Left Lung': 0.5, 'Colon': 0.5, 'Intestine': 0.5, 'Rectum': 0.5, 'Bladder': 0.5, 'Prostate': 0.5, 'Left Head of Femur': 0.5, 'Right Head of Femur': 0.5, 'Celiac Truck': 0.5, 'Kidney Tumor': 0.5, 'Liver Tumor': 0.45, 'Pancreas Tumor': 0.5, 'Hepatic Vessel Tumor': 0.5, 'Lung Tumor': 0.5, 'Colon Tumor': 0.5, 'Kidney Cyst': 0.5}
+Liver: dice 0.9503, recall 0.9719, precision 0.9296.
+case10_Decathlon/Task03_Liver/labelsTr/liver_34| Liver: 0.9503, 
+{'Spleen': 0.5, 'Right Kidney': 0.5, 'Left Kidney': 0.5, 'Gall Bladder': 0.5, 'Esophagus': 0.5, 'Liver': 0.5, 'Stomach': 0.5, 'Arota': 0.5, 'Postcava': 0.5, 'Portal Vein and Splenic Vein': 0.5, 'Pancreas': 0.5, 'Right Adrenal Gland': 0.5, 'Left Adrenal Gland': 0.5, 'Duodenum': 0.5, 'Hepatic Vessel': 0.5, 'Right Lung': 0.5, 'Left Lung': 0.5, 'Colon': 0.5, 'Intestine': 0.5, 'Rectum': 0.5, 'Bladder': 0.5, 'Prostate': 0.5, 'Left Head of Femur': 0.5, 'Right Head of Femur': 0.5, 'Celiac Truck': 0.5, 'Kidney Tumor': 0.5, 'Liver Tumor': 0.45, 'Pancreas Tumor': 0.5, 'Hepatic Vessel Tumor': 0.5, 'Lung Tumor': 0.5, 'Colon Tumor': 0.5, 'Kidney Cyst': 0.5}
+Liver: dice 0.9826, recall 0.9873, precision 0.9780.
+Liver Tumor: dice 0.5418, recall 0.7287, precision 0.4332.
+case10_Decathlon/Task03_Liver/labelsTr/liver_112| Liver: 0.9826, Liver Tumor: 0.5418, 
+{'Spleen': 0.5, 'Right Kidney': 0.5, 'Left Kidney': 0.5, 'Gall Bladder': 0.5, 'Esophagus': 0.5, 'Liver': 0.5, 'Stomach': 0.5, 'Arota': 0.5, 'Postcava': 0.5, 'Portal Vein and Splenic Vein': 0.5, 'Pancreas': 0.5, 'Right Adrenal Gland': 0.5, 'Left Adrenal Gland': 0.5, 'Duodenum': 0.5, 'Hepatic Vessel': 0.5, 'Right Lung': 0.5, 'Left Lung': 0.5, 'Colon': 0.5, 'Intestine': 0.5, 'Rectum': 0.5, 'Bladder': 0.5, 'Prostate': 0.5, 'Left Head of Femur': 0.5, 'Right Head of Femur': 0.5, 'Celiac Truck': 0.5, 'Kidney Tumor': 0.5, 'Liver Tumor': 0.45, 'Pancreas Tumor': 0.5, 'Hepatic Vessel Tumor': 0.5, 'Lung Tumor': 0.5, 'Colon Tumor': 0.5, 'Kidney Cyst': 0.5}
+Liver: dice 0.9568, recall 0.9196, precision 0.9971.
+Liver Tumor: dice 0.8186, recall 0.7603, precision 0.8873.
+case10_Decathlon/Task03_Liver/labelsTr/liver_57| Liver: 0.9568, Liver Tumor: 0.8186, 
+{'Spleen': 0.5, 'Right Kidney': 0.5, 'Left Kidney': 0.5, 'Gall Bladder': 0.5, 'Esophagus': 0.5, 'Liver': 0.5, 'Stomach': 0.5, 'Arota': 0.5, 'Postcava': 0.5, 'Portal Vein and Splenic Vein': 0.5, 'Pancreas': 0.5, 'Right Adrenal Gland': 0.5, 'Left Adrenal Gland': 0.5, 'Duodenum': 0.5, 'Hepatic Vessel': 0.5, 'Right Lung': 0.5, 'Left Lung': 0.5, 'Colon': 0.5, 'Intestine': 0.5, 'Rectum': 0.5, 'Bladder': 0.5, 'Prostate': 0.5, 'Left Head of Femur': 0.5, 'Right Head of Femur': 0.5, 'Celiac Truck': 0.5, 'Kidney Tumor': 0.5, 'Liver Tumor': 0.45, 'Pancreas Tumor': 0.5, 'Hepatic Vessel Tumor': 0.5, 'Lung Tumor': 0.5, 'Colon Tumor': 0.5, 'Kidney Cyst': 0.5}
+Liver: dice 0.9805, recall 0.9870, precision 0.9740.
+Liver Tumor: dice 0.8796, recall 0.8341, precision 0.9304.
+case10_Decathlon/Task03_Liver/labelsTr/liver_124| Liver: 0.9805, Liver Tumor: 0.8796, 
+{'Spleen': 0.5, 'Right Kidney': 0.5, 'Left Kidney': 0.5, 'Gall Bladder': 0.5, 'Esophagus': 0.5, 'Liver': 0.5, 'Stomach': 0.5, 'Arota': 0.5, 'Postcava': 0.5, 'Portal Vein and Splenic Vein': 0.5, 'Pancreas': 0.5, 'Right Adrenal Gland': 0.5, 'Left Adrenal Gland': 0.5, 'Duodenum': 0.5, 'Hepatic Vessel': 0.5, 'Right Lung': 0.5, 'Left Lung': 0.5, 'Colon': 0.5, 'Intestine': 0.5, 'Rectum': 0.5, 'Bladder': 0.5, 'Prostate': 0.5, 'Left Head of Femur': 0.5, 'Right Head of Femur': 0.5, 'Celiac Truck': 0.5, 'Kidney Tumor': 0.5, 'Liver Tumor': 0.45, 'Pancreas Tumor': 0.5, 'Hepatic Vessel Tumor': 0.5, 'Lung Tumor': 0.5, 'Colon Tumor': 0.5, 'Kidney Cyst': 0.5}
+Liver: dice 0.9500, recall 0.9756, precision 0.9257.
+Liver Tumor: dice 0.7727, recall 0.7055, precision 0.8551.
+case10_Decathlon/Task03_Liver/labelsTr/liver_61| Liver: 0.9500, Liver Tumor: 0.7727, 
+{'Spleen': 0.5, 'Right Kidney': 0.5, 'Left Kidney': 0.5, 'Gall Bladder': 0.5, 'Esophagus': 0.5, 'Liver': 0.5, 'Stomach': 0.5, 'Arota': 0.5, 'Postcava': 0.5, 'Portal Vein and Splenic Vein': 0.5, 'Pancreas': 0.5, 'Right Adrenal Gland': 0.5, 'Left Adrenal Gland': 0.5, 'Duodenum': 0.5, 'Hepatic Vessel': 0.5, 'Right Lung': 0.5, 'Left Lung': 0.5, 'Colon': 0.5, 'Intestine': 0.5, 'Rectum': 0.5, 'Bladder': 0.5, 'Prostate': 0.5, 'Left Head of Femur': 0.5, 'Right Head of Femur': 0.5, 'Celiac Truck': 0.5, 'Kidney Tumor': 0.5, 'Liver Tumor': 0.45, 'Pancreas Tumor': 0.5, 'Hepatic Vessel Tumor': 0.5, 'Lung Tumor': 0.5, 'Colon Tumor': 0.5, 'Kidney Cyst': 0.5}
+Liver: dice 0.9773, recall 0.9699, precision 0.9848.
+Liver Tumor: dice 0.8750, recall 0.9097, precision 0.8429.
+case10_Decathlon/Task03_Liver/labelsTr/liver_10| Liver: 0.9773, Liver Tumor: 0.8750, 
+{'Spleen': 0.5, 'Right Kidney': 0.5, 'Left Kidney': 0.5, 'Gall Bladder': 0.5, 'Esophagus': 0.5, 'Liver': 0.5, 'Stomach': 0.5, 'Arota': 0.5, 'Postcava': 0.5, 'Portal Vein and Splenic Vein': 0.5, 'Pancreas': 0.5, 'Right Adrenal Gland': 0.5, 'Left Adrenal Gland': 0.5, 'Duodenum': 0.5, 'Hepatic Vessel': 0.5, 'Right Lung': 0.5, 'Left Lung': 0.5, 'Colon': 0.5, 'Intestine': 0.5, 'Rectum': 0.5, 'Bladder': 0.5, 'Prostate': 0.5, 'Left Head of Femur': 0.5, 'Right Head of Femur': 0.5, 'Celiac Truck': 0.5, 'Kidney Tumor': 0.5, 'Liver Tumor': 0.45, 'Pancreas Tumor': 0.5, 'Hepatic Vessel Tumor': 0.5, 'Lung Tumor': 0.5, 'Colon Tumor': 0.5, 'Kidney Cyst': 0.5}
+Liver: dice 0.9469, recall 0.9738, precision 0.9214.
+Liver Tumor: dice 0.5986, recall 0.4438, precision 0.9221.
+case10_Decathlon/Task03_Liver/labelsTr/liver_73| Liver: 0.9469, Liver Tumor: 0.5986, 
+{'Spleen': 0.5, 'Right Kidney': 0.5, 'Left Kidney': 0.5, 'Gall Bladder': 0.5, 'Esophagus': 0.5, 'Liver': 0.5, 'Stomach': 0.5, 'Arota': 0.5, 'Postcava': 0.5, 'Portal Vein and Splenic Vein': 0.5, 'Pancreas': 0.5, 'Right Adrenal Gland': 0.5, 'Left Adrenal Gland': 0.5, 'Duodenum': 0.5, 'Hepatic Vessel': 0.5, 'Right Lung': 0.5, 'Left Lung': 0.5, 'Colon': 0.5, 'Intestine': 0.5, 'Rectum': 0.5, 'Bladder': 0.5, 'Prostate': 0.5, 'Left Head of Femur': 0.5, 'Right Head of Femur': 0.5, 'Celiac Truck': 0.5, 'Kidney Tumor': 0.5, 'Liver Tumor': 0.45, 'Pancreas Tumor': 0.5, 'Hepatic Vessel Tumor': 0.5, 'Lung Tumor': 0.5, 'Colon Tumor': 0.5, 'Kidney Cyst': 0.5}
+Liver: dice 0.9790, recall 0.9810, precision 0.9771.
+Liver Tumor: dice 0.8208, recall 0.8222, precision 0.8194.
+case10_Decathlon/Task03_Liver/labelsTr/liver_128| Liver: 0.9790, Liver Tumor: 0.8208, 
+{'Spleen': 0.5, 'Right Kidney': 0.5, 'Left Kidney': 0.5, 'Gall Bladder': 0.5, 'Esophagus': 0.5, 'Liver': 0.5, 'Stomach': 0.5, 'Arota': 0.5, 'Postcava': 0.5, 'Portal Vein and Splenic Vein': 0.5, 'Pancreas': 0.5, 'Right Adrenal Gland': 0.5, 'Left Adrenal Gland': 0.5, 'Duodenum': 0.5, 'Hepatic Vessel': 0.5, 'Right Lung': 0.5, 'Left Lung': 0.5, 'Colon': 0.5, 'Intestine': 0.5, 'Rectum': 0.5, 'Bladder': 0.5, 'Prostate': 0.5, 'Left Head of Femur': 0.5, 'Right Head of Femur': 0.5, 'Celiac Truck': 0.5, 'Kidney Tumor': 0.5, 'Liver Tumor': 0.45, 'Pancreas Tumor': 0.5, 'Hepatic Vessel Tumor': 0.5, 'Lung Tumor': 0.5, 'Colon Tumor': 0.5, 'Kidney Cyst': 0.5}
+Liver: dice 0.9751, recall 0.9642, precision 0.9862.
+Liver Tumor: dice 0.8612, recall 0.8925, precision 0.8321.
+case10_Decathlon/Task03_Liver/labelsTr/liver_9| Liver: 0.9751, Liver Tumor: 0.8612, 
+{'Spleen': 0.5, 'Right Kidney': 0.5, 'Left Kidney': 0.5, 'Gall Bladder': 0.5, 'Esophagus': 0.5, 'Liver': 0.5, 'Stomach': 0.5, 'Arota': 0.5, 'Postcava': 0.5, 'Portal Vein and Splenic Vein': 0.5, 'Pancreas': 0.5, 'Right Adrenal Gland': 0.5, 'Left Adrenal Gland': 0.5, 'Duodenum': 0.5, 'Hepatic Vessel': 0.5, 'Right Lung': 0.5, 'Left Lung': 0.5, 'Colon': 0.5, 'Intestine': 0.5, 'Rectum': 0.5, 'Bladder': 0.5, 'Prostate': 0.5, 'Left Head of Femur': 0.5, 'Right Head of Femur': 0.5, 'Celiac Truck': 0.5, 'Kidney Tumor': 0.5, 'Liver Tumor': 0.45, 'Pancreas Tumor': 0.5, 'Hepatic Vessel Tumor': 0.5, 'Lung Tumor': 0.5, 'Colon Tumor': 0.5, 'Kidney Cyst': 0.5}
+Liver: dice 0.9736, recall 0.9718, precision 0.9755.
+Liver Tumor: dice 0.5128, recall 0.7752, precision 0.3846.
+case10_Decathlon/Task03_Liver/labelsTr/liver_5| Liver: 0.9736, Liver Tumor: 0.5128, 
+{'Spleen': 0.5, 'Right Kidney': 0.5, 'Left Kidney': 0.5, 'Gall Bladder': 0.5, 'Esophagus': 0.5, 'Liver': 0.5, 'Stomach': 0.5, 'Arota': 0.5, 'Postcava': 0.5, 'Portal Vein and Splenic Vein': 0.5, 'Pancreas': 0.5, 'Right Adrenal Gland': 0.5, 'Left Adrenal Gland': 0.5, 'Duodenum': 0.5, 'Hepatic Vessel': 0.5, 'Right Lung': 0.5, 'Left Lung': 0.5, 'Colon': 0.5, 'Intestine': 0.5, 'Rectum': 0.5, 'Bladder': 0.5, 'Prostate': 0.5, 'Left Head of Femur': 0.5, 'Right Head of Femur': 0.5, 'Celiac Truck': 0.5, 'Kidney Tumor': 0.5, 'Liver Tumor': 0.45, 'Pancreas Tumor': 0.5, 'Hepatic Vessel Tumor': 0.5, 'Lung Tumor': 0.5, 'Colon Tumor': 0.5, 'Kidney Cyst': 0.5}
+Liver: dice 0.9695, recall 0.9642, precision 0.9748.
+Liver Tumor: dice 0.8826, recall 0.7977, precision 0.9877.
+case10_Decathlon/Task03_Liver/labelsTr/liver_80| Liver: 0.9695, Liver Tumor: 0.8826, 
+{'Spleen': 0.5, 'Right Kidney': 0.5, 'Left Kidney': 0.5, 'Gall Bladder': 0.5, 'Esophagus': 0.5, 'Liver': 0.5, 'Stomach': 0.5, 'Arota': 0.5, 'Postcava': 0.5, 'Portal Vein and Splenic Vein': 0.5, 'Pancreas': 0.5, 'Right Adrenal Gland': 0.5, 'Left Adrenal Gland': 0.5, 'Duodenum': 0.5, 'Hepatic Vessel': 0.5, 'Right Lung': 0.5, 'Left Lung': 0.5, 'Colon': 0.5, 'Intestine': 0.5, 'Rectum': 0.5, 'Bladder': 0.5, 'Prostate': 0.5, 'Left Head of Femur': 0.5, 'Right Head of Femur': 0.5, 'Celiac Truck': 0.5, 'Kidney Tumor': 0.5, 'Liver Tumor': 0.45, 'Pancreas Tumor': 0.5, 'Hepatic Vessel Tumor': 0.5, 'Lung Tumor': 0.5, 'Colon Tumor': 0.5, 'Kidney Cyst': 0.5}
+Liver: dice 0.9753, recall 0.9627, precision 0.9883.
+Liver Tumor: dice 0.5609, recall 0.5119, precision 0.6232.
+case10_Decathlon/Task03_Liver/labelsTr/liver_92| Liver: 0.9753, Liver Tumor: 0.5609, 
+{'Spleen': 0.5, 'Right Kidney': 0.5, 'Left Kidney': 0.5, 'Gall Bladder': 0.5, 'Esophagus': 0.5, 'Liver': 0.5, 'Stomach': 0.5, 'Arota': 0.5, 'Postcava': 0.5, 'Portal Vein and Splenic Vein': 0.5, 'Pancreas': 0.5, 'Right Adrenal Gland': 0.5, 'Left Adrenal Gland': 0.5, 'Duodenum': 0.5, 'Hepatic Vessel': 0.5, 'Right Lung': 0.5, 'Left Lung': 0.5, 'Colon': 0.5, 'Intestine': 0.5, 'Rectum': 0.5, 'Bladder': 0.5, 'Prostate': 0.5, 'Left Head of Femur': 0.5, 'Right Head of Femur': 0.5, 'Celiac Truck': 0.5, 'Kidney Tumor': 0.5, 'Liver Tumor': 0.45, 'Pancreas Tumor': 0.5, 'Hepatic Vessel Tumor': 0.5, 'Lung Tumor': 0.5, 'Colon Tumor': 0.5, 'Kidney Cyst': 0.5}
+Liver: dice 0.9626, recall 0.9412, precision 0.9850.
+Liver Tumor: dice 0.6468, recall 0.5867, precision 0.7212.
+case10_Decathlon/Task03_Liver/labelsTr/liver_0| Liver: 0.9626, Liver Tumor: 0.6468, 
+{'Spleen': 0.5, 'Right Kidney': 0.5, 'Left Kidney': 0.5, 'Gall Bladder': 0.5, 'Esophagus': 0.5, 'Liver': 0.5, 'Stomach': 0.5, 'Arota': 0.5, 'Postcava': 0.5, 'Portal Vein and Splenic Vein': 0.5, 'Pancreas': 0.5, 'Right Adrenal Gland': 0.5, 'Left Adrenal Gland': 0.5, 'Duodenum': 0.5, 'Hepatic Vessel': 0.5, 'Right Lung': 0.5, 'Left Lung': 0.5, 'Colon': 0.5, 'Intestine': 0.5, 'Rectum': 0.5, 'Bladder': 0.5, 'Prostate': 0.5, 'Left Head of Femur': 0.5, 'Right Head of Femur': 0.5, 'Celiac Truck': 0.5, 'Kidney Tumor': 0.5, 'Liver Tumor': 0.45, 'Pancreas Tumor': 0.5, 'Hepatic Vessel Tumor': 0.5, 'Lung Tumor': 0.5, 'Colon Tumor': 0.5, 'Kidney Cyst': 0.5}
+Liver: dice 0.9786, recall 0.9738, precision 0.9835.
+case10_Decathlon/Task03_Liver/labelsTr/liver_89| Liver: 0.9786, 
+{'Spleen': 0.5, 'Right Kidney': 0.5, 'Left Kidney': 0.5, 'Gall Bladder': 0.5, 'Esophagus': 0.5, 'Liver': 0.5, 'Stomach': 0.5, 'Arota': 0.5, 'Postcava': 0.5, 'Portal Vein and Splenic Vein': 0.5, 'Pancreas': 0.5, 'Right Adrenal Gland': 0.5, 'Left Adrenal Gland': 0.5, 'Duodenum': 0.5, 'Hepatic Vessel': 0.5, 'Right Lung': 0.5, 'Left Lung': 0.5, 'Colon': 0.5, 'Intestine': 0.5, 'Rectum': 0.5, 'Bladder': 0.5, 'Prostate': 0.5, 'Left Head of Femur': 0.5, 'Right Head of Femur': 0.5, 'Celiac Truck': 0.5, 'Kidney Tumor': 0.5, 'Liver Tumor': 0.45, 'Pancreas Tumor': 0.5, 'Hepatic Vessel Tumor': 0.5, 'Lung Tumor': 0.5, 'Colon Tumor': 0.5, 'Kidney Cyst': 0.5}
+Liver: dice 0.9801, recall 0.9880, precision 0.9723.
+Liver Tumor: dice 0.8862, recall 0.9379, precision 0.8399.
+case10_Decathlon/Task03_Liver/labelsTr/liver_97| Liver: 0.9801, Liver Tumor: 0.8862, 
+{'Spleen': 0.5, 'Right Kidney': 0.5, 'Left Kidney': 0.5, 'Gall Bladder': 0.5, 'Esophagus': 0.5, 'Liver': 0.5, 'Stomach': 0.5, 'Arota': 0.5, 'Postcava': 0.5, 'Portal Vein and Splenic Vein': 0.5, 'Pancreas': 0.5, 'Right Adrenal Gland': 0.5, 'Left Adrenal Gland': 0.5, 'Duodenum': 0.5, 'Hepatic Vessel': 0.5, 'Right Lung': 0.5, 'Left Lung': 0.5, 'Colon': 0.5, 'Intestine': 0.5, 'Rectum': 0.5, 'Bladder': 0.5, 'Prostate': 0.5, 'Left Head of Femur': 0.5, 'Right Head of Femur': 0.5, 'Celiac Truck': 0.5, 'Kidney Tumor': 0.5, 'Liver Tumor': 0.45, 'Pancreas Tumor': 0.5, 'Hepatic Vessel Tumor': 0.5, 'Lung Tumor': 0.5, 'Colon Tumor': 0.5, 'Kidney Cyst': 0.5}
+Liver: dice 0.9812, recall 0.9840, precision 0.9786.
+Liver Tumor: dice 0.5257, recall 0.4152, precision 0.7171.
+case10_Decathlon/Task03_Liver/labelsTr/liver_85| Liver: 0.9812, Liver Tumor: 0.5257, 
+{'Spleen': 0.5, 'Right Kidney': 0.5, 'Left Kidney': 0.5, 'Gall Bladder': 0.5, 'Esophagus': 0.5, 'Liver': 0.5, 'Stomach': 0.5, 'Arota': 0.5, 'Postcava': 0.5, 'Portal Vein and Splenic Vein': 0.5, 'Pancreas': 0.5, 'Right Adrenal Gland': 0.5, 'Left Adrenal Gland': 0.5, 'Duodenum': 0.5, 'Hepatic Vessel': 0.5, 'Right Lung': 0.5, 'Left Lung': 0.5, 'Colon': 0.5, 'Intestine': 0.5, 'Rectum': 0.5, 'Bladder': 0.5, 'Prostate': 0.5, 'Left Head of Femur': 0.5, 'Right Head of Femur': 0.5, 'Celiac Truck': 0.5, 'Kidney Tumor': 0.5, 'Liver Tumor': 0.45, 'Pancreas Tumor': 0.5, 'Hepatic Vessel Tumor': 0.5, 'Lung Tumor': 0.5, 'Colon Tumor': 0.5, 'Kidney Cyst': 0.5}
+Liver: dice 0.9466, recall 0.9485, precision 0.9446.
+Liver Tumor: dice 0.8065, recall 0.7214, precision 0.9144.
+case10_Decathlon/Task03_Liver/labelsTr/liver_52| Liver: 0.9466, Liver Tumor: 0.8065, 
+{'Spleen': 0.5, 'Right Kidney': 0.5, 'Left Kidney': 0.5, 'Gall Bladder': 0.5, 'Esophagus': 0.5, 'Liver': 0.5, 'Stomach': 0.5, 'Arota': 0.5, 'Postcava': 0.5, 'Portal Vein and Splenic Vein': 0.5, 'Pancreas': 0.5, 'Right Adrenal Gland': 0.5, 'Left Adrenal Gland': 0.5, 'Duodenum': 0.5, 'Hepatic Vessel': 0.5, 'Right Lung': 0.5, 'Left Lung': 0.5, 'Colon': 0.5, 'Intestine': 0.5, 'Rectum': 0.5, 'Bladder': 0.5, 'Prostate': 0.5, 'Left Head of Femur': 0.5, 'Right Head of Femur': 0.5, 'Celiac Truck': 0.5, 'Kidney Tumor': 0.5, 'Liver Tumor': 0.45, 'Pancreas Tumor': 0.5, 'Hepatic Vessel Tumor': 0.5, 'Lung Tumor': 0.5, 'Colon Tumor': 0.5, 'Kidney Cyst': 0.5}
+Liver: dice 0.9712, recall 0.9698, precision 0.9727.
+Liver Tumor: dice 0.7699, recall 0.8026, precision 0.7398.
+case10_Decathlon/Task03_Liver/labelsTr/liver_109| Liver: 0.9712, Liver Tumor: 0.7699, 
+{'Spleen': 0.5, 'Right Kidney': 0.5, 'Left Kidney': 0.5, 'Gall Bladder': 0.5, 'Esophagus': 0.5, 'Liver': 0.5, 'Stomach': 0.5, 'Arota': 0.5, 'Postcava': 0.5, 'Portal Vein and Splenic Vein': 0.5, 'Pancreas': 0.5, 'Right Adrenal Gland': 0.5, 'Left Adrenal Gland': 0.5, 'Duodenum': 0.5, 'Hepatic Vessel': 0.5, 'Right Lung': 0.5, 'Left Lung': 0.5, 'Colon': 0.5, 'Intestine': 0.5, 'Rectum': 0.5, 'Bladder': 0.5, 'Prostate': 0.5, 'Left Head of Femur': 0.5, 'Right Head of Femur': 0.5, 'Celiac Truck': 0.5, 'Kidney Tumor': 0.5, 'Liver Tumor': 0.45, 'Pancreas Tumor': 0.5, 'Hepatic Vessel Tumor': 0.5, 'Lung Tumor': 0.5, 'Colon Tumor': 0.5, 'Kidney Cyst': 0.5}
+Liver: dice 0.9634, recall 0.9907, precision 0.9376.
+Liver Tumor: dice 0.7750, recall 0.7707, precision 0.7797.
+case10_Decathlon/Task03_Liver/labelsTr/liver_31| Liver: 0.9634, Liver Tumor: 0.7750, 
+{'Spleen': 0.5, 'Right Kidney': 0.5, 'Left Kidney': 0.5, 'Gall Bladder': 0.5, 'Esophagus': 0.5, 'Liver': 0.5, 'Stomach': 0.5, 'Arota': 0.5, 'Postcava': 0.5, 'Portal Vein and Splenic Vein': 0.5, 'Pancreas': 0.5, 'Right Adrenal Gland': 0.5, 'Left Adrenal Gland': 0.5, 'Duodenum': 0.5, 'Hepatic Vessel': 0.5, 'Right Lung': 0.5, 'Left Lung': 0.5, 'Colon': 0.5, 'Intestine': 0.5, 'Rectum': 0.5, 'Bladder': 0.5, 'Prostate': 0.5, 'Left Head of Femur': 0.5, 'Right Head of Femur': 0.5, 'Celiac Truck': 0.5, 'Kidney Tumor': 0.5, 'Liver Tumor': 0.45, 'Pancreas Tumor': 0.5, 'Hepatic Vessel Tumor': 0.5, 'Lung Tumor': 0.5, 'Colon Tumor': 0.5, 'Kidney Cyst': 0.5}
+Liver: dice 0.9793, recall 0.9843, precision 0.9744.
+Liver Tumor: dice 0.8717, recall 0.8552, precision 0.8889.
+case10_Decathlon/Task03_Liver/labelsTr/liver_117| Liver: 0.9793, Liver Tumor: 0.8717, 
+{'Spleen': 0.5, 'Right Kidney': 0.5, 'Left Kidney': 0.5, 'Gall Bladder': 0.5, 'Esophagus': 0.5, 'Liver': 0.5, 'Stomach': 0.5, 'Arota': 0.5, 'Postcava': 0.5, 'Portal Vein and Splenic Vein': 0.5, 'Pancreas': 0.5, 'Right Adrenal Gland': 0.5, 'Left Adrenal Gland': 0.5, 'Duodenum': 0.5, 'Hepatic Vessel': 0.5, 'Right Lung': 0.5, 'Left Lung': 0.5, 'Colon': 0.5, 'Intestine': 0.5, 'Rectum': 0.5, 'Bladder': 0.5, 'Prostate': 0.5, 'Left Head of Femur': 0.5, 'Right Head of Femur': 0.5, 'Celiac Truck': 0.5, 'Kidney Tumor': 0.5, 'Liver Tumor': 0.45, 'Pancreas Tumor': 0.5, 'Hepatic Vessel Tumor': 0.5, 'Lung Tumor': 0.5, 'Colon Tumor': 0.5, 'Kidney Cyst': 0.5}
+Liver: dice 0.9739, recall 0.9783, precision 0.9695.
+Liver Tumor: dice 0.8073, recall 0.7233, precision 0.9134.
+case10_Decathlon/Task03_Liver/labelsTr/liver_40| Liver: 0.9739, Liver Tumor: 0.8073, 
+{'Spleen': 0.5, 'Right Kidney': 0.5, 'Left Kidney': 0.5, 'Gall Bladder': 0.5, 'Esophagus': 0.5, 'Liver': 0.5, 'Stomach': 0.5, 'Arota': 0.5, 'Postcava': 0.5, 'Portal Vein and Splenic Vein': 0.5, 'Pancreas': 0.5, 'Right Adrenal Gland': 0.5, 'Left Adrenal Gland': 0.5, 'Duodenum': 0.5, 'Hepatic Vessel': 0.5, 'Right Lung': 0.5, 'Left Lung': 0.5, 'Colon': 0.5, 'Intestine': 0.5, 'Rectum': 0.5, 'Bladder': 0.5, 'Prostate': 0.5, 'Left Head of Femur': 0.5, 'Right Head of Femur': 0.5, 'Celiac Truck': 0.5, 'Kidney Tumor': 0.5, 'Liver Tumor': 0.45, 'Pancreas Tumor': 0.5, 'Hepatic Vessel Tumor': 0.5, 'Lung Tumor': 0.5, 'Colon Tumor': 0.5, 'Kidney Cyst': 0.5}
+Liver: dice 0.9620, recall 0.9394, precision 0.9857.
+Liver Tumor: dice 0.7237, recall 0.9913, precision 0.5699.
+case10_Decathlon/Task03_Liver/labelsTr/liver_23| Liver: 0.9620, Liver Tumor: 0.7237, 
+{'Spleen': 0.5, 'Right Kidney': 0.5, 'Left Kidney': 0.5, 'Gall Bladder': 0.5, 'Esophagus': 0.5, 'Liver': 0.5, 'Stomach': 0.5, 'Arota': 0.5, 'Postcava': 0.5, 'Portal Vein and Splenic Vein': 0.5, 'Pancreas': 0.5, 'Right Adrenal Gland': 0.5, 'Left Adrenal Gland': 0.5, 'Duodenum': 0.5, 'Hepatic Vessel': 0.5, 'Right Lung': 0.5, 'Left Lung': 0.5, 'Colon': 0.5, 'Intestine': 0.5, 'Rectum': 0.5, 'Bladder': 0.5, 'Prostate': 0.5, 'Left Head of Femur': 0.5, 'Right Head of Femur': 0.5, 'Celiac Truck': 0.5, 'Kidney Tumor': 0.5, 'Liver Tumor': 0.45, 'Pancreas Tumor': 0.5, 'Hepatic Vessel Tumor': 0.5, 'Lung Tumor': 0.5, 'Colon Tumor': 0.5, 'Kidney Cyst': 0.5}
+Liver: dice 0.9826, recall 0.9902, precision 0.9751.
+case10_Decathlon/Task03_Liver/labelsTr/liver_105| Liver: 0.9826, 
+{'Spleen': 0.5, 'Right Kidney': 0.5, 'Left Kidney': 0.5, 'Gall Bladder': 0.5, 'Esophagus': 0.5, 'Liver': 0.5, 'Stomach': 0.5, 'Arota': 0.5, 'Postcava': 0.5, 'Portal Vein and Splenic Vein': 0.5, 'Pancreas': 0.5, 'Right Adrenal Gland': 0.5, 'Left Adrenal Gland': 0.5, 'Duodenum': 0.5, 'Hepatic Vessel': 0.5, 'Right Lung': 0.5, 'Left Lung': 0.5, 'Colon': 0.5, 'Intestine': 0.5, 'Rectum': 0.5, 'Bladder': 0.5, 'Prostate': 0.5, 'Left Head of Femur': 0.5, 'Right Head of Femur': 0.5, 'Celiac Truck': 0.5, 'Kidney Tumor': 0.5, 'Liver Tumor': 0.45, 'Pancreas Tumor': 0.5, 'Hepatic Vessel Tumor': 0.5, 'Lung Tumor': 0.5, 'Colon Tumor': 0.5, 'Kidney Cyst': 0.5}
+Liver: dice 0.9647, recall 0.9643, precision 0.9651.
+Liver Tumor: dice 0.9064, recall 0.8888, precision 0.9249.
+case10_Decathlon/Task03_Liver/labelsTr/liver_76| Liver: 0.9647, Liver Tumor: 0.9064, 
+Task01| Spleen: nan, Right Kidney: nan, Left Kidney: nan, Gall Bladder: nan, Esophagus: nan, Liver: nan, Stomach: nan, Arota: nan, Postcava: nan, Portal Vein and Splenic Vein: nan, Pancreas: nan, Right Adrenal Gland: nan, Left Adrenal Gland: nan, Duodenum: nan, 
+Task01_2| Spleen: nan, Left Kidney: nan, Gall Bladder: nan, Esophagus: nan, Liver: nan, Stomach: nan, Pancreas: nan, Duodenum: nan, 
+Task02| Spleen: nan, Left Kidney: nan, Gall Bladder: nan, Esophagus: nan, Liver: nan, Stomach: nan, Pancreas: nan, Duodenum: nan, 
+Task03| Liver: nan, 
+Task04| Liver: nan, Liver Tumor: nan, 
+Task05| Right Kidney: nan, Left Kidney: nan, Kidney Tumor: nan, Kidney Cyst: nan, 
+Task07| Liver: nan, Spleen: nan, Left Kidney: nan, Right Kidney: nan, Stomach: nan, Gall Bladder: nan, Esophagus: nan, Pancreas: nan, Duodenum: nan, Colon: nan, Intestine: nan, Right Adrenal Gland: nan, Left Adrenal Gland: nan, Rectum: nan, Bladder: nan, Left Head of Femur: nan, Right Head of Femur: nan, 
+Task08| Liver: nan, Right Kidney: nan, Left Kidney: nan, Spleen: nan, Pancreas: nan, 
+Task09| Spleen: nan, Right Kidney: nan, Left Kidney: nan, Gall Bladder: nan, Esophagus: nan, Liver: nan, Stomach: nan, Arota: nan, Postcava: nan, Pancreas: nan, Right Adrenal Gland: nan, Left Adrenal Gland: nan, Duodenum: nan, Bladder: nan, Prostate: nan, 
+Task12| Liver: nan, Bladder: nan, R Lung: nan, L Lung: nan, Right Kidney: nan, Left Kidney: nan, 
+Task13| Liver: nan, Right Kidney: nan, Left Kidney: nan, Spleen: nan, Pancreas: nan, Arota: nan, Postcava: nan, Stomach: nan, Gall Bladder: nan, Esophagus: nan, Right Adrenal Gland: nan, Left Adrenal Gland: nan, Celiac Truck: nan, 
+Task14| Pancreas: nan, Pancreas Tumor: nan, 
+Task10_03| Liver: 0.9684, Liver Tumor: 0.7352, 0.45
+Task10_06| Lung Tumor: nan, 
+Task10_07| Pancreas: nan, Pancreas Tumor: nan, 
+Task10_08| Hepatic Vessel: nan, Hepatic Vessel Tumor: nan, 
+Task10_09| Spleen: nan, 
+Task10_10| Colon Tumor: nan, 
+Average | Spleen: nan, Right Kidney: nan, Left Kidney: nan, Gall Bladder: nan, Esophagus: nan, Liver: 0.9684, Stomach: nan, Arota: nan, Postcava: nan, Portal Vein and Splenic Vein: nan, Pancreas: nan, Right Adrenal Gland: nan, Left Adrenal Gland: nan, Duodenum: nan, Hepatic Vessel: nan, R Lung: nan, L Lung: nan, Colon: nan, Intestine: nan, Rectum: nan, Bladder: nan, Prostate: nan, Left Head of Femur: nan, Right Head of Femur: nan, Celiac Truck: nan, Kidney Tumor: nan, Liver Tumor: 0.7352, Pancreas Tumor: nan, Hepatic Vessel Tumor: nan, Lung Tumor: nan, Colon Tumor: nan, Kidney Cyst: nan, 
+nan
+Use pretrained weights
+train len 2202
+val len 409
+test len 26
+{'Spleen': 0.5, 'Right Kidney': 0.5, 'Left Kidney': 0.5, 'Gall Bladder': 0.5, 'Esophagus': 0.5, 'Liver': 0.5, 'Stomach': 0.5, 'Arota': 0.5, 'Postcava': 0.5, 'Portal Vein and Splenic Vein': 0.5, 'Pancreas': 0.5, 'Right Adrenal Gland': 0.5, 'Left Adrenal Gland': 0.5, 'Duodenum': 0.5, 'Hepatic Vessel': 0.5, 'Right Lung': 0.5, 'Left Lung': 0.5, 'Colon': 0.5, 'Intestine': 0.5, 'Rectum': 0.5, 'Bladder': 0.5, 'Prostate': 0.5, 'Left Head of Femur': 0.5, 'Right Head of Femur': 0.5, 'Celiac Truck': 0.5, 'Kidney Tumor': 0.5, 'Liver Tumor': 0.55, 'Pancreas Tumor': 0.5, 'Hepatic Vessel Tumor': 0.5, 'Lung Tumor': 0.5, 'Colon Tumor': 0.5, 'Kidney Cyst': 0.5}
+Liver: dice 0.9763, recall 0.9641, precision 0.9888.
+case10_Decathlon/Task03_Liver/labelsTr/liver_38| Liver: 0.9763, 
+{'Spleen': 0.5, 'Right Kidney': 0.5, 'Left Kidney': 0.5, 'Gall Bladder': 0.5, 'Esophagus': 0.5, 'Liver': 0.5, 'Stomach': 0.5, 'Arota': 0.5, 'Postcava': 0.5, 'Portal Vein and Splenic Vein': 0.5, 'Pancreas': 0.5, 'Right Adrenal Gland': 0.5, 'Left Adrenal Gland': 0.5, 'Duodenum': 0.5, 'Hepatic Vessel': 0.5, 'Right Lung': 0.5, 'Left Lung': 0.5, 'Colon': 0.5, 'Intestine': 0.5, 'Rectum': 0.5, 'Bladder': 0.5, 'Prostate': 0.5, 'Left Head of Femur': 0.5, 'Right Head of Femur': 0.5, 'Celiac Truck': 0.5, 'Kidney Tumor': 0.5, 'Liver Tumor': 0.55, 'Pancreas Tumor': 0.5, 'Hepatic Vessel Tumor': 0.5, 'Lung Tumor': 0.5, 'Colon Tumor': 0.5, 'Kidney Cyst': 0.5}
+Liver: dice 0.9397, recall 0.9217, precision 0.9584.
+Liver Tumor: dice 0.3534, recall 0.6872, precision 0.2379.
+case10_Decathlon/Task03_Liver/labelsTr/liver_49| Liver: 0.9397, Liver Tumor: 0.3534, 
+{'Spleen': 0.5, 'Right Kidney': 0.5, 'Left Kidney': 0.5, 'Gall Bladder': 0.5, 'Esophagus': 0.5, 'Liver': 0.5, 'Stomach': 0.5, 'Arota': 0.5, 'Postcava': 0.5, 'Portal Vein and Splenic Vein': 0.5, 'Pancreas': 0.5, 'Right Adrenal Gland': 0.5, 'Left Adrenal Gland': 0.5, 'Duodenum': 0.5, 'Hepatic Vessel': 0.5, 'Right Lung': 0.5, 'Left Lung': 0.5, 'Colon': 0.5, 'Intestine': 0.5, 'Rectum': 0.5, 'Bladder': 0.5, 'Prostate': 0.5, 'Left Head of Femur': 0.5, 'Right Head of Femur': 0.5, 'Celiac Truck': 0.5, 'Kidney Tumor': 0.5, 'Liver Tumor': 0.55, 'Pancreas Tumor': 0.5, 'Hepatic Vessel Tumor': 0.5, 'Lung Tumor': 0.5, 'Colon Tumor': 0.5, 'Kidney Cyst': 0.5}
+Liver: dice 0.9503, recall 0.9719, precision 0.9296.
+case10_Decathlon/Task03_Liver/labelsTr/liver_34| Liver: 0.9503, 
+{'Spleen': 0.5, 'Right Kidney': 0.5, 'Left Kidney': 0.5, 'Gall Bladder': 0.5, 'Esophagus': 0.5, 'Liver': 0.5, 'Stomach': 0.5, 'Arota': 0.5, 'Postcava': 0.5, 'Portal Vein and Splenic Vein': 0.5, 'Pancreas': 0.5, 'Right Adrenal Gland': 0.5, 'Left Adrenal Gland': 0.5, 'Duodenum': 0.5, 'Hepatic Vessel': 0.5, 'Right Lung': 0.5, 'Left Lung': 0.5, 'Colon': 0.5, 'Intestine': 0.5, 'Rectum': 0.5, 'Bladder': 0.5, 'Prostate': 0.5, 'Left Head of Femur': 0.5, 'Right Head of Femur': 0.5, 'Celiac Truck': 0.5, 'Kidney Tumor': 0.5, 'Liver Tumor': 0.55, 'Pancreas Tumor': 0.5, 'Hepatic Vessel Tumor': 0.5, 'Lung Tumor': 0.5, 'Colon Tumor': 0.5, 'Kidney Cyst': 0.5}
+Liver: dice 0.9826, recall 0.9873, precision 0.9780.
+Liver Tumor: dice 0.5509, recall 0.7132, precision 0.4510.
+case10_Decathlon/Task03_Liver/labelsTr/liver_112| Liver: 0.9826, Liver Tumor: 0.5509, 
+{'Spleen': 0.5, 'Right Kidney': 0.5, 'Left Kidney': 0.5, 'Gall Bladder': 0.5, 'Esophagus': 0.5, 'Liver': 0.5, 'Stomach': 0.5, 'Arota': 0.5, 'Postcava': 0.5, 'Portal Vein and Splenic Vein': 0.5, 'Pancreas': 0.5, 'Right Adrenal Gland': 0.5, 'Left Adrenal Gland': 0.5, 'Duodenum': 0.5, 'Hepatic Vessel': 0.5, 'Right Lung': 0.5, 'Left Lung': 0.5, 'Colon': 0.5, 'Intestine': 0.5, 'Rectum': 0.5, 'Bladder': 0.5, 'Prostate': 0.5, 'Left Head of Femur': 0.5, 'Right Head of Femur': 0.5, 'Celiac Truck': 0.5, 'Kidney Tumor': 0.5, 'Liver Tumor': 0.55, 'Pancreas Tumor': 0.5, 'Hepatic Vessel Tumor': 0.5, 'Lung Tumor': 0.5, 'Colon Tumor': 0.5, 'Kidney Cyst': 0.5}
+Liver: dice 0.9568, recall 0.9196, precision 0.9971.
+Liver Tumor: dice 0.8149, recall 0.7457, precision 0.8992.
+case10_Decathlon/Task03_Liver/labelsTr/liver_57| Liver: 0.9568, Liver Tumor: 0.8149, 
+{'Spleen': 0.5, 'Right Kidney': 0.5, 'Left Kidney': 0.5, 'Gall Bladder': 0.5, 'Esophagus': 0.5, 'Liver': 0.5, 'Stomach': 0.5, 'Arota': 0.5, 'Postcava': 0.5, 'Portal Vein and Splenic Vein': 0.5, 'Pancreas': 0.5, 'Right Adrenal Gland': 0.5, 'Left Adrenal Gland': 0.5, 'Duodenum': 0.5, 'Hepatic Vessel': 0.5, 'Right Lung': 0.5, 'Left Lung': 0.5, 'Colon': 0.5, 'Intestine': 0.5, 'Rectum': 0.5, 'Bladder': 0.5, 'Prostate': 0.5, 'Left Head of Femur': 0.5, 'Right Head of Femur': 0.5, 'Celiac Truck': 0.5, 'Kidney Tumor': 0.5, 'Liver Tumor': 0.55, 'Pancreas Tumor': 0.5, 'Hepatic Vessel Tumor': 0.5, 'Lung Tumor': 0.5, 'Colon Tumor': 0.5, 'Kidney Cyst': 0.5}
+Liver: dice 0.9805, recall 0.9870, precision 0.9740.
+Liver Tumor: dice 0.8772, recall 0.8251, precision 0.9365.
+case10_Decathlon/Task03_Liver/labelsTr/liver_124| Liver: 0.9805, Liver Tumor: 0.8772, 
+{'Spleen': 0.5, 'Right Kidney': 0.5, 'Left Kidney': 0.5, 'Gall Bladder': 0.5, 'Esophagus': 0.5, 'Liver': 0.5, 'Stomach': 0.5, 'Arota': 0.5, 'Postcava': 0.5, 'Portal Vein and Splenic Vein': 0.5, 'Pancreas': 0.5, 'Right Adrenal Gland': 0.5, 'Left Adrenal Gland': 0.5, 'Duodenum': 0.5, 'Hepatic Vessel': 0.5, 'Right Lung': 0.5, 'Left Lung': 0.5, 'Colon': 0.5, 'Intestine': 0.5, 'Rectum': 0.5, 'Bladder': 0.5, 'Prostate': 0.5, 'Left Head of Femur': 0.5, 'Right Head of Femur': 0.5, 'Celiac Truck': 0.5, 'Kidney Tumor': 0.5, 'Liver Tumor': 0.55, 'Pancreas Tumor': 0.5, 'Hepatic Vessel Tumor': 0.5, 'Lung Tumor': 0.5, 'Colon Tumor': 0.5, 'Kidney Cyst': 0.5}
+Liver: dice 0.9500, recall 0.9756, precision 0.9257.
+Liver Tumor: dice 0.7696, recall 0.6958, precision 0.8618.
+case10_Decathlon/Task03_Liver/labelsTr/liver_61| Liver: 0.9500, Liver Tumor: 0.7696, 
+{'Spleen': 0.5, 'Right Kidney': 0.5, 'Left Kidney': 0.5, 'Gall Bladder': 0.5, 'Esophagus': 0.5, 'Liver': 0.5, 'Stomach': 0.5, 'Arota': 0.5, 'Postcava': 0.5, 'Portal Vein and Splenic Vein': 0.5, 'Pancreas': 0.5, 'Right Adrenal Gland': 0.5, 'Left Adrenal Gland': 0.5, 'Duodenum': 0.5, 'Hepatic Vessel': 0.5, 'Right Lung': 0.5, 'Left Lung': 0.5, 'Colon': 0.5, 'Intestine': 0.5, 'Rectum': 0.5, 'Bladder': 0.5, 'Prostate': 0.5, 'Left Head of Femur': 0.5, 'Right Head of Femur': 0.5, 'Celiac Truck': 0.5, 'Kidney Tumor': 0.5, 'Liver Tumor': 0.55, 'Pancreas Tumor': 0.5, 'Hepatic Vessel Tumor': 0.5, 'Lung Tumor': 0.5, 'Colon Tumor': 0.5, 'Kidney Cyst': 0.5}
+Liver: dice 0.9773, recall 0.9699, precision 0.9848.
+Liver Tumor: dice 0.8759, recall 0.9035, precision 0.8501.
+case10_Decathlon/Task03_Liver/labelsTr/liver_10| Liver: 0.9773, Liver Tumor: 0.8759, 
+{'Spleen': 0.5, 'Right Kidney': 0.5, 'Left Kidney': 0.5, 'Gall Bladder': 0.5, 'Esophagus': 0.5, 'Liver': 0.5, 'Stomach': 0.5, 'Arota': 0.5, 'Postcava': 0.5, 'Portal Vein and Splenic Vein': 0.5, 'Pancreas': 0.5, 'Right Adrenal Gland': 0.5, 'Left Adrenal Gland': 0.5, 'Duodenum': 0.5, 'Hepatic Vessel': 0.5, 'Right Lung': 0.5, 'Left Lung': 0.5, 'Colon': 0.5, 'Intestine': 0.5, 'Rectum': 0.5, 'Bladder': 0.5, 'Prostate': 0.5, 'Left Head of Femur': 0.5, 'Right Head of Femur': 0.5, 'Celiac Truck': 0.5, 'Kidney Tumor': 0.5, 'Liver Tumor': 0.55, 'Pancreas Tumor': 0.5, 'Hepatic Vessel Tumor': 0.5, 'Lung Tumor': 0.5, 'Colon Tumor': 0.5, 'Kidney Cyst': 0.5}
+Liver: dice 0.9469, recall 0.9738, precision 0.9214.
+Liver Tumor: dice 0.5824, recall 0.4213, precision 0.9461.
+case10_Decathlon/Task03_Liver/labelsTr/liver_73| Liver: 0.9469, Liver Tumor: 0.5824, 
+{'Spleen': 0.5, 'Right Kidney': 0.5, 'Left Kidney': 0.5, 'Gall Bladder': 0.5, 'Esophagus': 0.5, 'Liver': 0.5, 'Stomach': 0.5, 'Arota': 0.5, 'Postcava': 0.5, 'Portal Vein and Splenic Vein': 0.5, 'Pancreas': 0.5, 'Right Adrenal Gland': 0.5, 'Left Adrenal Gland': 0.5, 'Duodenum': 0.5, 'Hepatic Vessel': 0.5, 'Right Lung': 0.5, 'Left Lung': 0.5, 'Colon': 0.5, 'Intestine': 0.5, 'Rectum': 0.5, 'Bladder': 0.5, 'Prostate': 0.5, 'Left Head of Femur': 0.5, 'Right Head of Femur': 0.5, 'Celiac Truck': 0.5, 'Kidney Tumor': 0.5, 'Liver Tumor': 0.55, 'Pancreas Tumor': 0.5, 'Hepatic Vessel Tumor': 0.5, 'Lung Tumor': 0.5, 'Colon Tumor': 0.5, 'Kidney Cyst': 0.5}
+Liver: dice 0.9790, recall 0.9810, precision 0.9771.
+Liver Tumor: dice 0.8202, recall 0.8085, precision 0.8323.
+case10_Decathlon/Task03_Liver/labelsTr/liver_128| Liver: 0.9790, Liver Tumor: 0.8202, 
+{'Spleen': 0.5, 'Right Kidney': 0.5, 'Left Kidney': 0.5, 'Gall Bladder': 0.5, 'Esophagus': 0.5, 'Liver': 0.5, 'Stomach': 0.5, 'Arota': 0.5, 'Postcava': 0.5, 'Portal Vein and Splenic Vein': 0.5, 'Pancreas': 0.5, 'Right Adrenal Gland': 0.5, 'Left Adrenal Gland': 0.5, 'Duodenum': 0.5, 'Hepatic Vessel': 0.5, 'Right Lung': 0.5, 'Left Lung': 0.5, 'Colon': 0.5, 'Intestine': 0.5, 'Rectum': 0.5, 'Bladder': 0.5, 'Prostate': 0.5, 'Left Head of Femur': 0.5, 'Right Head of Femur': 0.5, 'Celiac Truck': 0.5, 'Kidney Tumor': 0.5, 'Liver Tumor': 0.55, 'Pancreas Tumor': 0.5, 'Hepatic Vessel Tumor': 0.5, 'Lung Tumor': 0.5, 'Colon Tumor': 0.5, 'Kidney Cyst': 0.5}
+Liver: dice 0.9751, recall 0.9642, precision 0.9862.
+Liver Tumor: dice 0.8625, recall 0.8857, precision 0.8407.
+case10_Decathlon/Task03_Liver/labelsTr/liver_9| Liver: 0.9751, Liver Tumor: 0.8625, 
+{'Spleen': 0.5, 'Right Kidney': 0.5, 'Left Kidney': 0.5, 'Gall Bladder': 0.5, 'Esophagus': 0.5, 'Liver': 0.5, 'Stomach': 0.5, 'Arota': 0.5, 'Postcava': 0.5, 'Portal Vein and Splenic Vein': 0.5, 'Pancreas': 0.5, 'Right Adrenal Gland': 0.5, 'Left Adrenal Gland': 0.5, 'Duodenum': 0.5, 'Hepatic Vessel': 0.5, 'Right Lung': 0.5, 'Left Lung': 0.5, 'Colon': 0.5, 'Intestine': 0.5, 'Rectum': 0.5, 'Bladder': 0.5, 'Prostate': 0.5, 'Left Head of Femur': 0.5, 'Right Head of Femur': 0.5, 'Celiac Truck': 0.5, 'Kidney Tumor': 0.5, 'Liver Tumor': 0.55, 'Pancreas Tumor': 0.5, 'Hepatic Vessel Tumor': 0.5, 'Lung Tumor': 0.5, 'Colon Tumor': 0.5, 'Kidney Cyst': 0.5}
+Liver: dice 0.9736, recall 0.9718, precision 0.9755.
+Liver Tumor: dice 0.5348, recall 0.7442, precision 0.4192.
+case10_Decathlon/Task03_Liver/labelsTr/liver_5| Liver: 0.9736, Liver Tumor: 0.5348, 
+{'Spleen': 0.5, 'Right Kidney': 0.5, 'Left Kidney': 0.5, 'Gall Bladder': 0.5, 'Esophagus': 0.5, 'Liver': 0.5, 'Stomach': 0.5, 'Arota': 0.5, 'Postcava': 0.5, 'Portal Vein and Splenic Vein': 0.5, 'Pancreas': 0.5, 'Right Adrenal Gland': 0.5, 'Left Adrenal Gland': 0.5, 'Duodenum': 0.5, 'Hepatic Vessel': 0.5, 'Right Lung': 0.5, 'Left Lung': 0.5, 'Colon': 0.5, 'Intestine': 0.5, 'Rectum': 0.5, 'Bladder': 0.5, 'Prostate': 0.5, 'Left Head of Femur': 0.5, 'Right Head of Femur': 0.5, 'Celiac Truck': 0.5, 'Kidney Tumor': 0.5, 'Liver Tumor': 0.55, 'Pancreas Tumor': 0.5, 'Hepatic Vessel Tumor': 0.5, 'Lung Tumor': 0.5, 'Colon Tumor': 0.5, 'Kidney Cyst': 0.5}
+Liver: dice 0.9695, recall 0.9642, precision 0.9748.
+Liver Tumor: dice 0.8735, recall 0.7820, precision 0.9893.
+case10_Decathlon/Task03_Liver/labelsTr/liver_80| Liver: 0.9695, Liver Tumor: 0.8735, 
+{'Spleen': 0.5, 'Right Kidney': 0.5, 'Left Kidney': 0.5, 'Gall Bladder': 0.5, 'Esophagus': 0.5, 'Liver': 0.5, 'Stomach': 0.5, 'Arota': 0.5, 'Postcava': 0.5, 'Portal Vein and Splenic Vein': 0.5, 'Pancreas': 0.5, 'Right Adrenal Gland': 0.5, 'Left Adrenal Gland': 0.5, 'Duodenum': 0.5, 'Hepatic Vessel': 0.5, 'Right Lung': 0.5, 'Left Lung': 0.5, 'Colon': 0.5, 'Intestine': 0.5, 'Rectum': 0.5, 'Bladder': 0.5, 'Prostate': 0.5, 'Left Head of Femur': 0.5, 'Right Head of Femur': 0.5, 'Celiac Truck': 0.5, 'Kidney Tumor': 0.5, 'Liver Tumor': 0.55, 'Pancreas Tumor': 0.5, 'Hepatic Vessel Tumor': 0.5, 'Lung Tumor': 0.5, 'Colon Tumor': 0.5, 'Kidney Cyst': 0.5}
+Liver: dice 0.9753, recall 0.9627, precision 0.9883.
+Liver Tumor: dice 0.5575, recall 0.5000, precision 0.6332.
+case10_Decathlon/Task03_Liver/labelsTr/liver_92| Liver: 0.9753, Liver Tumor: 0.5575, 
+{'Spleen': 0.5, 'Right Kidney': 0.5, 'Left Kidney': 0.5, 'Gall Bladder': 0.5, 'Esophagus': 0.5, 'Liver': 0.5, 'Stomach': 0.5, 'Arota': 0.5, 'Postcava': 0.5, 'Portal Vein and Splenic Vein': 0.5, 'Pancreas': 0.5, 'Right Adrenal Gland': 0.5, 'Left Adrenal Gland': 0.5, 'Duodenum': 0.5, 'Hepatic Vessel': 0.5, 'Right Lung': 0.5, 'Left Lung': 0.5, 'Colon': 0.5, 'Intestine': 0.5, 'Rectum': 0.5, 'Bladder': 0.5, 'Prostate': 0.5, 'Left Head of Femur': 0.5, 'Right Head of Femur': 0.5, 'Celiac Truck': 0.5, 'Kidney Tumor': 0.5, 'Liver Tumor': 0.55, 'Pancreas Tumor': 0.5, 'Hepatic Vessel Tumor': 0.5, 'Lung Tumor': 0.5, 'Colon Tumor': 0.5, 'Kidney Cyst': 0.5}
+Liver: dice 0.9626, recall 0.9412, precision 0.9850.
+Liver Tumor: dice 0.6442, recall 0.5779, precision 0.7282.
+case10_Decathlon/Task03_Liver/labelsTr/liver_0| Liver: 0.9626, Liver Tumor: 0.6442, 
+{'Spleen': 0.5, 'Right Kidney': 0.5, 'Left Kidney': 0.5, 'Gall Bladder': 0.5, 'Esophagus': 0.5, 'Liver': 0.5, 'Stomach': 0.5, 'Arota': 0.5, 'Postcava': 0.5, 'Portal Vein and Splenic Vein': 0.5, 'Pancreas': 0.5, 'Right Adrenal Gland': 0.5, 'Left Adrenal Gland': 0.5, 'Duodenum': 0.5, 'Hepatic Vessel': 0.5, 'Right Lung': 0.5, 'Left Lung': 0.5, 'Colon': 0.5, 'Intestine': 0.5, 'Rectum': 0.5, 'Bladder': 0.5, 'Prostate': 0.5, 'Left Head of Femur': 0.5, 'Right Head of Femur': 0.5, 'Celiac Truck': 0.5, 'Kidney Tumor': 0.5, 'Liver Tumor': 0.55, 'Pancreas Tumor': 0.5, 'Hepatic Vessel Tumor': 0.5, 'Lung Tumor': 0.5, 'Colon Tumor': 0.5, 'Kidney Cyst': 0.5}
+Liver: dice 0.9786, recall 0.9738, precision 0.9835.
+case10_Decathlon/Task03_Liver/labelsTr/liver_89| Liver: 0.9786, 
+{'Spleen': 0.5, 'Right Kidney': 0.5, 'Left Kidney': 0.5, 'Gall Bladder': 0.5, 'Esophagus': 0.5, 'Liver': 0.5, 'Stomach': 0.5, 'Arota': 0.5, 'Postcava': 0.5, 'Portal Vein and Splenic Vein': 0.5, 'Pancreas': 0.5, 'Right Adrenal Gland': 0.5, 'Left Adrenal Gland': 0.5, 'Duodenum': 0.5, 'Hepatic Vessel': 0.5, 'Right Lung': 0.5, 'Left Lung': 0.5, 'Colon': 0.5, 'Intestine': 0.5, 'Rectum': 0.5, 'Bladder': 0.5, 'Prostate': 0.5, 'Left Head of Femur': 0.5, 'Right Head of Femur': 0.5, 'Celiac Truck': 0.5, 'Kidney Tumor': 0.5, 'Liver Tumor': 0.55, 'Pancreas Tumor': 0.5, 'Hepatic Vessel Tumor': 0.5, 'Lung Tumor': 0.5, 'Colon Tumor': 0.5, 'Kidney Cyst': 0.5}
+Liver: dice 0.9801, recall 0.9880, precision 0.9723.
+Liver Tumor: dice 0.8903, recall 0.9309, precision 0.8530.
+case10_Decathlon/Task03_Liver/labelsTr/liver_97| Liver: 0.9801, Liver Tumor: 0.8903, 
+{'Spleen': 0.5, 'Right Kidney': 0.5, 'Left Kidney': 0.5, 'Gall Bladder': 0.5, 'Esophagus': 0.5, 'Liver': 0.5, 'Stomach': 0.5, 'Arota': 0.5, 'Postcava': 0.5, 'Portal Vein and Splenic Vein': 0.5, 'Pancreas': 0.5, 'Right Adrenal Gland': 0.5, 'Left Adrenal Gland': 0.5, 'Duodenum': 0.5, 'Hepatic Vessel': 0.5, 'Right Lung': 0.5, 'Left Lung': 0.5, 'Colon': 0.5, 'Intestine': 0.5, 'Rectum': 0.5, 'Bladder': 0.5, 'Prostate': 0.5, 'Left Head of Femur': 0.5, 'Right Head of Femur': 0.5, 'Celiac Truck': 0.5, 'Kidney Tumor': 0.5, 'Liver Tumor': 0.55, 'Pancreas Tumor': 0.5, 'Hepatic Vessel Tumor': 0.5, 'Lung Tumor': 0.5, 'Colon Tumor': 0.5, 'Kidney Cyst': 0.5}
+Liver: dice 0.9812, recall 0.9840, precision 0.9786.
+Liver Tumor: dice 0.5181, recall 0.4043, precision 0.7219.
+case10_Decathlon/Task03_Liver/labelsTr/liver_85| Liver: 0.9812, Liver Tumor: 0.5181, 
+{'Spleen': 0.5, 'Right Kidney': 0.5, 'Left Kidney': 0.5, 'Gall Bladder': 0.5, 'Esophagus': 0.5, 'Liver': 0.5, 'Stomach': 0.5, 'Arota': 0.5, 'Postcava': 0.5, 'Portal Vein and Splenic Vein': 0.5, 'Pancreas': 0.5, 'Right Adrenal Gland': 0.5, 'Left Adrenal Gland': 0.5, 'Duodenum': 0.5, 'Hepatic Vessel': 0.5, 'Right Lung': 0.5, 'Left Lung': 0.5, 'Colon': 0.5, 'Intestine': 0.5, 'Rectum': 0.5, 'Bladder': 0.5, 'Prostate': 0.5, 'Left Head of Femur': 0.5, 'Right Head of Femur': 0.5, 'Celiac Truck': 0.5, 'Kidney Tumor': 0.5, 'Liver Tumor': 0.55, 'Pancreas Tumor': 0.5, 'Hepatic Vessel Tumor': 0.5, 'Lung Tumor': 0.5, 'Colon Tumor': 0.5, 'Kidney Cyst': 0.5}
+Liver: dice 0.9466, recall 0.9485, precision 0.9446.
+Liver Tumor: dice 0.8010, recall 0.7094, precision 0.9197.
+case10_Decathlon/Task03_Liver/labelsTr/liver_52| Liver: 0.9466, Liver Tumor: 0.8010, 
+{'Spleen': 0.5, 'Right Kidney': 0.5, 'Left Kidney': 0.5, 'Gall Bladder': 0.5, 'Esophagus': 0.5, 'Liver': 0.5, 'Stomach': 0.5, 'Arota': 0.5, 'Postcava': 0.5, 'Portal Vein and Splenic Vein': 0.5, 'Pancreas': 0.5, 'Right Adrenal Gland': 0.5, 'Left Adrenal Gland': 0.5, 'Duodenum': 0.5, 'Hepatic Vessel': 0.5, 'Right Lung': 0.5, 'Left Lung': 0.5, 'Colon': 0.5, 'Intestine': 0.5, 'Rectum': 0.5, 'Bladder': 0.5, 'Prostate': 0.5, 'Left Head of Femur': 0.5, 'Right Head of Femur': 0.5, 'Celiac Truck': 0.5, 'Kidney Tumor': 0.5, 'Liver Tumor': 0.55, 'Pancreas Tumor': 0.5, 'Hepatic Vessel Tumor': 0.5, 'Lung Tumor': 0.5, 'Colon Tumor': 0.5, 'Kidney Cyst': 0.5}
+Liver: dice 0.9712, recall 0.9698, precision 0.9727.
+Liver Tumor: dice 0.7710, recall 0.7900, precision 0.7530.
+case10_Decathlon/Task03_Liver/labelsTr/liver_109| Liver: 0.9712, Liver Tumor: 0.7710, 
+{'Spleen': 0.5, 'Right Kidney': 0.5, 'Left Kidney': 0.5, 'Gall Bladder': 0.5, 'Esophagus': 0.5, 'Liver': 0.5, 'Stomach': 0.5, 'Arota': 0.5, 'Postcava': 0.5, 'Portal Vein and Splenic Vein': 0.5, 'Pancreas': 0.5, 'Right Adrenal Gland': 0.5, 'Left Adrenal Gland': 0.5, 'Duodenum': 0.5, 'Hepatic Vessel': 0.5, 'Right Lung': 0.5, 'Left Lung': 0.5, 'Colon': 0.5, 'Intestine': 0.5, 'Rectum': 0.5, 'Bladder': 0.5, 'Prostate': 0.5, 'Left Head of Femur': 0.5, 'Right Head of Femur': 0.5, 'Celiac Truck': 0.5, 'Kidney Tumor': 0.5, 'Liver Tumor': 0.55, 'Pancreas Tumor': 0.5, 'Hepatic Vessel Tumor': 0.5, 'Lung Tumor': 0.5, 'Colon Tumor': 0.5, 'Kidney Cyst': 0.5}
+Liver: dice 0.9634, recall 0.9907, precision 0.9376.
+Liver Tumor: dice 0.7792, recall 0.7624, precision 0.7973.
+case10_Decathlon/Task03_Liver/labelsTr/liver_31| Liver: 0.9634, Liver Tumor: 0.7792, 
+{'Spleen': 0.5, 'Right Kidney': 0.5, 'Left Kidney': 0.5, 'Gall Bladder': 0.5, 'Esophagus': 0.5, 'Liver': 0.5, 'Stomach': 0.5, 'Arota': 0.5, 'Postcava': 0.5, 'Portal Vein and Splenic Vein': 0.5, 'Pancreas': 0.5, 'Right Adrenal Gland': 0.5, 'Left Adrenal Gland': 0.5, 'Duodenum': 0.5, 'Hepatic Vessel': 0.5, 'Right Lung': 0.5, 'Left Lung': 0.5, 'Colon': 0.5, 'Intestine': 0.5, 'Rectum': 0.5, 'Bladder': 0.5, 'Prostate': 0.5, 'Left Head of Femur': 0.5, 'Right Head of Femur': 0.5, 'Celiac Truck': 0.5, 'Kidney Tumor': 0.5, 'Liver Tumor': 0.55, 'Pancreas Tumor': 0.5, 'Hepatic Vessel Tumor': 0.5, 'Lung Tumor': 0.5, 'Colon Tumor': 0.5, 'Kidney Cyst': 0.5}
+Liver: dice 0.9793, recall 0.9843, precision 0.9744.
+Liver Tumor: dice 0.8695, recall 0.8429, precision 0.8978.
+case10_Decathlon/Task03_Liver/labelsTr/liver_117| Liver: 0.9793, Liver Tumor: 0.8695, 
+{'Spleen': 0.5, 'Right Kidney': 0.5, 'Left Kidney': 0.5, 'Gall Bladder': 0.5, 'Esophagus': 0.5, 'Liver': 0.5, 'Stomach': 0.5, 'Arota': 0.5, 'Postcava': 0.5, 'Portal Vein and Splenic Vein': 0.5, 'Pancreas': 0.5, 'Right Adrenal Gland': 0.5, 'Left Adrenal Gland': 0.5, 'Duodenum': 0.5, 'Hepatic Vessel': 0.5, 'Right Lung': 0.5, 'Left Lung': 0.5, 'Colon': 0.5, 'Intestine': 0.5, 'Rectum': 0.5, 'Bladder': 0.5, 'Prostate': 0.5, 'Left Head of Femur': 0.5, 'Right Head of Femur': 0.5, 'Celiac Truck': 0.5, 'Kidney Tumor': 0.5, 'Liver Tumor': 0.55, 'Pancreas Tumor': 0.5, 'Hepatic Vessel Tumor': 0.5, 'Lung Tumor': 0.5, 'Colon Tumor': 0.5, 'Kidney Cyst': 0.5}
+Liver: dice 0.9739, recall 0.9783, precision 0.9695.
+Liver Tumor: dice 0.8026, recall 0.7116, precision 0.9203.
+case10_Decathlon/Task03_Liver/labelsTr/liver_40| Liver: 0.9739, Liver Tumor: 0.8026, 
+{'Spleen': 0.5, 'Right Kidney': 0.5, 'Left Kidney': 0.5, 'Gall Bladder': 0.5, 'Esophagus': 0.5, 'Liver': 0.5, 'Stomach': 0.5, 'Arota': 0.5, 'Postcava': 0.5, 'Portal Vein and Splenic Vein': 0.5, 'Pancreas': 0.5, 'Right Adrenal Gland': 0.5, 'Left Adrenal Gland': 0.5, 'Duodenum': 0.5, 'Hepatic Vessel': 0.5, 'Right Lung': 0.5, 'Left Lung': 0.5, 'Colon': 0.5, 'Intestine': 0.5, 'Rectum': 0.5, 'Bladder': 0.5, 'Prostate': 0.5, 'Left Head of Femur': 0.5, 'Right Head of Femur': 0.5, 'Celiac Truck': 0.5, 'Kidney Tumor': 0.5, 'Liver Tumor': 0.55, 'Pancreas Tumor': 0.5, 'Hepatic Vessel Tumor': 0.5, 'Lung Tumor': 0.5, 'Colon Tumor': 0.5, 'Kidney Cyst': 0.5}
+Liver: dice 0.9620, recall 0.9394, precision 0.9857.
+Liver Tumor: dice 0.7389, recall 0.9899, precision 0.5895.
+case10_Decathlon/Task03_Liver/labelsTr/liver_23| Liver: 0.9620, Liver Tumor: 0.7389, 
+{'Spleen': 0.5, 'Right Kidney': 0.5, 'Left Kidney': 0.5, 'Gall Bladder': 0.5, 'Esophagus': 0.5, 'Liver': 0.5, 'Stomach': 0.5, 'Arota': 0.5, 'Postcava': 0.5, 'Portal Vein and Splenic Vein': 0.5, 'Pancreas': 0.5, 'Right Adrenal Gland': 0.5, 'Left Adrenal Gland': 0.5, 'Duodenum': 0.5, 'Hepatic Vessel': 0.5, 'Right Lung': 0.5, 'Left Lung': 0.5, 'Colon': 0.5, 'Intestine': 0.5, 'Rectum': 0.5, 'Bladder': 0.5, 'Prostate': 0.5, 'Left Head of Femur': 0.5, 'Right Head of Femur': 0.5, 'Celiac Truck': 0.5, 'Kidney Tumor': 0.5, 'Liver Tumor': 0.55, 'Pancreas Tumor': 0.5, 'Hepatic Vessel Tumor': 0.5, 'Lung Tumor': 0.5, 'Colon Tumor': 0.5, 'Kidney Cyst': 0.5}
+Liver: dice 0.9826, recall 0.9902, precision 0.9751.
+case10_Decathlon/Task03_Liver/labelsTr/liver_105| Liver: 0.9826, 
+{'Spleen': 0.5, 'Right Kidney': 0.5, 'Left Kidney': 0.5, 'Gall Bladder': 0.5, 'Esophagus': 0.5, 'Liver': 0.5, 'Stomach': 0.5, 'Arota': 0.5, 'Postcava': 0.5, 'Portal Vein and Splenic Vein': 0.5, 'Pancreas': 0.5, 'Right Adrenal Gland': 0.5, 'Left Adrenal Gland': 0.5, 'Duodenum': 0.5, 'Hepatic Vessel': 0.5, 'Right Lung': 0.5, 'Left Lung': 0.5, 'Colon': 0.5, 'Intestine': 0.5, 'Rectum': 0.5, 'Bladder': 0.5, 'Prostate': 0.5, 'Left Head of Femur': 0.5, 'Right Head of Femur': 0.5, 'Celiac Truck': 0.5, 'Kidney Tumor': 0.5, 'Liver Tumor': 0.55, 'Pancreas Tumor': 0.5, 'Hepatic Vessel Tumor': 0.5, 'Lung Tumor': 0.5, 'Colon Tumor': 0.5, 'Kidney Cyst': 0.5}
+Liver: dice 0.9647, recall 0.9643, precision 0.9651.
+Liver Tumor: dice 0.9050, recall 0.8810, precision 0.9303.
+case10_Decathlon/Task03_Liver/labelsTr/liver_76| Liver: 0.9647, Liver Tumor: 0.9050, 
+Task01| Spleen: nan, Right Kidney: nan, Left Kidney: nan, Gall Bladder: nan, Esophagus: nan, Liver: nan, Stomach: nan, Arota: nan, Postcava: nan, Portal Vein and Splenic Vein: nan, Pancreas: nan, Right Adrenal Gland: nan, Left Adrenal Gland: nan, Duodenum: nan, 
+Task01_2| Spleen: nan, Left Kidney: nan, Gall Bladder: nan, Esophagus: nan, Liver: nan, Stomach: nan, Pancreas: nan, Duodenum: nan, 
+Task02| Spleen: nan, Left Kidney: nan, Gall Bladder: nan, Esophagus: nan, Liver: nan, Stomach: nan, Pancreas: nan, Duodenum: nan, 
+Task03| Liver: nan, 
+Task04| Liver: nan, Liver Tumor: nan, 
+Task05| Right Kidney: nan, Left Kidney: nan, Kidney Tumor: nan, Kidney Cyst: nan, 
+Task07| Liver: nan, Spleen: nan, Left Kidney: nan, Right Kidney: nan, Stomach: nan, Gall Bladder: nan, Esophagus: nan, Pancreas: nan, Duodenum: nan, Colon: nan, Intestine: nan, Right Adrenal Gland: nan, Left Adrenal Gland: nan, Rectum: nan, Bladder: nan, Left Head of Femur: nan, Right Head of Femur: nan, 
+Task08| Liver: nan, Right Kidney: nan, Left Kidney: nan, Spleen: nan, Pancreas: nan, 
+Task09| Spleen: nan, Right Kidney: nan, Left Kidney: nan, Gall Bladder: nan, Esophagus: nan, Liver: nan, Stomach: nan, Arota: nan, Postcava: nan, Pancreas: nan, Right Adrenal Gland: nan, Left Adrenal Gland: nan, Duodenum: nan, Bladder: nan, Prostate: nan, 
+Task12| Liver: nan, Bladder: nan, R Lung: nan, L Lung: nan, Right Kidney: nan, Left Kidney: nan, 
+Task13| Liver: nan, Right Kidney: nan, Left Kidney: nan, Spleen: nan, Pancreas: nan, Arota: nan, Postcava: nan, Stomach: nan, Gall Bladder: nan, Esophagus: nan, Right Adrenal Gland: nan, Left Adrenal Gland: nan, Celiac Truck: nan, 
+Task14| Pancreas: nan, Pancreas Tumor: nan, 
+Task10_03| Liver: 0.9684, Liver Tumor: 0.7360, 0.55
+Task10_06| Lung Tumor: nan, 
+Task10_07| Pancreas: nan, Pancreas Tumor: nan, 
+Task10_08| Hepatic Vessel: nan, Hepatic Vessel Tumor: nan, 
+Task10_09| Spleen: nan, 
+Task10_10| Colon Tumor: nan, 
+Average | Spleen: nan, Right Kidney: nan, Left Kidney: nan, Gall Bladder: nan, Esophagus: nan, Liver: 0.9684, Stomach: nan, Arota: nan, Postcava: nan, Portal Vein and Splenic Vein: nan, Pancreas: nan, Right Adrenal Gland: nan, Left Adrenal Gland: nan, Duodenum: nan, Hepatic Vessel: nan, R Lung: nan, L Lung: nan, Colon: nan, Intestine: nan, Rectum: nan, Bladder: nan, Prostate: nan, Left Head of Femur: nan, Right Head of Femur: nan, Celiac Truck: nan, Kidney Tumor: nan, Liver Tumor: 0.7360, Pancreas Tumor: nan, Hepatic Vessel Tumor: nan, Lung Tumor: nan, Colon Tumor: nan, Kidney Cyst: nan, 
+nan
+Use pretrained weights
+train len 2202
+val len 409
+test len 26
+{'Spleen': 0.5, 'Right Kidney': 0.5, 'Left Kidney': 0.5, 'Gall Bladder': 0.5, 'Esophagus': 0.5, 'Liver': 0.5, 'Stomach': 0.5, 'Arota': 0.5, 'Postcava': 0.5, 'Portal Vein and Splenic Vein': 0.5, 'Pancreas': 0.5, 'Right Adrenal Gland': 0.5, 'Left Adrenal Gland': 0.5, 'Duodenum': 0.5, 'Hepatic Vessel': 0.5, 'Right Lung': 0.5, 'Left Lung': 0.5, 'Colon': 0.5, 'Intestine': 0.5, 'Rectum': 0.5, 'Bladder': 0.5, 'Prostate': 0.5, 'Left Head of Femur': 0.5, 'Right Head of Femur': 0.5, 'Celiac Truck': 0.5, 'Kidney Tumor': 0.5, 'Liver Tumor': 0.6, 'Pancreas Tumor': 0.5, 'Hepatic Vessel Tumor': 0.5, 'Lung Tumor': 0.5, 'Colon Tumor': 0.5, 'Kidney Cyst': 0.5}
+Liver: dice 0.9763, recall 0.9641, precision 0.9888.
+case10_Decathlon/Task03_Liver/labelsTr/liver_38| Liver: 0.9763, 
+{'Spleen': 0.5, 'Right Kidney': 0.5, 'Left Kidney': 0.5, 'Gall Bladder': 0.5, 'Esophagus': 0.5, 'Liver': 0.5, 'Stomach': 0.5, 'Arota': 0.5, 'Postcava': 0.5, 'Portal Vein and Splenic Vein': 0.5, 'Pancreas': 0.5, 'Right Adrenal Gland': 0.5, 'Left Adrenal Gland': 0.5, 'Duodenum': 0.5, 'Hepatic Vessel': 0.5, 'Right Lung': 0.5, 'Left Lung': 0.5, 'Colon': 0.5, 'Intestine': 0.5, 'Rectum': 0.5, 'Bladder': 0.5, 'Prostate': 0.5, 'Left Head of Femur': 0.5, 'Right Head of Femur': 0.5, 'Celiac Truck': 0.5, 'Kidney Tumor': 0.5, 'Liver Tumor': 0.6, 'Pancreas Tumor': 0.5, 'Hepatic Vessel Tumor': 0.5, 'Lung Tumor': 0.5, 'Colon Tumor': 0.5, 'Kidney Cyst': 0.5}
+Liver: dice 0.9397, recall 0.9217, precision 0.9584.
+Liver Tumor: dice 0.3639, recall 0.6828, precision 0.2480.
+case10_Decathlon/Task03_Liver/labelsTr/liver_49| Liver: 0.9397, Liver Tumor: 0.3639, 
+{'Spleen': 0.5, 'Right Kidney': 0.5, 'Left Kidney': 0.5, 'Gall Bladder': 0.5, 'Esophagus': 0.5, 'Liver': 0.5, 'Stomach': 0.5, 'Arota': 0.5, 'Postcava': 0.5, 'Portal Vein and Splenic Vein': 0.5, 'Pancreas': 0.5, 'Right Adrenal Gland': 0.5, 'Left Adrenal Gland': 0.5, 'Duodenum': 0.5, 'Hepatic Vessel': 0.5, 'Right Lung': 0.5, 'Left Lung': 0.5, 'Colon': 0.5, 'Intestine': 0.5, 'Rectum': 0.5, 'Bladder': 0.5, 'Prostate': 0.5, 'Left Head of Femur': 0.5, 'Right Head of Femur': 0.5, 'Celiac Truck': 0.5, 'Kidney Tumor': 0.5, 'Liver Tumor': 0.6, 'Pancreas Tumor': 0.5, 'Hepatic Vessel Tumor': 0.5, 'Lung Tumor': 0.5, 'Colon Tumor': 0.5, 'Kidney Cyst': 0.5}
+Liver: dice 0.9503, recall 0.9719, precision 0.9296.
+case10_Decathlon/Task03_Liver/labelsTr/liver_34| Liver: 0.9503, 
+{'Spleen': 0.5, 'Right Kidney': 0.5, 'Left Kidney': 0.5, 'Gall Bladder': 0.5, 'Esophagus': 0.5, 'Liver': 0.5, 'Stomach': 0.5, 'Arota': 0.5, 'Postcava': 0.5, 'Portal Vein and Splenic Vein': 0.5, 'Pancreas': 0.5, 'Right Adrenal Gland': 0.5, 'Left Adrenal Gland': 0.5, 'Duodenum': 0.5, 'Hepatic Vessel': 0.5, 'Right Lung': 0.5, 'Left Lung': 0.5, 'Colon': 0.5, 'Intestine': 0.5, 'Rectum': 0.5, 'Bladder': 0.5, 'Prostate': 0.5, 'Left Head of Femur': 0.5, 'Right Head of Femur': 0.5, 'Celiac Truck': 0.5, 'Kidney Tumor': 0.5, 'Liver Tumor': 0.6, 'Pancreas Tumor': 0.5, 'Hepatic Vessel Tumor': 0.5, 'Lung Tumor': 0.5, 'Colon Tumor': 0.5, 'Kidney Cyst': 0.5}
+Liver: dice 0.9826, recall 0.9873, precision 0.9780.
+Liver Tumor: dice 0.5679, recall 0.7132, precision 0.4742.
+case10_Decathlon/Task03_Liver/labelsTr/liver_112| Liver: 0.9826, Liver Tumor: 0.5679, 
+{'Spleen': 0.5, 'Right Kidney': 0.5, 'Left Kidney': 0.5, 'Gall Bladder': 0.5, 'Esophagus': 0.5, 'Liver': 0.5, 'Stomach': 0.5, 'Arota': 0.5, 'Postcava': 0.5, 'Portal Vein and Splenic Vein': 0.5, 'Pancreas': 0.5, 'Right Adrenal Gland': 0.5, 'Left Adrenal Gland': 0.5, 'Duodenum': 0.5, 'Hepatic Vessel': 0.5, 'Right Lung': 0.5, 'Left Lung': 0.5, 'Colon': 0.5, 'Intestine': 0.5, 'Rectum': 0.5, 'Bladder': 0.5, 'Prostate': 0.5, 'Left Head of Femur': 0.5, 'Right Head of Femur': 0.5, 'Celiac Truck': 0.5, 'Kidney Tumor': 0.5, 'Liver Tumor': 0.6, 'Pancreas Tumor': 0.5, 'Hepatic Vessel Tumor': 0.5, 'Lung Tumor': 0.5, 'Colon Tumor': 0.5, 'Kidney Cyst': 0.5}
+Liver: dice 0.9568, recall 0.9196, precision 0.9971.
+Liver Tumor: dice 0.8125, recall 0.7379, precision 0.9049.
+case10_Decathlon/Task03_Liver/labelsTr/liver_57| Liver: 0.9568, Liver Tumor: 0.8125, 
+{'Spleen': 0.5, 'Right Kidney': 0.5, 'Left Kidney': 0.5, 'Gall Bladder': 0.5, 'Esophagus': 0.5, 'Liver': 0.5, 'Stomach': 0.5, 'Arota': 0.5, 'Postcava': 0.5, 'Portal Vein and Splenic Vein': 0.5, 'Pancreas': 0.5, 'Right Adrenal Gland': 0.5, 'Left Adrenal Gland': 0.5, 'Duodenum': 0.5, 'Hepatic Vessel': 0.5, 'Right Lung': 0.5, 'Left Lung': 0.5, 'Colon': 0.5, 'Intestine': 0.5, 'Rectum': 0.5, 'Bladder': 0.5, 'Prostate': 0.5, 'Left Head of Femur': 0.5, 'Right Head of Femur': 0.5, 'Celiac Truck': 0.5, 'Kidney Tumor': 0.5, 'Liver Tumor': 0.6, 'Pancreas Tumor': 0.5, 'Hepatic Vessel Tumor': 0.5, 'Lung Tumor': 0.5, 'Colon Tumor': 0.5, 'Kidney Cyst': 0.5}
+Liver: dice 0.9805, recall 0.9870, precision 0.9740.
+Liver Tumor: dice 0.8755, recall 0.8198, precision 0.9393.
+case10_Decathlon/Task03_Liver/labelsTr/liver_124| Liver: 0.9805, Liver Tumor: 0.8755, 
+{'Spleen': 0.5, 'Right Kidney': 0.5, 'Left Kidney': 0.5, 'Gall Bladder': 0.5, 'Esophagus': 0.5, 'Liver': 0.5, 'Stomach': 0.5, 'Arota': 0.5, 'Postcava': 0.5, 'Portal Vein and Splenic Vein': 0.5, 'Pancreas': 0.5, 'Right Adrenal Gland': 0.5, 'Left Adrenal Gland': 0.5, 'Duodenum': 0.5, 'Hepatic Vessel': 0.5, 'Right Lung': 0.5, 'Left Lung': 0.5, 'Colon': 0.5, 'Intestine': 0.5, 'Rectum': 0.5, 'Bladder': 0.5, 'Prostate': 0.5, 'Left Head of Femur': 0.5, 'Right Head of Femur': 0.5, 'Celiac Truck': 0.5, 'Kidney Tumor': 0.5, 'Liver Tumor': 0.6, 'Pancreas Tumor': 0.5, 'Hepatic Vessel Tumor': 0.5, 'Lung Tumor': 0.5, 'Colon Tumor': 0.5, 'Kidney Cyst': 0.5}
+Liver: dice 0.9500, recall 0.9756, precision 0.9257.
+Liver Tumor: dice 0.7685, recall 0.6902, precision 0.8678.
+case10_Decathlon/Task03_Liver/labelsTr/liver_61| Liver: 0.9500, Liver Tumor: 0.7685, 
+{'Spleen': 0.5, 'Right Kidney': 0.5, 'Left Kidney': 0.5, 'Gall Bladder': 0.5, 'Esophagus': 0.5, 'Liver': 0.5, 'Stomach': 0.5, 'Arota': 0.5, 'Postcava': 0.5, 'Portal Vein and Splenic Vein': 0.5, 'Pancreas': 0.5, 'Right Adrenal Gland': 0.5, 'Left Adrenal Gland': 0.5, 'Duodenum': 0.5, 'Hepatic Vessel': 0.5, 'Right Lung': 0.5, 'Left Lung': 0.5, 'Colon': 0.5, 'Intestine': 0.5, 'Rectum': 0.5, 'Bladder': 0.5, 'Prostate': 0.5, 'Left Head of Femur': 0.5, 'Right Head of Femur': 0.5, 'Celiac Truck': 0.5, 'Kidney Tumor': 0.5, 'Liver Tumor': 0.6, 'Pancreas Tumor': 0.5, 'Hepatic Vessel Tumor': 0.5, 'Lung Tumor': 0.5, 'Colon Tumor': 0.5, 'Kidney Cyst': 0.5}
+Liver: dice 0.9773, recall 0.9699, precision 0.9848.
+Liver Tumor: dice 0.8759, recall 0.8994, precision 0.8537.
+case10_Decathlon/Task03_Liver/labelsTr/liver_10| Liver: 0.9773, Liver Tumor: 0.8759, 
+{'Spleen': 0.5, 'Right Kidney': 0.5, 'Left Kidney': 0.5, 'Gall Bladder': 0.5, 'Esophagus': 0.5, 'Liver': 0.5, 'Stomach': 0.5, 'Arota': 0.5, 'Postcava': 0.5, 'Portal Vein and Splenic Vein': 0.5, 'Pancreas': 0.5, 'Right Adrenal Gland': 0.5, 'Left Adrenal Gland': 0.5, 'Duodenum': 0.5, 'Hepatic Vessel': 0.5, 'Right Lung': 0.5, 'Left Lung': 0.5, 'Colon': 0.5, 'Intestine': 0.5, 'Rectum': 0.5, 'Bladder': 0.5, 'Prostate': 0.5, 'Left Head of Femur': 0.5, 'Right Head of Femur': 0.5, 'Celiac Truck': 0.5, 'Kidney Tumor': 0.5, 'Liver Tumor': 0.6, 'Pancreas Tumor': 0.5, 'Hepatic Vessel Tumor': 0.5, 'Lung Tumor': 0.5, 'Colon Tumor': 0.5, 'Kidney Cyst': 0.5}
+Liver: dice 0.9469, recall 0.9738, precision 0.9214.
+Liver Tumor: dice 0.5747, recall 0.4123, precision 0.9516.
+case10_Decathlon/Task03_Liver/labelsTr/liver_73| Liver: 0.9469, Liver Tumor: 0.5747, 
+{'Spleen': 0.5, 'Right Kidney': 0.5, 'Left Kidney': 0.5, 'Gall Bladder': 0.5, 'Esophagus': 0.5, 'Liver': 0.5, 'Stomach': 0.5, 'Arota': 0.5, 'Postcava': 0.5, 'Portal Vein and Splenic Vein': 0.5, 'Pancreas': 0.5, 'Right Adrenal Gland': 0.5, 'Left Adrenal Gland': 0.5, 'Duodenum': 0.5, 'Hepatic Vessel': 0.5, 'Right Lung': 0.5, 'Left Lung': 0.5, 'Colon': 0.5, 'Intestine': 0.5, 'Rectum': 0.5, 'Bladder': 0.5, 'Prostate': 0.5, 'Left Head of Femur': 0.5, 'Right Head of Femur': 0.5, 'Celiac Truck': 0.5, 'Kidney Tumor': 0.5, 'Liver Tumor': 0.6, 'Pancreas Tumor': 0.5, 'Hepatic Vessel Tumor': 0.5, 'Lung Tumor': 0.5, 'Colon Tumor': 0.5, 'Kidney Cyst': 0.5}
+Liver: dice 0.9790, recall 0.9810, precision 0.9771.
+Liver Tumor: dice 0.8191, recall 0.8003, precision 0.8389.
+case10_Decathlon/Task03_Liver/labelsTr/liver_128| Liver: 0.9790, Liver Tumor: 0.8191, 
+{'Spleen': 0.5, 'Right Kidney': 0.5, 'Left Kidney': 0.5, 'Gall Bladder': 0.5, 'Esophagus': 0.5, 'Liver': 0.5, 'Stomach': 0.5, 'Arota': 0.5, 'Postcava': 0.5, 'Portal Vein and Splenic Vein': 0.5, 'Pancreas': 0.5, 'Right Adrenal Gland': 0.5, 'Left Adrenal Gland': 0.5, 'Duodenum': 0.5, 'Hepatic Vessel': 0.5, 'Right Lung': 0.5, 'Left Lung': 0.5, 'Colon': 0.5, 'Intestine': 0.5, 'Rectum': 0.5, 'Bladder': 0.5, 'Prostate': 0.5, 'Left Head of Femur': 0.5, 'Right Head of Femur': 0.5, 'Celiac Truck': 0.5, 'Kidney Tumor': 0.5, 'Liver Tumor': 0.6, 'Pancreas Tumor': 0.5, 'Hepatic Vessel Tumor': 0.5, 'Lung Tumor': 0.5, 'Colon Tumor': 0.5, 'Kidney Cyst': 0.5}
+Liver: dice 0.9751, recall 0.9642, precision 0.9862.
+Liver Tumor: dice 0.8633, recall 0.8812, precision 0.8463.
+case10_Decathlon/Task03_Liver/labelsTr/liver_9| Liver: 0.9751, Liver Tumor: 0.8633, 
+{'Spleen': 0.5, 'Right Kidney': 0.5, 'Left Kidney': 0.5, 'Gall Bladder': 0.5, 'Esophagus': 0.5, 'Liver': 0.5, 'Stomach': 0.5, 'Arota': 0.5, 'Postcava': 0.5, 'Portal Vein and Splenic Vein': 0.5, 'Pancreas': 0.5, 'Right Adrenal Gland': 0.5, 'Left Adrenal Gland': 0.5, 'Duodenum': 0.5, 'Hepatic Vessel': 0.5, 'Right Lung': 0.5, 'Left Lung': 0.5, 'Colon': 0.5, 'Intestine': 0.5, 'Rectum': 0.5, 'Bladder': 0.5, 'Prostate': 0.5, 'Left Head of Femur': 0.5, 'Right Head of Femur': 0.5, 'Celiac Truck': 0.5, 'Kidney Tumor': 0.5, 'Liver Tumor': 0.6, 'Pancreas Tumor': 0.5, 'Hepatic Vessel Tumor': 0.5, 'Lung Tumor': 0.5, 'Colon Tumor': 0.5, 'Kidney Cyst': 0.5}
+Liver: dice 0.9736, recall 0.9718, precision 0.9755.
+Liver Tumor: dice 0.5655, recall 0.7364, precision 0.4612.
+case10_Decathlon/Task03_Liver/labelsTr/liver_5| Liver: 0.9736, Liver Tumor: 0.5655, 
+{'Spleen': 0.5, 'Right Kidney': 0.5, 'Left Kidney': 0.5, 'Gall Bladder': 0.5, 'Esophagus': 0.5, 'Liver': 0.5, 'Stomach': 0.5, 'Arota': 0.5, 'Postcava': 0.5, 'Portal Vein and Splenic Vein': 0.5, 'Pancreas': 0.5, 'Right Adrenal Gland': 0.5, 'Left Adrenal Gland': 0.5, 'Duodenum': 0.5, 'Hepatic Vessel': 0.5, 'Right Lung': 0.5, 'Left Lung': 0.5, 'Colon': 0.5, 'Intestine': 0.5, 'Rectum': 0.5, 'Bladder': 0.5, 'Prostate': 0.5, 'Left Head of Femur': 0.5, 'Right Head of Femur': 0.5, 'Celiac Truck': 0.5, 'Kidney Tumor': 0.5, 'Liver Tumor': 0.6, 'Pancreas Tumor': 0.5, 'Hepatic Vessel Tumor': 0.5, 'Lung Tumor': 0.5, 'Colon Tumor': 0.5, 'Kidney Cyst': 0.5}
+Liver: dice 0.9695, recall 0.9642, precision 0.9748.
+Liver Tumor: dice 0.8673, recall 0.7717, precision 0.9900.
+case10_Decathlon/Task03_Liver/labelsTr/liver_80| Liver: 0.9695, Liver Tumor: 0.8673, 
+{'Spleen': 0.5, 'Right Kidney': 0.5, 'Left Kidney': 0.5, 'Gall Bladder': 0.5, 'Esophagus': 0.5, 'Liver': 0.5, 'Stomach': 0.5, 'Arota': 0.5, 'Postcava': 0.5, 'Portal Vein and Splenic Vein': 0.5, 'Pancreas': 0.5, 'Right Adrenal Gland': 0.5, 'Left Adrenal Gland': 0.5, 'Duodenum': 0.5, 'Hepatic Vessel': 0.5, 'Right Lung': 0.5, 'Left Lung': 0.5, 'Colon': 0.5, 'Intestine': 0.5, 'Rectum': 0.5, 'Bladder': 0.5, 'Prostate': 0.5, 'Left Head of Femur': 0.5, 'Right Head of Femur': 0.5, 'Celiac Truck': 0.5, 'Kidney Tumor': 0.5, 'Liver Tumor': 0.6, 'Pancreas Tumor': 0.5, 'Hepatic Vessel Tumor': 0.5, 'Lung Tumor': 0.5, 'Colon Tumor': 0.5, 'Kidney Cyst': 0.5}
+Liver: dice 0.9753, recall 0.9627, precision 0.9883.
+Liver Tumor: dice 0.5625, recall 0.5000, precision 0.6462.
+case10_Decathlon/Task03_Liver/labelsTr/liver_92| Liver: 0.9753, Liver Tumor: 0.5625, 
+{'Spleen': 0.5, 'Right Kidney': 0.5, 'Left Kidney': 0.5, 'Gall Bladder': 0.5, 'Esophagus': 0.5, 'Liver': 0.5, 'Stomach': 0.5, 'Arota': 0.5, 'Postcava': 0.5, 'Portal Vein and Splenic Vein': 0.5, 'Pancreas': 0.5, 'Right Adrenal Gland': 0.5, 'Left Adrenal Gland': 0.5, 'Duodenum': 0.5, 'Hepatic Vessel': 0.5, 'Right Lung': 0.5, 'Left Lung': 0.5, 'Colon': 0.5, 'Intestine': 0.5, 'Rectum': 0.5, 'Bladder': 0.5, 'Prostate': 0.5, 'Left Head of Femur': 0.5, 'Right Head of Femur': 0.5, 'Celiac Truck': 0.5, 'Kidney Tumor': 0.5, 'Liver Tumor': 0.6, 'Pancreas Tumor': 0.5, 'Hepatic Vessel Tumor': 0.5, 'Lung Tumor': 0.5, 'Colon Tumor': 0.5, 'Kidney Cyst': 0.5}
+Liver: dice 0.9626, recall 0.9412, precision 0.9850.
+Liver Tumor: dice 0.6419, recall 0.5696, precision 0.7356.
+case10_Decathlon/Task03_Liver/labelsTr/liver_0| Liver: 0.9626, Liver Tumor: 0.6419, 
+{'Spleen': 0.5, 'Right Kidney': 0.5, 'Left Kidney': 0.5, 'Gall Bladder': 0.5, 'Esophagus': 0.5, 'Liver': 0.5, 'Stomach': 0.5, 'Arota': 0.5, 'Postcava': 0.5, 'Portal Vein and Splenic Vein': 0.5, 'Pancreas': 0.5, 'Right Adrenal Gland': 0.5, 'Left Adrenal Gland': 0.5, 'Duodenum': 0.5, 'Hepatic Vessel': 0.5, 'Right Lung': 0.5, 'Left Lung': 0.5, 'Colon': 0.5, 'Intestine': 0.5, 'Rectum': 0.5, 'Bladder': 0.5, 'Prostate': 0.5, 'Left Head of Femur': 0.5, 'Right Head of Femur': 0.5, 'Celiac Truck': 0.5, 'Kidney Tumor': 0.5, 'Liver Tumor': 0.6, 'Pancreas Tumor': 0.5, 'Hepatic Vessel Tumor': 0.5, 'Lung Tumor': 0.5, 'Colon Tumor': 0.5, 'Kidney Cyst': 0.5}
+Liver: dice 0.9786, recall 0.9738, precision 0.9835.
+case10_Decathlon/Task03_Liver/labelsTr/liver_89| Liver: 0.9786, 
+{'Spleen': 0.5, 'Right Kidney': 0.5, 'Left Kidney': 0.5, 'Gall Bladder': 0.5, 'Esophagus': 0.5, 'Liver': 0.5, 'Stomach': 0.5, 'Arota': 0.5, 'Postcava': 0.5, 'Portal Vein and Splenic Vein': 0.5, 'Pancreas': 0.5, 'Right Adrenal Gland': 0.5, 'Left Adrenal Gland': 0.5, 'Duodenum': 0.5, 'Hepatic Vessel': 0.5, 'Right Lung': 0.5, 'Left Lung': 0.5, 'Colon': 0.5, 'Intestine': 0.5, 'Rectum': 0.5, 'Bladder': 0.5, 'Prostate': 0.5, 'Left Head of Femur': 0.5, 'Right Head of Femur': 0.5, 'Celiac Truck': 0.5, 'Kidney Tumor': 0.5, 'Liver Tumor': 0.6, 'Pancreas Tumor': 0.5, 'Hepatic Vessel Tumor': 0.5, 'Lung Tumor': 0.5, 'Colon Tumor': 0.5, 'Kidney Cyst': 0.5}
+Liver: dice 0.9801, recall 0.9880, precision 0.9723.
+Liver Tumor: dice 0.8920, recall 0.9266, precision 0.8600.
+case10_Decathlon/Task03_Liver/labelsTr/liver_97| Liver: 0.9801, Liver Tumor: 0.8920, 
+{'Spleen': 0.5, 'Right Kidney': 0.5, 'Left Kidney': 0.5, 'Gall Bladder': 0.5, 'Esophagus': 0.5, 'Liver': 0.5, 'Stomach': 0.5, 'Arota': 0.5, 'Postcava': 0.5, 'Portal Vein and Splenic Vein': 0.5, 'Pancreas': 0.5, 'Right Adrenal Gland': 0.5, 'Left Adrenal Gland': 0.5, 'Duodenum': 0.5, 'Hepatic Vessel': 0.5, 'Right Lung': 0.5, 'Left Lung': 0.5, 'Colon': 0.5, 'Intestine': 0.5, 'Rectum': 0.5, 'Bladder': 0.5, 'Prostate': 0.5, 'Left Head of Femur': 0.5, 'Right Head of Femur': 0.5, 'Celiac Truck': 0.5, 'Kidney Tumor': 0.5, 'Liver Tumor': 0.6, 'Pancreas Tumor': 0.5, 'Hepatic Vessel Tumor': 0.5, 'Lung Tumor': 0.5, 'Colon Tumor': 0.5, 'Kidney Cyst': 0.5}
+Liver: dice 0.9812, recall 0.9840, precision 0.9786.
+Liver Tumor: dice 0.5154, recall 0.4007, precision 0.7229.
+case10_Decathlon/Task03_Liver/labelsTr/liver_85| Liver: 0.9812, Liver Tumor: 0.5154, 
+{'Spleen': 0.5, 'Right Kidney': 0.5, 'Left Kidney': 0.5, 'Gall Bladder': 0.5, 'Esophagus': 0.5, 'Liver': 0.5, 'Stomach': 0.5, 'Arota': 0.5, 'Postcava': 0.5, 'Portal Vein and Splenic Vein': 0.5, 'Pancreas': 0.5, 'Right Adrenal Gland': 0.5, 'Left Adrenal Gland': 0.5, 'Duodenum': 0.5, 'Hepatic Vessel': 0.5, 'Right Lung': 0.5, 'Left Lung': 0.5, 'Colon': 0.5, 'Intestine': 0.5, 'Rectum': 0.5, 'Bladder': 0.5, 'Prostate': 0.5, 'Left Head of Femur': 0.5, 'Right Head of Femur': 0.5, 'Celiac Truck': 0.5, 'Kidney Tumor': 0.5, 'Liver Tumor': 0.6, 'Pancreas Tumor': 0.5, 'Hepatic Vessel Tumor': 0.5, 'Lung Tumor': 0.5, 'Colon Tumor': 0.5, 'Kidney Cyst': 0.5}
+Liver: dice 0.9466, recall 0.9485, precision 0.9446.
+Liver Tumor: dice 0.7987, recall 0.7043, precision 0.9226.
+case10_Decathlon/Task03_Liver/labelsTr/liver_52| Liver: 0.9466, Liver Tumor: 0.7987, 
+{'Spleen': 0.5, 'Right Kidney': 0.5, 'Left Kidney': 0.5, 'Gall Bladder': 0.5, 'Esophagus': 0.5, 'Liver': 0.5, 'Stomach': 0.5, 'Arota': 0.5, 'Postcava': 0.5, 'Portal Vein and Splenic Vein': 0.5, 'Pancreas': 0.5, 'Right Adrenal Gland': 0.5, 'Left Adrenal Gland': 0.5, 'Duodenum': 0.5, 'Hepatic Vessel': 0.5, 'Right Lung': 0.5, 'Left Lung': 0.5, 'Colon': 0.5, 'Intestine': 0.5, 'Rectum': 0.5, 'Bladder': 0.5, 'Prostate': 0.5, 'Left Head of Femur': 0.5, 'Right Head of Femur': 0.5, 'Celiac Truck': 0.5, 'Kidney Tumor': 0.5, 'Liver Tumor': 0.6, 'Pancreas Tumor': 0.5, 'Hepatic Vessel Tumor': 0.5, 'Lung Tumor': 0.5, 'Colon Tumor': 0.5, 'Kidney Cyst': 0.5}
+Liver: dice 0.9712, recall 0.9698, precision 0.9727.
+Liver Tumor: dice 0.7708, recall 0.7828, precision 0.7593.
+case10_Decathlon/Task03_Liver/labelsTr/liver_109| Liver: 0.9712, Liver Tumor: 0.7708, 
+{'Spleen': 0.5, 'Right Kidney': 0.5, 'Left Kidney': 0.5, 'Gall Bladder': 0.5, 'Esophagus': 0.5, 'Liver': 0.5, 'Stomach': 0.5, 'Arota': 0.5, 'Postcava': 0.5, 'Portal Vein and Splenic Vein': 0.5, 'Pancreas': 0.5, 'Right Adrenal Gland': 0.5, 'Left Adrenal Gland': 0.5, 'Duodenum': 0.5, 'Hepatic Vessel': 0.5, 'Right Lung': 0.5, 'Left Lung': 0.5, 'Colon': 0.5, 'Intestine': 0.5, 'Rectum': 0.5, 'Bladder': 0.5, 'Prostate': 0.5, 'Left Head of Femur': 0.5, 'Right Head of Femur': 0.5, 'Celiac Truck': 0.5, 'Kidney Tumor': 0.5, 'Liver Tumor': 0.6, 'Pancreas Tumor': 0.5, 'Hepatic Vessel Tumor': 0.5, 'Lung Tumor': 0.5, 'Colon Tumor': 0.5, 'Kidney Cyst': 0.5}
+Liver: dice 0.9634, recall 0.9907, precision 0.9376.
+Liver Tumor: dice 0.7803, recall 0.7598, precision 0.8024.
+case10_Decathlon/Task03_Liver/labelsTr/liver_31| Liver: 0.9634, Liver Tumor: 0.7803, 
+{'Spleen': 0.5, 'Right Kidney': 0.5, 'Left Kidney': 0.5, 'Gall Bladder': 0.5, 'Esophagus': 0.5, 'Liver': 0.5, 'Stomach': 0.5, 'Arota': 0.5, 'Postcava': 0.5, 'Portal Vein and Splenic Vein': 0.5, 'Pancreas': 0.5, 'Right Adrenal Gland': 0.5, 'Left Adrenal Gland': 0.5, 'Duodenum': 0.5, 'Hepatic Vessel': 0.5, 'Right Lung': 0.5, 'Left Lung': 0.5, 'Colon': 0.5, 'Intestine': 0.5, 'Rectum': 0.5, 'Bladder': 0.5, 'Prostate': 0.5, 'Left Head of Femur': 0.5, 'Right Head of Femur': 0.5, 'Celiac Truck': 0.5, 'Kidney Tumor': 0.5, 'Liver Tumor': 0.6, 'Pancreas Tumor': 0.5, 'Hepatic Vessel Tumor': 0.5, 'Lung Tumor': 0.5, 'Colon Tumor': 0.5, 'Kidney Cyst': 0.5}
+Liver: dice 0.9793, recall 0.9843, precision 0.9744.
+Liver Tumor: dice 0.8670, recall 0.8333, precision 0.9036.
+case10_Decathlon/Task03_Liver/labelsTr/liver_117| Liver: 0.9793, Liver Tumor: 0.8670, 
+{'Spleen': 0.5, 'Right Kidney': 0.5, 'Left Kidney': 0.5, 'Gall Bladder': 0.5, 'Esophagus': 0.5, 'Liver': 0.5, 'Stomach': 0.5, 'Arota': 0.5, 'Postcava': 0.5, 'Portal Vein and Splenic Vein': 0.5, 'Pancreas': 0.5, 'Right Adrenal Gland': 0.5, 'Left Adrenal Gland': 0.5, 'Duodenum': 0.5, 'Hepatic Vessel': 0.5, 'Right Lung': 0.5, 'Left Lung': 0.5, 'Colon': 0.5, 'Intestine': 0.5, 'Rectum': 0.5, 'Bladder': 0.5, 'Prostate': 0.5, 'Left Head of Femur': 0.5, 'Right Head of Femur': 0.5, 'Celiac Truck': 0.5, 'Kidney Tumor': 0.5, 'Liver Tumor': 0.6, 'Pancreas Tumor': 0.5, 'Hepatic Vessel Tumor': 0.5, 'Lung Tumor': 0.5, 'Colon Tumor': 0.5, 'Kidney Cyst': 0.5}
+Liver: dice 0.9739, recall 0.9783, precision 0.9695.
+Liver Tumor: dice 0.8005, recall 0.7063, precision 0.9236.
+case10_Decathlon/Task03_Liver/labelsTr/liver_40| Liver: 0.9739, Liver Tumor: 0.8005, 
+{'Spleen': 0.5, 'Right Kidney': 0.5, 'Left Kidney': 0.5, 'Gall Bladder': 0.5, 'Esophagus': 0.5, 'Liver': 0.5, 'Stomach': 0.5, 'Arota': 0.5, 'Postcava': 0.5, 'Portal Vein and Splenic Vein': 0.5, 'Pancreas': 0.5, 'Right Adrenal Gland': 0.5, 'Left Adrenal Gland': 0.5, 'Duodenum': 0.5, 'Hepatic Vessel': 0.5, 'Right Lung': 0.5, 'Left Lung': 0.5, 'Colon': 0.5, 'Intestine': 0.5, 'Rectum': 0.5, 'Bladder': 0.5, 'Prostate': 0.5, 'Left Head of Femur': 0.5, 'Right Head of Femur': 0.5, 'Celiac Truck': 0.5, 'Kidney Tumor': 0.5, 'Liver Tumor': 0.6, 'Pancreas Tumor': 0.5, 'Hepatic Vessel Tumor': 0.5, 'Lung Tumor': 0.5, 'Colon Tumor': 0.5, 'Kidney Cyst': 0.5}
+Liver: dice 0.9620, recall 0.9394, precision 0.9857.
+Liver Tumor: dice 0.7460, recall 0.9892, precision 0.5989.
+case10_Decathlon/Task03_Liver/labelsTr/liver_23| Liver: 0.9620, Liver Tumor: 0.7460, 
+{'Spleen': 0.5, 'Right Kidney': 0.5, 'Left Kidney': 0.5, 'Gall Bladder': 0.5, 'Esophagus': 0.5, 'Liver': 0.5, 'Stomach': 0.5, 'Arota': 0.5, 'Postcava': 0.5, 'Portal Vein and Splenic Vein': 0.5, 'Pancreas': 0.5, 'Right Adrenal Gland': 0.5, 'Left Adrenal Gland': 0.5, 'Duodenum': 0.5, 'Hepatic Vessel': 0.5, 'Right Lung': 0.5, 'Left Lung': 0.5, 'Colon': 0.5, 'Intestine': 0.5, 'Rectum': 0.5, 'Bladder': 0.5, 'Prostate': 0.5, 'Left Head of Femur': 0.5, 'Right Head of Femur': 0.5, 'Celiac Truck': 0.5, 'Kidney Tumor': 0.5, 'Liver Tumor': 0.6, 'Pancreas Tumor': 0.5, 'Hepatic Vessel Tumor': 0.5, 'Lung Tumor': 0.5, 'Colon Tumor': 0.5, 'Kidney Cyst': 0.5}
+Liver: dice 0.9826, recall 0.9902, precision 0.9751.
+case10_Decathlon/Task03_Liver/labelsTr/liver_105| Liver: 0.9826, 
+{'Spleen': 0.5, 'Right Kidney': 0.5, 'Left Kidney': 0.5, 'Gall Bladder': 0.5, 'Esophagus': 0.5, 'Liver': 0.5, 'Stomach': 0.5, 'Arota': 0.5, 'Postcava': 0.5, 'Portal Vein and Splenic Vein': 0.5, 'Pancreas': 0.5, 'Right Adrenal Gland': 0.5, 'Left Adrenal Gland': 0.5, 'Duodenum': 0.5, 'Hepatic Vessel': 0.5, 'Right Lung': 0.5, 'Left Lung': 0.5, 'Colon': 0.5, 'Intestine': 0.5, 'Rectum': 0.5, 'Bladder': 0.5, 'Prostate': 0.5, 'Left Head of Femur': 0.5, 'Right Head of Femur': 0.5, 'Celiac Truck': 0.5, 'Kidney Tumor': 0.5, 'Liver Tumor': 0.6, 'Pancreas Tumor': 0.5, 'Hepatic Vessel Tumor': 0.5, 'Lung Tumor': 0.5, 'Colon Tumor': 0.5, 'Kidney Cyst': 0.5}
+Liver: dice 0.9647, recall 0.9643, precision 0.9651.
+Liver Tumor: dice 0.9042, recall 0.8770, precision 0.9331.
+case10_Decathlon/Task03_Liver/labelsTr/liver_76| Liver: 0.9647, Liver Tumor: 0.9042, 
+Task01| Spleen: nan, Right Kidney: nan, Left Kidney: nan, Gall Bladder: nan, Esophagus: nan, Liver: nan, Stomach: nan, Arota: nan, Postcava: nan, Portal Vein and Splenic Vein: nan, Pancreas: nan, Right Adrenal Gland: nan, Left Adrenal Gland: nan, Duodenum: nan, 
+Task01_2| Spleen: nan, Left Kidney: nan, Gall Bladder: nan, Esophagus: nan, Liver: nan, Stomach: nan, Pancreas: nan, Duodenum: nan, 
+Task02| Spleen: nan, Left Kidney: nan, Gall Bladder: nan, Esophagus: nan, Liver: nan, Stomach: nan, Pancreas: nan, Duodenum: nan, 
+Task03| Liver: nan, 
+Task04| Liver: nan, Liver Tumor: nan, 
+Task05| Right Kidney: nan, Left Kidney: nan, Kidney Tumor: nan, Kidney Cyst: nan, 
+Task07| Liver: nan, Spleen: nan, Left Kidney: nan, Right Kidney: nan, Stomach: nan, Gall Bladder: nan, Esophagus: nan, Pancreas: nan, Duodenum: nan, Colon: nan, Intestine: nan, Right Adrenal Gland: nan, Left Adrenal Gland: nan, Rectum: nan, Bladder: nan, Left Head of Femur: nan, Right Head of Femur: nan, 
+Task08| Liver: nan, Right Kidney: nan, Left Kidney: nan, Spleen: nan, Pancreas: nan, 
+Task09| Spleen: nan, Right Kidney: nan, Left Kidney: nan, Gall Bladder: nan, Esophagus: nan, Liver: nan, Stomach: nan, Arota: nan, Postcava: nan, Pancreas: nan, Right Adrenal Gland: nan, Left Adrenal Gland: nan, Duodenum: nan, Bladder: nan, Prostate: nan, 
+Task12| Liver: nan, Bladder: nan, R Lung: nan, L Lung: nan, Right Kidney: nan, Left Kidney: nan, 
+Task13| Liver: nan, Right Kidney: nan, Left Kidney: nan, Spleen: nan, Pancreas: nan, Arota: nan, Postcava: nan, Stomach: nan, Gall Bladder: nan, Esophagus: nan, Right Adrenal Gland: nan, Left Adrenal Gland: nan, Celiac Truck: nan, 
+Task14| Pancreas: nan, Pancreas Tumor: nan, 
+Task10_03| Liver: 0.9684, Liver Tumor: 0.7379, 0.6
+Task10_06| Lung Tumor: nan, 
+Task10_07| Pancreas: nan, Pancreas Tumor: nan, 
+Task10_08| Hepatic Vessel: nan, Hepatic Vessel Tumor: nan, 
+Task10_09| Spleen: nan, 
+Task10_10| Colon Tumor: nan, 
+Average | Spleen: nan, Right Kidney: nan, Left Kidney: nan, Gall Bladder: nan, Esophagus: nan, Liver: 0.9684, Stomach: nan, Arota: nan, Postcava: nan, Portal Vein and Splenic Vein: nan, Pancreas: nan, Right Adrenal Gland: nan, Left Adrenal Gland: nan, Duodenum: nan, Hepatic Vessel: nan, R Lung: nan, L Lung: nan, Colon: nan, Intestine: nan, Rectum: nan, Bladder: nan, Prostate: nan, Left Head of Femur: nan, Right Head of Femur: nan, Celiac Truck: nan, Kidney Tumor: nan, Liver Tumor: 0.7379, Pancreas Tumor: nan, Hepatic Vessel Tumor: nan, Lung Tumor: nan, Colon Tumor: nan, Kidney Cyst: nan, 
+nan
+Use pretrained weights
+train len 2202
+val len 409
+test len 26
+Liver: dice 0.9763, recall 0.9641, precision 0.9888.
+case10_Decathlon/Task03_Liver/labelsTr/liver_38| Liver: 0.9763, 
+Liver: dice 0.9397, recall 0.9217, precision 0.9584.
+Liver Tumor: dice 0.2604, recall 0.7143, precision 0.1592.
+case10_Decathlon/Task03_Liver/labelsTr/liver_49| Liver: 0.9397, Liver Tumor: 0.2604, 
+Liver: dice 0.9503, recall 0.9719, precision 0.9296.
+case10_Decathlon/Task03_Liver/labelsTr/liver_34| Liver: 0.9503, 
+Liver: dice 0.9826, recall 0.9873, precision 0.9780.
+Liver Tumor: dice 0.4899, recall 0.7519, precision 0.3647.
+case10_Decathlon/Task03_Liver/labelsTr/liver_112| Liver: 0.9826, Liver Tumor: 0.4899, 
+Liver: dice 0.9568, recall 0.9196, precision 0.9971.
+Liver Tumor: dice 0.8212, recall 0.7957, precision 0.8491.
+case10_Decathlon/Task03_Liver/labelsTr/liver_57| Liver: 0.9568, Liver Tumor: 0.8212, 
+Liver: dice 0.9805, recall 0.9870, precision 0.9740.
+Liver Tumor: dice 0.8829, recall 0.8539, precision 0.9141.
+case10_Decathlon/Task03_Liver/labelsTr/liver_124| Liver: 0.9805, Liver Tumor: 0.8829, 
+Liver: dice 0.9500, recall 0.9756, precision 0.9257.
+Liver Tumor: dice 0.7832, recall 0.7392, precision 0.8335.
+case10_Decathlon/Task03_Liver/labelsTr/liver_61| Liver: 0.9500, Liver Tumor: 0.7832, 
+Liver: dice 0.9773, recall 0.9699, precision 0.9848.
+Liver Tumor: dice 0.8701, recall 0.9272, precision 0.8198.
+case10_Decathlon/Task03_Liver/labelsTr/liver_10| Liver: 0.9773, Liver Tumor: 0.8701, 
+Liver: dice 0.9469, recall 0.9738, precision 0.9214.
+Liver Tumor: dice 0.6058, recall 0.4828, precision 0.8152.
+case10_Decathlon/Task03_Liver/labelsTr/liver_73| Liver: 0.9469, Liver Tumor: 0.6058, 
+Liver: dice 0.9790, recall 0.9810, precision 0.9771.
+Liver Tumor: dice 0.8162, recall 0.8573, precision 0.7788.
+case10_Decathlon/Task03_Liver/labelsTr/liver_128| Liver: 0.9790, Liver Tumor: 0.8162, 
+Liver: dice 0.9751, recall 0.9642, precision 0.9862.
+Liver Tumor: dice 0.8599, recall 0.9091, precision 0.8160.
+case10_Decathlon/Task03_Liver/labelsTr/liver_9| Liver: 0.9751, Liver Tumor: 0.8599, 
+Liver: dice 0.9736, recall 0.9718, precision 0.9755.
+Liver Tumor: dice 0.4112, recall 0.7984, precision 0.2776.
+case10_Decathlon/Task03_Liver/labelsTr/liver_5| Liver: 0.9736, Liver Tumor: 0.4112, 
+Liver: dice 0.9695, recall 0.9642, precision 0.9748.
+Liver Tumor: dice 0.9025, recall 0.8359, precision 0.9806.
+case10_Decathlon/Task03_Liver/labelsTr/liver_80| Liver: 0.9695, Liver Tumor: 0.9025, 
+Liver: dice 0.9753, recall 0.9627, precision 0.9883.
+Liver Tumor: dice 0.5374, recall 0.5556, precision 0.5224.
+case10_Decathlon/Task03_Liver/labelsTr/liver_92| Liver: 0.9753, Liver Tumor: 0.5374, 
+Liver: dice 0.9626, recall 0.9412, precision 0.9850.
+Liver Tumor: dice 0.6506, recall 0.6147, precision 0.6912.
+case10_Decathlon/Task03_Liver/labelsTr/liver_0| Liver: 0.9626, Liver Tumor: 0.6506, 
+Liver: dice 0.9786, recall 0.9738, precision 0.9835.
+case10_Decathlon/Task03_Liver/labelsTr/liver_89| Liver: 0.9786, 
+Liver: dice 0.9801, recall 0.9880, precision 0.9723.
+Liver Tumor: dice 0.8727, recall 0.9554, precision 0.8031.
+case10_Decathlon/Task03_Liver/labelsTr/liver_97| Liver: 0.9801, Liver Tumor: 0.8727, 
+Liver: dice 0.9812, recall 0.9840, precision 0.9786.
+Liver Tumor: dice 0.5505, recall 0.4500, precision 0.7097.
+case10_Decathlon/Task03_Liver/labelsTr/liver_85| Liver: 0.9812, Liver Tumor: 0.5505, 
+Liver: dice 0.9466, recall 0.9485, precision 0.9446.
+Liver Tumor: dice 0.8165, recall 0.7528, precision 0.8922.
+case10_Decathlon/Task03_Liver/labelsTr/liver_52| Liver: 0.9466, Liver Tumor: 0.8165, 
+Liver: dice 0.9712, recall 0.9698, precision 0.9727.
+Liver Tumor: dice 0.7602, recall 0.8350, precision 0.6977.
+case10_Decathlon/Task03_Liver/labelsTr/liver_109| Liver: 0.9712, Liver Tumor: 0.7602, 
+Liver: dice 0.9634, recall 0.9907, precision 0.9376.
+Liver Tumor: dice 0.7533, recall 0.7989, precision 0.7130.
+case10_Decathlon/Task03_Liver/labelsTr/liver_31| Liver: 0.9634, Liver Tumor: 0.7533, 
+Liver: dice 0.9793, recall 0.9843, precision 0.9744.
+Liver Tumor: dice 0.8737, recall 0.8874, precision 0.8604.
+case10_Decathlon/Task03_Liver/labelsTr/liver_117| Liver: 0.9793, Liver Tumor: 0.8737, 
+Liver: dice 0.9739, recall 0.9783, precision 0.9695.
+Liver Tumor: dice 0.8149, recall 0.7558, precision 0.8841.
+case10_Decathlon/Task03_Liver/labelsTr/liver_40| Liver: 0.9739, Liver Tumor: 0.8149, 
+Liver: dice 0.9620, recall 0.9394, precision 0.9857.
+Liver Tumor: dice 0.6732, recall 0.9961, precision 0.5084.
+case10_Decathlon/Task03_Liver/labelsTr/liver_23| Liver: 0.9620, Liver Tumor: 0.6732, 
+Liver: dice 0.9826, recall 0.9902, precision 0.9751.
+case10_Decathlon/Task03_Liver/labelsTr/liver_105| Liver: 0.9826, 
+Liver: dice 0.9647, recall 0.9643, precision 0.9651.
+Liver Tumor: dice 0.9079, recall 0.9113, precision 0.9045.
+case10_Decathlon/Task03_Liver/labelsTr/liver_76| Liver: 0.9647, Liver Tumor: 0.9079, 
+Task01| Spleen: nan, Right Kidney: nan, Left Kidney: nan, Gall Bladder: nan, Esophagus: nan, Liver: nan, Stomach: nan, Arota: nan, Postcava: nan, Portal Vein and Splenic Vein: nan, Pancreas: nan, Right Adrenal Gland: nan, Left Adrenal Gland: nan, Duodenum: nan, 
+Task01_2| Spleen: nan, Left Kidney: nan, Gall Bladder: nan, Esophagus: nan, Liver: nan, Stomach: nan, Pancreas: nan, Duodenum: nan, 
+Task02| Spleen: nan, Left Kidney: nan, Gall Bladder: nan, Esophagus: nan, Liver: nan, Stomach: nan, Pancreas: nan, Duodenum: nan, 
+Task03| Liver: nan, 
+Task04| Liver: nan, Liver Tumor: nan, 
+Task05| Right Kidney: nan, Left Kidney: nan, Kidney Tumor: nan, Kidney Cyst: nan, 
+Task07| Liver: nan, Spleen: nan, Left Kidney: nan, Right Kidney: nan, Stomach: nan, Gall Bladder: nan, Esophagus: nan, Pancreas: nan, Duodenum: nan, Colon: nan, Intestine: nan, Right Adrenal Gland: nan, Left Adrenal Gland: nan, Rectum: nan, Bladder: nan, Left Head of Femur: nan, Right Head of Femur: nan, 
+Task08| Liver: nan, Right Kidney: nan, Left Kidney: nan, Spleen: nan, Pancreas: nan, 
+Task09| Spleen: nan, Right Kidney: nan, Left Kidney: nan, Gall Bladder: nan, Esophagus: nan, Liver: nan, Stomach: nan, Arota: nan, Postcava: nan, Pancreas: nan, Right Adrenal Gland: nan, Left Adrenal Gland: nan, Duodenum: nan, Bladder: nan, Prostate: nan, 
+Task12| Liver: nan, Bladder: nan, R Lung: nan, L Lung: nan, Right Kidney: nan, Left Kidney: nan, 
+Task13| Liver: nan, Right Kidney: nan, Left Kidney: nan, Spleen: nan, Pancreas: nan, Arota: nan, Postcava: nan, Stomach: nan, Gall Bladder: nan, Esophagus: nan, Right Adrenal Gland: nan, Left Adrenal Gland: nan, Celiac Truck: nan, 
+Task14| Pancreas: nan, Pancreas Tumor: nan, 
+Task10_03| Liver: 0.9684, Liver Tumor: 0.7234, 0.2
+Task10_06| Lung Tumor: nan, 
+Task10_07| Pancreas: nan, Pancreas Tumor: nan, 
+Task10_08| Hepatic Vessel: nan, Hepatic Vessel Tumor: nan, 
+Task10_09| Spleen: nan, 
+Task10_10| Colon Tumor: nan, 
+Average | Spleen: nan, Right Kidney: nan, Left Kidney: nan, Gall Bladder: nan, Esophagus: nan, Liver: 0.9684, Stomach: nan, Arota: nan, Postcava: nan, Portal Vein and Splenic Vein: nan, Pancreas: nan, Right Adrenal Gland: nan, Left Adrenal Gland: nan, Duodenum: nan, Hepatic Vessel: nan, R Lung: nan, L Lung: nan, Colon: nan, Intestine: nan, Rectum: nan, Bladder: nan, Prostate: nan, Left Head of Femur: nan, Right Head of Femur: nan, Celiac Truck: nan, Kidney Tumor: nan, Liver Tumor: 0.7234, Pancreas Tumor: nan, Hepatic Vessel Tumor: nan, Lung Tumor: nan, Colon Tumor: nan, Kidney Cyst: nan, 
+nan
+Use pretrained weights
+train len 2202
+val len 409
+test len 26
+Liver: dice 0.9763, recall 0.9641, precision 0.9888.
+case10_Decathlon/Task03_Liver/labelsTr/liver_38| Liver: 0.9763, 
+Liver: dice 0.9397, recall 0.9217, precision 0.9584.
+Liver Tumor: dice 0.2958, recall 0.7034, precision 0.1873.
+case10_Decathlon/Task03_Liver/labelsTr/liver_49| Liver: 0.9397, Liver Tumor: 0.2958, 
+Liver: dice 0.9503, recall 0.9719, precision 0.9296.
+case10_Decathlon/Task03_Liver/labelsTr/liver_34| Liver: 0.9503, 
+Liver: dice 0.9826, recall 0.9873, precision 0.9780.
+Liver Tumor: dice 0.5163, recall 0.7364, precision 0.3992.
+case10_Decathlon/Task03_Liver/labelsTr/liver_112| Liver: 0.9826, Liver Tumor: 0.5163, 
+Liver: dice 0.9568, recall 0.9196, precision 0.9971.
+Liver Tumor: dice 0.8231, recall 0.7802, precision 0.8719.
+case10_Decathlon/Task03_Liver/labelsTr/liver_57| Liver: 0.9568, Liver Tumor: 0.8231, 
+Liver: dice 0.9805, recall 0.9870, precision 0.9740.
+Liver Tumor: dice 0.8825, recall 0.8456, precision 0.9229.
+case10_Decathlon/Task03_Liver/labelsTr/liver_124| Liver: 0.9805, Liver Tumor: 0.8825, 
+Liver: dice 0.9500, recall 0.9756, precision 0.9257.
+Liver Tumor: dice 0.7786, recall 0.7239, precision 0.8430.
+case10_Decathlon/Task03_Liver/labelsTr/liver_61| Liver: 0.9500, Liver Tumor: 0.7786, 
+Liver: dice 0.9773, recall 0.9699, precision 0.9848.
+Liver Tumor: dice 0.8736, recall 0.9199, precision 0.8319.
+case10_Decathlon/Task03_Liver/labelsTr/liver_10| Liver: 0.9773, Liver Tumor: 0.8736, 
+Liver: dice 0.9469, recall 0.9738, precision 0.9214.
+Liver Tumor: dice 0.6033, recall 0.4618, precision 0.8725.
+case10_Decathlon/Task03_Liver/labelsTr/liver_73| Liver: 0.9469, Liver Tumor: 0.6033, 
+Liver: dice 0.9790, recall 0.9810, precision 0.9771.
+Liver Tumor: dice 0.8195, recall 0.8416, precision 0.7985.
+case10_Decathlon/Task03_Liver/labelsTr/liver_128| Liver: 0.9790, Liver Tumor: 0.8195, 
+Liver: dice 0.9751, recall 0.9642, precision 0.9862.
+Liver Tumor: dice 0.8618, recall 0.9034, precision 0.8240.
+case10_Decathlon/Task03_Liver/labelsTr/liver_9| Liver: 0.9751, Liver Tumor: 0.8618, 
+Liver: dice 0.9736, recall 0.9718, precision 0.9755.
+Liver Tumor: dice 0.4626, recall 0.7907, precision 0.3280.
+case10_Decathlon/Task03_Liver/labelsTr/liver_5| Liver: 0.9736, Liver Tumor: 0.4626, 
+Liver: dice 0.9695, recall 0.9642, precision 0.9748.
+Liver Tumor: dice 0.8942, recall 0.8194, precision 0.9841.
+case10_Decathlon/Task03_Liver/labelsTr/liver_80| Liver: 0.9695, Liver Tumor: 0.8942, 
+Liver: dice 0.9753, recall 0.9627, precision 0.9883.
+Liver Tumor: dice 0.5569, recall 0.5437, precision 0.5732.
+case10_Decathlon/Task03_Liver/labelsTr/liver_92| Liver: 0.9753, Liver Tumor: 0.5569, 
+Liver: dice 0.9626, recall 0.9412, precision 0.9850.
+Liver Tumor: dice 0.6486, recall 0.5999, precision 0.7064.
+case10_Decathlon/Task03_Liver/labelsTr/liver_0| Liver: 0.9626, Liver Tumor: 0.6486, 
+Liver: dice 0.9786, recall 0.9738, precision 0.9835.
+case10_Decathlon/Task03_Liver/labelsTr/liver_89| Liver: 0.9786, 
+Liver: dice 0.9801, recall 0.9880, precision 0.9723.
+Liver Tumor: dice 0.8801, recall 0.9483, precision 0.8211.
+case10_Decathlon/Task03_Liver/labelsTr/liver_97| Liver: 0.9801, Liver Tumor: 0.8801, 
+Liver: dice 0.9812, recall 0.9840, precision 0.9786.
+Liver Tumor: dice 0.5412, recall 0.4355, precision 0.7155.
+case10_Decathlon/Task03_Liver/labelsTr/liver_85| Liver: 0.9812, Liver Tumor: 0.5412, 
+Liver: dice 0.9466, recall 0.9485, precision 0.9446.
+Liver Tumor: dice 0.8133, recall 0.7387, precision 0.9048.
+case10_Decathlon/Task03_Liver/labelsTr/liver_52| Liver: 0.9466, Liver Tumor: 0.8133, 
+Liver: dice 0.9712, recall 0.9698, precision 0.9727.
+Liver Tumor: dice 0.7660, recall 0.8200, precision 0.7188.
+case10_Decathlon/Task03_Liver/labelsTr/liver_109| Liver: 0.9712, Liver Tumor: 0.7660, 
+Liver: dice 0.9634, recall 0.9907, precision 0.9376.
+Liver Tumor: dice 0.7669, recall 0.7869, precision 0.7483.
+case10_Decathlon/Task03_Liver/labelsTr/liver_31| Liver: 0.9634, Liver Tumor: 0.7669, 
+Liver: dice 0.9793, recall 0.9843, precision 0.9744.
+Liver Tumor: dice 0.8737, recall 0.8724, precision 0.8750.
+case10_Decathlon/Task03_Liver/labelsTr/liver_117| Liver: 0.9793, Liver Tumor: 0.8737, 
+Liver: dice 0.9739, recall 0.9783, precision 0.9695.
+Liver Tumor: dice 0.8120, recall 0.7398, precision 0.8999.
+case10_Decathlon/Task03_Liver/labelsTr/liver_40| Liver: 0.9739, Liver Tumor: 0.8120, 
+Liver: dice 0.9620, recall 0.9394, precision 0.9857.
+Liver Tumor: dice 0.6979, recall 0.9938, precision 0.5378.
+case10_Decathlon/Task03_Liver/labelsTr/liver_23| Liver: 0.9620, Liver Tumor: 0.6979, 
+Liver: dice 0.9826, recall 0.9902, precision 0.9751.
+case10_Decathlon/Task03_Liver/labelsTr/liver_105| Liver: 0.9826, 
+Liver: dice 0.9647, recall 0.9643, precision 0.9651.
+Liver Tumor: dice 0.9075, recall 0.9004, precision 0.9148.
+case10_Decathlon/Task03_Liver/labelsTr/liver_76| Liver: 0.9647, Liver Tumor: 0.9075, 
+Task01| Spleen: nan, Right Kidney: nan, Left Kidney: nan, Gall Bladder: nan, Esophagus: nan, Liver: nan, Stomach: nan, Arota: nan, Postcava: nan, Portal Vein and Splenic Vein: nan, Pancreas: nan, Right Adrenal Gland: nan, Left Adrenal Gland: nan, Duodenum: nan, 
+Task01_2| Spleen: nan, Left Kidney: nan, Gall Bladder: nan, Esophagus: nan, Liver: nan, Stomach: nan, Pancreas: nan, Duodenum: nan, 
+Task02| Spleen: nan, Left Kidney: nan, Gall Bladder: nan, Esophagus: nan, Liver: nan, Stomach: nan, Pancreas: nan, Duodenum: nan, 
+Task03| Liver: nan, 
+Task04| Liver: nan, Liver Tumor: nan, 
+Task05| Right Kidney: nan, Left Kidney: nan, Kidney Tumor: nan, Kidney Cyst: nan, 
+Task07| Liver: nan, Spleen: nan, Left Kidney: nan, Right Kidney: nan, Stomach: nan, Gall Bladder: nan, Esophagus: nan, Pancreas: nan, Duodenum: nan, Colon: nan, Intestine: nan, Right Adrenal Gland: nan, Left Adrenal Gland: nan, Rectum: nan, Bladder: nan, Left Head of Femur: nan, Right Head of Femur: nan, 
+Task08| Liver: nan, Right Kidney: nan, Left Kidney: nan, Spleen: nan, Pancreas: nan, 
+Task09| Spleen: nan, Right Kidney: nan, Left Kidney: nan, Gall Bladder: nan, Esophagus: nan, Liver: nan, Stomach: nan, Arota: nan, Postcava: nan, Pancreas: nan, Right Adrenal Gland: nan, Left Adrenal Gland: nan, Duodenum: nan, Bladder: nan, Prostate: nan, 
+Task12| Liver: nan, Bladder: nan, R Lung: nan, L Lung: nan, Right Kidney: nan, Left Kidney: nan, 
+Task13| Liver: nan, Right Kidney: nan, Left Kidney: nan, Spleen: nan, Pancreas: nan, Arota: nan, Postcava: nan, Stomach: nan, Gall Bladder: nan, Esophagus: nan, Right Adrenal Gland: nan, Left Adrenal Gland: nan, Celiac Truck: nan, 
+Task14| Pancreas: nan, Pancreas Tumor: nan, 
+Task10_03| Liver: 0.9684, Liver Tumor: 0.7307, 0.3
+Task10_06| Lung Tumor: nan, 
+Task10_07| Pancreas: nan, Pancreas Tumor: nan, 
+Task10_08| Hepatic Vessel: nan, Hepatic Vessel Tumor: nan, 
+Task10_09| Spleen: nan, 
+Task10_10| Colon Tumor: nan, 
+Average | Spleen: nan, Right Kidney: nan, Left Kidney: nan, Gall Bladder: nan, Esophagus: nan, Liver: 0.9684, Stomach: nan, Arota: nan, Postcava: nan, Portal Vein and Splenic Vein: nan, Pancreas: nan, Right Adrenal Gland: nan, Left Adrenal Gland: nan, Duodenum: nan, Hepatic Vessel: nan, R Lung: nan, L Lung: nan, Colon: nan, Intestine: nan, Rectum: nan, Bladder: nan, Prostate: nan, Left Head of Femur: nan, Right Head of Femur: nan, Celiac Truck: nan, Kidney Tumor: nan, Liver Tumor: 0.7307, Pancreas Tumor: nan, Hepatic Vessel Tumor: nan, Lung Tumor: nan, Colon Tumor: nan, Kidney Cyst: nan, 
+nan
+Use pretrained weights
+train len 2202
+val len 409
+test len 26
+Liver: dice 0.9763, recall 0.9641, precision 0.9888.
+case10_Decathlon/Task03_Liver/labelsTr/liver_38| Liver: 0.9763, 
+Liver: dice 0.9397, recall 0.9217, precision 0.9584.
+Liver Tumor: dice 0.3964, recall 0.6741, precision 0.2808.
+case10_Decathlon/Task03_Liver/labelsTr/liver_49| Liver: 0.9397, Liver Tumor: 0.3964, 
+Liver: dice 0.9503, recall 0.9719, precision 0.9296.
+case10_Decathlon/Task03_Liver/labelsTr/liver_34| Liver: 0.9503, 
+Liver: dice 0.9826, recall 0.9873, precision 0.9780.
+Liver Tumor: dice 0.5955, recall 0.7132, precision 0.5140.
+case10_Decathlon/Task03_Liver/labelsTr/liver_112| Liver: 0.9826, Liver Tumor: 0.5955, 
+Liver: dice 0.9568, recall 0.9196, precision 0.9971.
+Liver Tumor: dice 0.8081, recall 0.7207, precision 0.9207.
+case10_Decathlon/Task03_Liver/labelsTr/liver_57| Liver: 0.9568, Liver Tumor: 0.8081, 
+Liver: dice 0.9805, recall 0.9870, precision 0.9740.
+Liver Tumor: dice 0.8722, recall 0.8077, precision 0.9480.
+case10_Decathlon/Task03_Liver/labelsTr/liver_124| Liver: 0.9805, Liver Tumor: 0.8722, 
+Liver: dice 0.9500, recall 0.9756, precision 0.9257.
+Liver Tumor: dice 0.7636, recall 0.6766, precision 0.8772.
+case10_Decathlon/Task03_Liver/labelsTr/liver_61| Liver: 0.9500, Liver Tumor: 0.7636, 
+Liver: dice 0.9773, recall 0.9699, precision 0.9848.
+Liver Tumor: dice 0.8772, recall 0.8927, precision 0.8625.
+case10_Decathlon/Task03_Liver/labelsTr/liver_10| Liver: 0.9773, Liver Tumor: 0.8772, 
+Liver: dice 0.9469, recall 0.9738, precision 0.9214.
+Liver Tumor: dice 0.5580, recall 0.3928, precision 0.9668.
+case10_Decathlon/Task03_Liver/labelsTr/liver_73| Liver: 0.9469, Liver Tumor: 0.5580, 
+Liver: dice 0.9790, recall 0.9810, precision 0.9771.
+Liver Tumor: dice 0.8154, recall 0.7804, precision 0.8539.
+case10_Decathlon/Task03_Liver/labelsTr/liver_128| Liver: 0.9790, Liver Tumor: 0.8154, 
+Liver: dice 0.9751, recall 0.9642, precision 0.9862.
+Liver Tumor: dice 0.8642, recall 0.8730, precision 0.8557.
+case10_Decathlon/Task03_Liver/labelsTr/liver_9| Liver: 0.9751, Liver Tumor: 0.8642, 
+Liver: dice 0.9736, recall 0.9718, precision 0.9755.
+Liver Tumor: dice 0.6104, recall 0.7287, precision 0.5281.
+case10_Decathlon/Task03_Liver/labelsTr/liver_5| Liver: 0.9736, Liver Tumor: 0.6104, 
+Liver: dice 0.9695, recall 0.9642, precision 0.9748.
+Liver Tumor: dice 0.8518, recall 0.7465, precision 0.9917.
+case10_Decathlon/Task03_Liver/labelsTr/liver_80| Liver: 0.9695, Liver Tumor: 0.8518, 
+Liver: dice 0.9753, recall 0.9627, precision 0.9883.
+Liver Tumor: dice 0.5591, recall 0.4881, precision 0.6578.
+case10_Decathlon/Task03_Liver/labelsTr/liver_92| Liver: 0.9753, Liver Tumor: 0.5591, 
+Liver: dice 0.9626, recall 0.9412, precision 0.9850.
+Liver Tumor: dice 0.6381, recall 0.5570, precision 0.7474.
+case10_Decathlon/Task03_Liver/labelsTr/liver_0| Liver: 0.9626, Liver Tumor: 0.6381, 
+Liver: dice 0.9786, recall 0.9738, precision 0.9835.
+case10_Decathlon/Task03_Liver/labelsTr/liver_89| Liver: 0.9786, 
+Liver: dice 0.9801, recall 0.9880, precision 0.9723.
+Liver Tumor: dice 0.8953, recall 0.9120, precision 0.8793.
+case10_Decathlon/Task03_Liver/labelsTr/liver_97| Liver: 0.9801, Liver Tumor: 0.8953, 
+Liver: dice 0.9812, recall 0.9840, precision 0.9786.
+Liver Tumor: dice 0.4967, recall 0.3790, precision 0.7214.
+case10_Decathlon/Task03_Liver/labelsTr/liver_85| Liver: 0.9812, Liver Tumor: 0.4967, 
+Liver: dice 0.9466, recall 0.9485, precision 0.9446.
+Liver Tumor: dice 0.7902, recall 0.6865, precision 0.9308.
+case10_Decathlon/Task03_Liver/labelsTr/liver_52| Liver: 0.9466, Liver Tumor: 0.7902, 
+Liver: dice 0.9712, recall 0.9698, precision 0.9727.
+Liver Tumor: dice 0.7689, recall 0.7649, precision 0.7730.
+case10_Decathlon/Task03_Liver/labelsTr/liver_109| Liver: 0.9712, Liver Tumor: 0.7689, 
+Liver: dice 0.9634, recall 0.9907, precision 0.9376.
+Liver Tumor: dice 0.7837, recall 0.7525, precision 0.8181.
+case10_Decathlon/Task03_Liver/labelsTr/liver_31| Liver: 0.9634, Liver Tumor: 0.7837, 
+Liver: dice 0.9793, recall 0.9843, precision 0.9744.
+Liver Tumor: dice 0.8579, recall 0.8064, precision 0.9163.
+case10_Decathlon/Task03_Liver/labelsTr/liver_117| Liver: 0.9793, Liver Tumor: 0.8579, 
+Liver: dice 0.9739, recall 0.9783, precision 0.9695.
+Liver Tumor: dice 0.7946, recall 0.6929, precision 0.9313.
+case10_Decathlon/Task03_Liver/labelsTr/liver_40| Liver: 0.9739, Liver Tumor: 0.7946, 
+Liver: dice 0.9620, recall 0.9394, precision 0.9857.
+Liver Tumor: dice 0.7671, recall 0.9874, precision 0.6273.
+case10_Decathlon/Task03_Liver/labelsTr/liver_23| Liver: 0.9620, Liver Tumor: 0.7671, 
+Liver: dice 0.9826, recall 0.9902, precision 0.9751.
+case10_Decathlon/Task03_Liver/labelsTr/liver_105| Liver: 0.9826, 
+Liver: dice 0.9647, recall 0.9643, precision 0.9651.
+Liver Tumor: dice 0.9008, recall 0.8643, precision 0.9406.
+case10_Decathlon/Task03_Liver/labelsTr/liver_76| Liver: 0.9647, Liver Tumor: 0.9008, 
+Task01| Spleen: nan, Right Kidney: nan, Left Kidney: nan, Gall Bladder: nan, Esophagus: nan, Liver: nan, Stomach: nan, Arota: nan, Postcava: nan, Portal Vein and Splenic Vein: nan, Pancreas: nan, Right Adrenal Gland: nan, Left Adrenal Gland: nan, Duodenum: nan, 
+Task01_2| Spleen: nan, Left Kidney: nan, Gall Bladder: nan, Esophagus: nan, Liver: nan, Stomach: nan, Pancreas: nan, Duodenum: nan, 
+Task02| Spleen: nan, Left Kidney: nan, Gall Bladder: nan, Esophagus: nan, Liver: nan, Stomach: nan, Pancreas: nan, Duodenum: nan, 
+Task03| Liver: nan, 
+Task04| Liver: nan, Liver Tumor: nan, 
+Task05| Right Kidney: nan, Left Kidney: nan, Kidney Tumor: nan, Kidney Cyst: nan, 
+Task07| Liver: nan, Spleen: nan, Left Kidney: nan, Right Kidney: nan, Stomach: nan, Gall Bladder: nan, Esophagus: nan, Pancreas: nan, Duodenum: nan, Colon: nan, Intestine: nan, Right Adrenal Gland: nan, Left Adrenal Gland: nan, Rectum: nan, Bladder: nan, Left Head of Femur: nan, Right Head of Femur: nan, 
+Task08| Liver: nan, Right Kidney: nan, Left Kidney: nan, Spleen: nan, Pancreas: nan, 
+Task09| Spleen: nan, Right Kidney: nan, Left Kidney: nan, Gall Bladder: nan, Esophagus: nan, Liver: nan, Stomach: nan, Arota: nan, Postcava: nan, Pancreas: nan, Right Adrenal Gland: nan, Left Adrenal Gland: nan, Duodenum: nan, Bladder: nan, Prostate: nan, 
+Task12| Liver: nan, Bladder: nan, R Lung: nan, L Lung: nan, Right Kidney: nan, Left Kidney: nan, 
+Task13| Liver: nan, Right Kidney: nan, Left Kidney: nan, Spleen: nan, Pancreas: nan, Arota: nan, Postcava: nan, Stomach: nan, Gall Bladder: nan, Esophagus: nan, Right Adrenal Gland: nan, Left Adrenal Gland: nan, Celiac Truck: nan, 
+Task14| Pancreas: nan, Pancreas Tumor: nan, 
+Task10_03| Liver: 0.9684, Liver Tumor: 0.7393, 0.7
+Task10_06| Lung Tumor: nan, 
+Task10_07| Pancreas: nan, Pancreas Tumor: nan, 
+Task10_08| Hepatic Vessel: nan, Hepatic Vessel Tumor: nan, 
+Task10_09| Spleen: nan, 
+Task10_10| Colon Tumor: nan, 
+Average | Spleen: nan, Right Kidney: nan, Left Kidney: nan, Gall Bladder: nan, Esophagus: nan, Liver: 0.9684, Stomach: nan, Arota: nan, Postcava: nan, Portal Vein and Splenic Vein: nan, Pancreas: nan, Right Adrenal Gland: nan, Left Adrenal Gland: nan, Duodenum: nan, Hepatic Vessel: nan, R Lung: nan, L Lung: nan, Colon: nan, Intestine: nan, Rectum: nan, Bladder: nan, Prostate: nan, Left Head of Femur: nan, Right Head of Femur: nan, Celiac Truck: nan, Kidney Tumor: nan, Liver Tumor: 0.7393, Pancreas Tumor: nan, Hepatic Vessel Tumor: nan, Lung Tumor: nan, Colon Tumor: nan, Kidney Cyst: nan, 
+nan
+Use pretrained weights
+train len 2202
+val len 409
+test len 26
+Liver: dice 0.9763, recall 0.9641, precision 0.9888.
+case10_Decathlon/Task03_Liver/labelsTr/liver_38| Liver: 0.9763, 
+Liver: dice 0.9397, recall 0.9217, precision 0.9584.
+Liver Tumor: dice 0.4264, recall 0.6599, precision 0.3150.
+case10_Decathlon/Task03_Liver/labelsTr/liver_49| Liver: 0.9397, Liver Tumor: 0.4264, 
+Liver: dice 0.9503, recall 0.9719, precision 0.9296.
+case10_Decathlon/Task03_Liver/labelsTr/liver_34| Liver: 0.9503, 
+Liver: dice 0.9826, recall 0.9873, precision 0.9780.
+Liver Tumor: dice 0.6186, recall 0.6977, precision 0.5590.
+case10_Decathlon/Task03_Liver/labelsTr/liver_112| Liver: 0.9826, Liver Tumor: 0.6186, 
+Liver: dice 0.9568, recall 0.9196, precision 0.9971.
+Liver Tumor: dice 0.7962, recall 0.6940, precision 0.9350.
+case10_Decathlon/Task03_Liver/labelsTr/liver_57| Liver: 0.9568, Liver Tumor: 0.7962, 
+Liver: dice 0.9805, recall 0.9870, precision 0.9740.
+Liver Tumor: dice 0.8650, recall 0.7903, precision 0.9554.
+case10_Decathlon/Task03_Liver/labelsTr/liver_124| Liver: 0.9805, Liver Tumor: 0.8650, 
+Liver: dice 0.9500, recall 0.9756, precision 0.9257.
+Liver Tumor: dice 0.7587, recall 0.6597, precision 0.8935.
+case10_Decathlon/Task03_Liver/labelsTr/liver_61| Liver: 0.9500, Liver Tumor: 0.7587, 
+Liver: dice 0.9773, recall 0.9699, precision 0.9848.
+Liver Tumor: dice 0.8751, recall 0.8795, precision 0.8709.
+case10_Decathlon/Task03_Liver/labelsTr/liver_10| Liver: 0.9773, Liver Tumor: 0.8751, 
+Liver: dice 0.9469, recall 0.9738, precision 0.9214.
+Liver Tumor: dice 0.5470, recall 0.3793, precision 0.9844.
+case10_Decathlon/Task03_Liver/labelsTr/liver_73| Liver: 0.9469, Liver Tumor: 0.5470, 
+Liver: dice 0.9790, recall 0.9810, precision 0.9771.
+Liver Tumor: dice 0.8089, recall 0.7544, precision 0.8719.
+case10_Decathlon/Task03_Liver/labelsTr/liver_128| Liver: 0.9790, Liver Tumor: 0.8089, 
+Liver: dice 0.9751, recall 0.9642, precision 0.9862.
+Liver Tumor: dice 0.8629, recall 0.8583, precision 0.8677.
+case10_Decathlon/Task03_Liver/labelsTr/liver_9| Liver: 0.9751, Liver Tumor: 0.8629, 
+Liver: dice 0.9736, recall 0.9718, precision 0.9755.
+Liver Tumor: dice 0.6367, recall 0.7132, precision 0.5786.
+case10_Decathlon/Task03_Liver/labelsTr/liver_5| Liver: 0.9736, Liver Tumor: 0.6367, 
+Liver: dice 0.9695, recall 0.9642, precision 0.9748.
+Liver Tumor: dice 0.8323, recall 0.7164, precision 0.9930.
+case10_Decathlon/Task03_Liver/labelsTr/liver_80| Liver: 0.9695, Liver Tumor: 0.8323, 
+Liver: dice 0.9753, recall 0.9627, precision 0.9883.
+Liver Tumor: dice 0.5459, recall 0.4603, precision 0.6744.
+case10_Decathlon/Task03_Liver/labelsTr/liver_92| Liver: 0.9753, Liver Tumor: 0.5459, 
+Liver: dice 0.9626, recall 0.9412, precision 0.9850.
+Liver Tumor: dice 0.6277, recall 0.5349, precision 0.7600.
+case10_Decathlon/Task03_Liver/labelsTr/liver_0| Liver: 0.9626, Liver Tumor: 0.6277, 
+Liver: dice 0.9786, recall 0.9738, precision 0.9835.
+case10_Decathlon/Task03_Liver/labelsTr/liver_89| Liver: 0.9786, 
+Liver: dice 0.9801, recall 0.9880, precision 0.9723.
+Liver Tumor: dice 0.8947, recall 0.8891, precision 0.9003.
+case10_Decathlon/Task03_Liver/labelsTr/liver_97| Liver: 0.9801, Liver Tumor: 0.8947, 
+Liver: dice 0.9812, recall 0.9840, precision 0.9786.
+Liver Tumor: dice 0.4834, recall 0.3630, precision 0.7240.
+case10_Decathlon/Task03_Liver/labelsTr/liver_85| Liver: 0.9812, Liver Tumor: 0.4834, 
+Liver: dice 0.9466, recall 0.9485, precision 0.9446.
+Liver Tumor: dice 0.7789, recall 0.6648, precision 0.9405.
+case10_Decathlon/Task03_Liver/labelsTr/liver_52| Liver: 0.9466, Liver Tumor: 0.7789, 
+Liver: dice 0.9712, recall 0.9698, precision 0.9727.
+Liver Tumor: dice 0.7652, recall 0.7406, precision 0.7917.
+case10_Decathlon/Task03_Liver/labelsTr/liver_109| Liver: 0.9712, Liver Tumor: 0.7652, 
+Liver: dice 0.9634, recall 0.9907, precision 0.9376.
+Liver Tumor: dice 0.7846, recall 0.7384, precision 0.8375.
+case10_Decathlon/Task03_Liver/labelsTr/liver_31| Liver: 0.9634, Liver Tumor: 0.7846, 
+Liver: dice 0.9793, recall 0.9843, precision 0.9744.
+Liver Tumor: dice 0.8445, recall 0.7733, precision 0.9302.
+case10_Decathlon/Task03_Liver/labelsTr/liver_117| Liver: 0.9793, Liver Tumor: 0.8445, 
+Liver: dice 0.9739, recall 0.9783, precision 0.9695.
+Liver Tumor: dice 0.7857, recall 0.6745, precision 0.9407.
+case10_Decathlon/Task03_Liver/labelsTr/liver_40| Liver: 0.9739, Liver Tumor: 0.7857, 
+Liver: dice 0.9620, recall 0.9394, precision 0.9857.
+Liver Tumor: dice 0.7907, recall 0.9826, precision 0.6615.
+case10_Decathlon/Task03_Liver/labelsTr/liver_23| Liver: 0.9620, Liver Tumor: 0.7907, 
+Liver: dice 0.9826, recall 0.9902, precision 0.9751.
+case10_Decathlon/Task03_Liver/labelsTr/liver_105| Liver: 0.9826, 
+Liver: dice 0.9647, recall 0.9643, precision 0.9651.
+Liver Tumor: dice 0.8930, recall 0.8415, precision 0.9514.
+case10_Decathlon/Task03_Liver/labelsTr/liver_76| Liver: 0.9647, Liver Tumor: 0.8930, 
+Task01| Spleen: nan, Right Kidney: nan, Left Kidney: nan, Gall Bladder: nan, Esophagus: nan, Liver: nan, Stomach: nan, Arota: nan, Postcava: nan, Portal Vein and Splenic Vein: nan, Pancreas: nan, Right Adrenal Gland: nan, Left Adrenal Gland: nan, Duodenum: nan, 
+Task01_2| Spleen: nan, Left Kidney: nan, Gall Bladder: nan, Esophagus: nan, Liver: nan, Stomach: nan, Pancreas: nan, Duodenum: nan, 
+Task02| Spleen: nan, Left Kidney: nan, Gall Bladder: nan, Esophagus: nan, Liver: nan, Stomach: nan, Pancreas: nan, Duodenum: nan, 
+Task03| Liver: nan, 
+Task04| Liver: nan, Liver Tumor: nan, 
+Task05| Right Kidney: nan, Left Kidney: nan, Kidney Tumor: nan, Kidney Cyst: nan, 
+Task07| Liver: nan, Spleen: nan, Left Kidney: nan, Right Kidney: nan, Stomach: nan, Gall Bladder: nan, Esophagus: nan, Pancreas: nan, Duodenum: nan, Colon: nan, Intestine: nan, Right Adrenal Gland: nan, Left Adrenal Gland: nan, Rectum: nan, Bladder: nan, Left Head of Femur: nan, Right Head of Femur: nan, 
+Task08| Liver: nan, Right Kidney: nan, Left Kidney: nan, Spleen: nan, Pancreas: nan, 
+Task09| Spleen: nan, Right Kidney: nan, Left Kidney: nan, Gall Bladder: nan, Esophagus: nan, Liver: nan, Stomach: nan, Arota: nan, Postcava: nan, Pancreas: nan, Right Adrenal Gland: nan, Left Adrenal Gland: nan, Duodenum: nan, Bladder: nan, Prostate: nan, 
+Task12| Liver: nan, Bladder: nan, R Lung: nan, L Lung: nan, Right Kidney: nan, Left Kidney: nan, 
+Task13| Liver: nan, Right Kidney: nan, Left Kidney: nan, Spleen: nan, Pancreas: nan, Arota: nan, Postcava: nan, Stomach: nan, Gall Bladder: nan, Esophagus: nan, Right Adrenal Gland: nan, Left Adrenal Gland: nan, Celiac Truck: nan, 
+Task14| Pancreas: nan, Pancreas Tumor: nan, 
+Task10_03| Liver: 0.9684, Liver Tumor: 0.7374, 0.8
+Task10_06| Lung Tumor: nan, 
+Task10_07| Pancreas: nan, Pancreas Tumor: nan, 
+Task10_08| Hepatic Vessel: nan, Hepatic Vessel Tumor: nan, 
+Task10_09| Spleen: nan, 
+Task10_10| Colon Tumor: nan, 
+Average | Spleen: nan, Right Kidney: nan, Left Kidney: nan, Gall Bladder: nan, Esophagus: nan, Liver: 0.9684, Stomach: nan, Arota: nan, Postcava: nan, Portal Vein and Splenic Vein: nan, Pancreas: nan, Right Adrenal Gland: nan, Left Adrenal Gland: nan, Duodenum: nan, Hepatic Vessel: nan, R Lung: nan, L Lung: nan, Colon: nan, Intestine: nan, Rectum: nan, Bladder: nan, Prostate: nan, Left Head of Femur: nan, Right Head of Femur: nan, Celiac Truck: nan, Kidney Tumor: nan, Liver Tumor: 0.7374, Pancreas Tumor: nan, Hepatic Vessel Tumor: nan, Lung Tumor: nan, Colon Tumor: nan, Kidney Cyst: nan, 
+nan

@@ -18,6 +18,7 @@ from model.SwinUNETR_partial import SwinUNETR
 from dataset.dataloader import get_loader
 from utils import loss
 from utils.utils import dice_score, TEMPLATE, ORGAN_NAME, merge_label, visualize_label, get_key, NUM_CLASS
+from utils.utils import extract_topk_largest_candidates, organ_post_process, threshold_organ
 
 torch.multiprocessing.set_sharing_strategy('file_system')
 
@@ -35,13 +36,19 @@ def validation(model, ValLoader, args, i):
             pred = sliding_window_inference(image, (args.roi_x, args.roi_y, args.roi_z), 1, model, overlap=args.overlap, mode='gaussian')
             pred_sigmoid = F.sigmoid(pred)
         
+        pred_hard = threshold_organ(pred_sigmoid)
+        pred_hard = pred_hard.cpu()
+        torch.cuda.empty_cache()
         B = pred_sigmoid.shape[0]
         for b in range(B):
             template_key = get_key(name[b])
             organ_list = TEMPLATE[template_key]
+            pred_hard_post = organ_post_process(pred_hard.numpy(), organ_list)
+            pred_hard_post = torch.tensor(pred_hard_post)
+
             for organ in organ_list:
-                if torch.sum(label[b,organ-1,:,:,:].cuda()) != 0:
-                    dice_organ, _, _ = dice_score(pred_sigmoid[b,organ-1,:,:,:], label[b,organ-1,:,:,:].cuda())
+                if torch.sum(label[b,organ-1,:,:,:]) != 0:
+                    dice_organ, _, _ = dice_score(pred_hard_post[b,organ-1,:,:,:].cuda(), label[b,organ-1,:,:,:].cuda())
                     dice_list[template_key][0][organ-1] += dice_organ.item()
                     dice_list[template_key][1][organ-1] += 1
         torch.cuda.empty_cache()
@@ -84,8 +91,8 @@ def main():
     ## logging
     parser.add_argument('--log_name', default='PAOT_v2', help='The path resume from checkpoint')
     ## model load
-    parser.add_argument('--start_epoch', default=120, type=int, help='Number of start epoches')
-    parser.add_argument('--end_epoch', default=150, type=int, help='Number of end epoches')
+    parser.add_argument('--start_epoch', default=410, type=int, help='Number of start epoches')
+    parser.add_argument('--end_epoch', default=450, type=int, help='Number of end epoches')
     parser.add_argument('--epoch_interval', default=10, type=int, help='Number of start epoches')
 
     ## hyperparameter
