@@ -17,13 +17,13 @@ for i in range(5):
 for i in range(5):
     val_dataset = dataset_sub[i]
     val_dataset = sorted(val_dataset)
-    with open(f'PAOT_val_{i}.txt', 'w') as f:
+    with open(f'PAOT_{i}_val.txt', 'w') as f:
         for item in val_dataset:
             f.write(item)
-    with open(f'PAOT_test_{i}.txt', 'w') as f:
+    with open(f'PAOT_{i}_test.txt', 'w') as f:
         for item in val_dataset:
             f.write(item)
-    with open(f'PAOT_train_{i}.txt', 'w') as f:
+    with open(f'PAOT_{i}_train.txt', 'w') as f:
         for item in data_set:
             if item not in val_dataset:
                 f.write(item)
