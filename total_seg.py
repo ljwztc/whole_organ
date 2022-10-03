@@ -46,6 +46,9 @@ from monai.transforms import (
 from monai.data import decollate_batch
 from monai.transforms import Invertd, SaveImaged
 
+test_organ_dic = ['aorta', 'lung', 'adrenal gland', 'inferior vena cava', 'spleen', 'liver', 'gall bladder', 'pancreas', 'kidney',
+                 'esophagus', 'stomach', 'duodenum', 'colon']
+
 def validation(model, ValLoader, val_transforms, args):
     save_dir = 'out/' + args.log_name
     if not os.path.isdir(save_dir):
@@ -107,9 +110,9 @@ def main():
     parser.add_argument("--device")
     parser.add_argument("--epoch", default=0)
     ## logging
-    parser.add_argument('--log_name', default='MSD', help='The path resume from checkpoint')
+    parser.add_argument('--log_name', default='total_seg', help='The path resume from checkpoint')
     ## model load
-    parser.add_argument('--resume', default='./out/PAOT_v2/epoch_490.pth', help='The path resume from checkpoint')
+    parser.add_argument('--resume', default='./out/PAOT_v2/epoch_430.pth', help='The path resume from checkpoint')
     parser.add_argument('--pretrain', default='./pretrained_weights/swin_unetr.base_5000ep_f48_lr2e-4_pretrained.pt', 
                         help='The path of pretrain model')
     ## hyperparameter
@@ -202,15 +205,14 @@ def main():
     )
 
     ## test dict part
-    test_dir = '/home/jliu288/data/whole_organ/10_Decathlon'
-    test_data = glob.glob(test_dir + '/Task10**')
+    data_txt = 'total_seg/val.txt'
+    
+    test_dir = '/home/jliu288/data/whole_organ/Totalsegmentator_dataset/'
     test_img = []
     test_name = []
-    for dataset in test_data:
-        test_set = glob.glob(dataset + '/imagesTs/**.nii.gz')
-        for item in test_set:
-            test_img.append(item)
-            test_name.append('/'.join(item.split('/')[-4:]))
+    for line in open(data_txt):
+        test_img.append(test_dir + line.split(' ')[0] + '/ct.nii.gz')
+        test_name.append('15' + line.split(' ')[0])
     data_dicts_test = [{'image': image, 'name': name}
                 for image, name in zip(test_img, test_name)]
     print('test len {}'.format(len(data_dicts_test)))

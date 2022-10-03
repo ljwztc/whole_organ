@@ -227,6 +227,7 @@ def main():
     ### PAOT_123457891213: include 1 2 3 4 5 7 8 9 12 13
     ### PAOT_10_inner: same with NVIDIA for comparison
     ### PAOT_10: original division
+    ### for cross_validation 'cross_validation/PAOT'
     parser.add_argument('--data_root_path', default='/home/jliu288/data/whole_organ/', help='data root path')
     parser.add_argument('--data_txt_path', default='./dataset/dataset_list/', help='data txt path')
     parser.add_argument('--batch_size', default=1, help='batch size')
