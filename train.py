@@ -123,6 +123,7 @@ def process(args):
                     attn_drop_rate=0.0,
                     dropout_path_rate=0.0,
                     use_checkpoint=False,
+                    encoding=args.trans_encoding
                     )
 
     #Load pre-trained weights
@@ -134,6 +135,11 @@ def process(args):
 
     model.load_state_dict(store_dict)
     print('Use pretrained weights')
+
+    if args.trans_encoding == 'word_embedding':
+        word_embedding = torch.load(args.word_embedding)
+        model.organ_embedding.data = word_embedding.float()
+        print('load word embedding')
 
     model.to(args.device)
     model.train()
@@ -214,6 +220,10 @@ def main():
     parser.add_argument('--resume', default=None, help='The path resume from checkpoint')
     parser.add_argument('--pretrain', default='./pretrained_weights/swin_unetr.base_5000ep_f48_lr2e-4_pretrained.pt', 
                         help='The path of pretrain model')
+    parser.add_argument('--trans_encoding', default='rand_embedding', 
+                        help='the type of encoding: rand_embedding or word_embedding')
+    parser.add_argument('--word_embedding', default='./pretrained_weights/word_embedding.pth', 
+                        help='The path of word embedding')
     ## hyperparameter
     parser.add_argument('--max_epoch', default=4000, type=int, help='Number of training epoches')
     parser.add_argument('--store_num', default=10, type=int, help='Store model how often')

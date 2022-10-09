@@ -25,7 +25,6 @@ torch.multiprocessing.set_sharing_strategy('file_system')
 
 
 def validation(model, ValLoader, val_transforms, args):
-    args.epoch = '340_ttt'
     save_dir = 'out/' + args.log_name + f'/test_{args.epoch}'
     if not os.path.isdir(save_dir):
         os.mkdir(save_dir)
@@ -129,7 +128,7 @@ def main():
     ## logging
     parser.add_argument('--log_name', default='PAOT_v2', help='The path resume from checkpoint')
     ## model load
-    parser.add_argument('--resume', default='./out/PAOT_v2/epoch_340.pth', help='The path resume from checkpoint')
+    parser.add_argument('--resume', default='./out/PAOT_v2/aepoch_500.pth', help='The path resume from checkpoint')
     parser.add_argument('--pretrain', default='./pretrained_weights/swin_unetr.base_5000ep_f48_lr2e-4_pretrained.pt', 
                         help='The path of pretrain model')
 
@@ -187,7 +186,7 @@ def main():
     store_dict = model.state_dict()
     checkpoint = torch.load(args.resume)
     load_dict = checkpoint['net']
-    args.epoch = checkpoint['epoch']
+    # args.epoch = checkpoint['epoch']
 
     for key, value in load_dict.items():
         name = '.'.join(key.split('.')[1:])

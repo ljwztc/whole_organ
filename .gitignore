@@ -1,7 +1,9 @@
-pretrained_weights/*.pth
+pretrained_weights/epoch_570.pth
 pretrained_weights/*.pt
 __pycache__
 out
 *.out
 debug*
 total_seg*
+3d_ircad*
+*.ipynb

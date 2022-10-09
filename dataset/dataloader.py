@@ -16,6 +16,8 @@ from monai.transforms import (
     Resized,
     SpatialPadd,
     apply_transform,
+    RandZoomd,
+    RandCropByLabelClassesd,
 )
 
 import collections.abc
@@ -172,14 +174,28 @@ class LoadImageh5d(MapTransform):
         d['post_label'] = data[0]
         return d
 
+class Compose_Select(Compose):
+    def __call__(self, input_):
+        name = input_['name']
+        key = get_key(name)
+        for index, _transform in enumerate(self.transforms):
+            # for RandCropByPosNegLabeld and RandCropByLabelClassesd case
+            if (key in ['10_03', '10_07', '10_08', '04']) and (index == 8):
+                continue
+            elif (key not in ['10_03', '10_07', '10_08', '04']) and (index == 9):
+                continue
+            # for RandZoomd case
+            if (key not in ['10_03', '10_06', '10_07', '10_08', '10_09', '10_10']) and (index == 7):
+                continue
+            input_ = apply_transform(_transform, input_, self.map_items, self.unpack_items, self.log_stats)
+        return input_
+
 def get_loader(args):
-    train_transforms = Compose(
+    train_transforms = Compose_Select(
         [
-            LoadImageh5d(keys=["image", "label"]),
+            LoadImageh5d(keys=["image", "label"]), #0
             AddChanneld(keys=["image", "label"]),
             Orientationd(keys=["image", "label"], axcodes="RAS"),
-            # ToTemplatelabeld(keys=['label']),
-            # RL_Splitd(keys=['label']),
             Spacingd(
                 keys=["image", "label"],
                 pixdim=(args.space_x, args.space_y, args.space_z),
@@ -195,31 +211,27 @@ def get_loader(args):
             ),
             CropForegroundd(keys=["image", "label", "post_label"], source_key="image"),
             SpatialPadd(keys=["image", "label", "post_label"], spatial_size=(args.roi_x, args.roi_y, args.roi_z), mode='constant'),
+            RandZoomd(keys=["image", "label", "post_label"], prob=1, min_zoom=1.3, max_zoom=1.5, mode=['area', 'nearest', 'nearest']), # 7
             RandCropByPosNegLabeld(
                 keys=["image", "label", "post_label"],
                 label_key="label",
                 spatial_size=(args.roi_x, args.roi_y, args.roi_z), #192, 192, 64
-                pos=1,
+                pos=2,
                 neg=1,
                 num_samples=args.num_samples,
                 image_key="image",
                 image_threshold=0,
-            ),
-            RandFlipd(
+            ), # 8
+            RandCropByLabelClassesd(
                 keys=["image", "label", "post_label"],
-                spatial_axis=[0],
-                prob=0.10,
-            ),
-            RandFlipd(
-                keys=["image", "label", "post_label"],
-                spatial_axis=[1],
-                prob=0.10,
-            ),
-            RandFlipd(
-                keys=["image", "label", "post_label"],
-                spatial_axis=[2],
-                prob=0.10,
-            ),
+                label_key="label",
+                spatial_size=(args.roi_x, args.roi_y, args.roi_z), #192, 192, 64
+                ratios=[1, 1, 5],
+                num_classes=3,
+                num_samples=args.num_samples,
+                image_key="image",
+                image_threshold=0,
+            ), # 9
             RandRotate90d(
                 keys=["image", "label", "post_label"],
                 prob=0.10,
@@ -228,7 +240,7 @@ def get_loader(args):
             RandShiftIntensityd(
                 keys=["image"],
                 offsets=0.10,
-                prob=0.50,
+                prob=0.20,
             ),
             ToTensord(keys=["image", "label", "post_label"]),
         ]

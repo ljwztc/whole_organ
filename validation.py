@@ -35,7 +35,6 @@ def validation(model, ValLoader, args, i):
         with torch.no_grad():
             pred = sliding_window_inference(image, (args.roi_x, args.roi_y, args.roi_z), 1, model, overlap=args.overlap, mode='gaussian')
             pred_sigmoid = F.sigmoid(pred)
-        
         pred_hard = threshold_organ(pred_sigmoid)
         pred_hard = pred_hard.cpu()
         torch.cuda.empty_cache()
@@ -89,10 +88,10 @@ def main():
     parser.add_argument("--device")
     parser.add_argument("--epoch", default=0)
     ## logging
-    parser.add_argument('--log_name', default='PAOT_v2', help='The path resume from checkpoint')
+    parser.add_argument('--log_name', default='Nvidia/1006', help='The path resume from checkpoint')
     ## model load
-    parser.add_argument('--start_epoch', default=560, type=int, help='Number of start epoches')
-    parser.add_argument('--end_epoch', default=580, type=int, help='Number of end epoches')
+    parser.add_argument('--start_epoch', default=210, type=int, help='Number of start epoches')
+    parser.add_argument('--end_epoch', default=230, type=int, help='Number of end epoches')
     parser.add_argument('--epoch_interval', default=10, type=int, help='Number of start epoches')
 
     ## hyperparameter
@@ -144,7 +143,7 @@ def main():
     
     for i in range(args.start_epoch, args.end_epoch+1, args.epoch_interval):
         #Load pre-trained weights
-        store_path = f'out/{args.log_name}/epoch_{i}.pth'
+        store_path = f'out/{args.log_name}/aepoch_{i}.pth'
         store_dict = model.state_dict()
         load_dict = torch.load(store_path)['net']
 

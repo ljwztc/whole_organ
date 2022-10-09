@@ -37,7 +37,7 @@ class SwinUNETR(nn.Module):
         normalize: bool = True,
         use_checkpoint: bool = False,
         spatial_dims: int = 3,
-        encoding: Union[Tuple, str] = 'embedding'
+        encoding: Union[Tuple, str] = 'rand_embedding', ## rand_embedding or word_embedding
     ) -> None:
         """
         Args:
@@ -234,8 +234,11 @@ class SwinUNETR(nn.Module):
         self.weight_nums = weight_nums
         self.bias_nums = bias_nums
         self.controller = nn.Conv3d(256+256, sum(weight_nums+bias_nums), kernel_size=1, stride=1, padding=0)
-
-        self.organ_embedding = nn.Embedding(out_channels, 256)
+        if self.encoding == 'rand_embedding':
+            self.organ_embedding = nn.Embedding(out_channels, 256)
+        elif self.encoding == 'word_embedding':
+            self.register_buffer('organ_embedding', torch.randn(out_channels, 512))
+            self.text_to_vision = nn.Linear(512, 256)
         self.class_num = out_channels
 
     def load_from(self, weights):
@@ -363,7 +366,11 @@ class SwinUNETR(nn.Module):
         # # print(task_encoding.shape)
         # task_encoding.unsqueeze_(2).unsqueeze_(2).unsqueeze_(2)
         # # print(task_encoding.shape)
-        task_encoding = self.organ_embedding.weight.unsqueeze(2).unsqueeze(2).unsqueeze(2)
+        if self.encoding == 'rand_embedding':
+            task_encoding = self.organ_embedding.weight.unsqueeze(2).unsqueeze(2).unsqueeze(2)
+        elif self.encoding == 'word_embedding':
+            task_encoding = F.relu(self.text_to_vision(self.organ_embedding))
+            task_encoding = task_encoding.unsqueeze(2).unsqueeze(2).unsqueeze(2)
         # task_encoding torch.Size([31, 256, 1, 1, 1])
         x_feat = self.GAP(dec4)
         b = x_feat.shape[0]
