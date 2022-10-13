@@ -36,6 +36,7 @@ def validation(model, ValLoader, val_transforms, args):
     for index, batch in enumerate(tqdm(ValLoader)):
         # print('%d processd' % (index))
         image, label, name = batch["image"].cuda(), batch["post_label"], batch["name"]
+        print(image.shape)
         # print(label.shape)
         with torch.no_grad():
             # with torch.autocast(device_type="cuda", dtype=torch.float16):
@@ -128,7 +129,7 @@ def main():
     ## logging
     parser.add_argument('--log_name', default='PAOT_v2', help='The path resume from checkpoint')
     ## model load
-    parser.add_argument('--resume', default='./out/PAOT_v2/aepoch_500.pth', help='The path resume from checkpoint')
+    parser.add_argument('--resume', default='./out/PAOT_v2/epoch_500.pth', help='The path resume from checkpoint')
     parser.add_argument('--pretrain', default='./pretrained_weights/swin_unetr.base_5000ep_f48_lr2e-4_pretrained.pt', 
                         help='The path of pretrain model')
 

@@ -366,6 +366,7 @@ class SwinUNETR(nn.Module):
         # # print(task_encoding.shape)
         # task_encoding.unsqueeze_(2).unsqueeze_(2).unsqueeze_(2)
         # # print(task_encoding.shape)
+
         if self.encoding == 'rand_embedding':
             task_encoding = self.organ_embedding.weight.unsqueeze(2).unsqueeze(2).unsqueeze(2)
         elif self.encoding == 'word_embedding':

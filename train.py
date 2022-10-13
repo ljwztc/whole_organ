@@ -261,7 +261,7 @@ def main():
                                             '10_06', '10_07', '10_08', '10_09', '10_10'],
                                             help='the content for ')
     parser.add_argument('--cache_dataset', action="store_true", default=False, help='whether use cache dataset')
-    parser.add_argument('--cache_rate', default=0.6, type=float, help='The percentage of cached data in total')
+    parser.add_argument('--cache_rate', default=0.005, type=float, help='The percentage of cached data in total')
 
     args = parser.parse_args()
     

@@ -40,8 +40,9 @@ from typing import IO, TYPE_CHECKING, Any, Callable, Dict, Hashable, List, Mappi
 sys.path.append("..") 
 from utils.utils import get_key
 
-from monai.data import DataLoader, Dataset, list_data_collate, DistributedSampler, CacheDataset
+from torch.utils.data import Subset
 
+from monai.data import DataLoader, Dataset, list_data_collate, DistributedSampler, CacheDataset
 from monai.config import DtypeLike, KeysCollection
 from monai.transforms.transform import Transform, MapTransform
 from monai.utils.enums import TransformBackends
@@ -174,6 +175,37 @@ class LoadImageh5d(MapTransform):
         d['post_label'] = data[0]
         return d
 
+class RandZoomd_select(RandZoomd):
+    def __call__(self, data):
+        d = dict(data)
+        name = d['name']
+        key = get_key(name)
+        if (key not in ['10_03', '10_06', '10_07', '10_08', '10_09', '10_10']):
+            return d
+        d = super().__call__(d)
+        return d
+
+
+class RandCropByPosNegLabeld_select(RandCropByPosNegLabeld):
+    def __call__(self, data):
+        d = dict(data)
+        name = d['name']
+        key = get_key(name)
+        if key in ['10_03', '10_07', '10_08', '04']:
+            return d
+        d = super().__call__(d)
+        return d
+
+class RandCropByLabelClassesd_select(RandCropByLabelClassesd):
+    def __call__(self, data):
+        d = dict(data)
+        name = d['name']
+        key = get_key(name)
+        if key not in ['10_03', '10_07', '10_08', '04']:
+            return d
+        d = super().__call__(d)
+        return d
+
 class Compose_Select(Compose):
     def __call__(self, input_):
         name = input_['name']
@@ -191,7 +223,7 @@ class Compose_Select(Compose):
         return input_
 
 def get_loader(args):
-    train_transforms = Compose_Select(
+    train_transforms = Compose(
         [
             LoadImageh5d(keys=["image", "label"]), #0
             AddChanneld(keys=["image", "label"]),
@@ -211,8 +243,8 @@ def get_loader(args):
             ),
             CropForegroundd(keys=["image", "label", "post_label"], source_key="image"),
             SpatialPadd(keys=["image", "label", "post_label"], spatial_size=(args.roi_x, args.roi_y, args.roi_z), mode='constant'),
-            RandZoomd(keys=["image", "label", "post_label"], prob=1, min_zoom=1.3, max_zoom=1.5, mode=['area', 'nearest', 'nearest']), # 7
-            RandCropByPosNegLabeld(
+            RandZoomd_select(keys=["image", "label", "post_label"], prob=1, min_zoom=1.3, max_zoom=1.5, mode=['area', 'nearest', 'nearest']), # 7
+            RandCropByPosNegLabeld_select(
                 keys=["image", "label", "post_label"],
                 label_key="label",
                 spatial_size=(args.roi_x, args.roi_y, args.roi_z), #192, 192, 64
@@ -222,7 +254,7 @@ def get_loader(args):
                 image_key="image",
                 image_threshold=0,
             ), # 8
-            RandCropByLabelClassesd(
+            RandCropByLabelClassesd_select(
                 keys=["image", "label", "post_label"],
                 label_key="label",
                 spatial_size=(args.roi_x, args.roi_y, args.roi_z), #192, 192, 64
