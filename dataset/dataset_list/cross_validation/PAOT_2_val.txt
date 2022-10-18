@@ -310,7 +310,6 @@
 08_AbdomenCT-1K/img/Case_00944_0000.nii.gz	08_AbdomenCT-1K/label/Case_00944.nii.gz
 08_AbdomenCT-1K/img/Case_00954_0000.nii.gz	08_AbdomenCT-1K/label/Case_00954.nii.gz
 08_AbdomenCT-1K/img/Case_00958_0000.nii.gz	08_AbdomenCT-1K/label/Case_00958.nii.gz
-08_AbdomenCT-1K/img/Case_00966_0000.nii.gz	08_AbdomenCT-1K/label/Case_00966.nii.gz
 08_AbdomenCT-1K/img/Case_00972_0000.nii.gz	08_AbdomenCT-1K/label/Case_00972.nii.gz
 08_AbdomenCT-1K/img/Case_00973_0000.nii.gz	08_AbdomenCT-1K/label/Case_00973.nii.gz
 08_AbdomenCT-1K/img/Case_00977_0000.nii.gz	08_AbdomenCT-1K/label/Case_00977.nii.gz
@@ -375,7 +374,6 @@
 12_CT-ORG/img/volume-12.nii.gz	12_CT-ORG/label/labels-12.nii.gz
 12_CT-ORG/img/volume-120.nii.gz	12_CT-ORG/label/labels-120.nii.gz
 12_CT-ORG/img/volume-124.nii.gz	12_CT-ORG/label/labels-124.nii.gz
-12_CT-ORG/img/volume-138.nii.gz	12_CT-ORG/label/labels-138.nii.gz
 12_CT-ORG/img/volume-15.nii.gz	12_CT-ORG/label/labels-15.nii.gz
 12_CT-ORG/img/volume-19.nii.gz	12_CT-ORG/label/labels-19.nii.gz
 12_CT-ORG/img/volume-26.nii.gz	12_CT-ORG/label/labels-26.nii.gz

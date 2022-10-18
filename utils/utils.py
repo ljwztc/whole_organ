@@ -11,6 +11,7 @@ from math import ceil
 from scipy.ndimage.filters import gaussian_filter
 import warnings
 from typing import Any, Callable, Dict, List, Mapping, Sequence, Tuple, Union
+from scipy import ndimage
 
 from monai.data.utils import compute_importance_map, dense_patch_slices, get_valid_patch_size
 from monai.transforms import Resize, Compose
@@ -161,6 +162,16 @@ TUMOR_NUM = {
     'Kidney Cyst': 20
 }
 
+TUMOR_ORGAN = {
+    'Kidney Tumor': [2,3], 
+    'Liver Tumor': [6], 
+    'Pancreas Tumor': [11], 
+    'Hepatic Vessel Tumor': [15], 
+    'Lung Tumor': [16,17], 
+    'Colon Tumor': [18], 
+    'Kidney Cyst': [2,3]
+}
+
 
 def organ_post_process(pred_mask, organ_list):
     post_pred_mask = np.zeros(pred_mask.shape)
@@ -180,12 +191,45 @@ def organ_post_process(pred_mask, organ_list):
                 # post_pred_mask[b,organ-1] = extract_topk_largest_candidates(pred_mask[b,organ-1], 1)
             elif organ in [1,2,3,4,5,6,7,8,9,12,13,14,15,18,19,20,21,22,23,24,25]: ## rest organ index
                 post_pred_mask[b,organ-1] = extract_topk_largest_candidates(pred_mask[b,organ-1], 1)
-            elif organ in [26,27,28,29,30,31]:
-                post_pred_mask[b,organ-1] = extract_topk_largest_candidates(pred_mask[b,organ-1], 20, area_least=TUMOR_SIZE[ORGAN_NAME[organ-1]])
+            elif organ in [26,28,29,30,31,32]:
+                ####
+                # import SimpleITK as sitk
+                # out = sitk.GetImageFromArray(organ_mask)
+                # sitk.WriteImage(out,'saved_pred_organ.nii.gz')
+                # print(ORGAN_NAME[organ-1])
+                # # if organ == 29:
+                # out = sitk.GetImageFromArray(pred_mask[b,organ-1].astype(np.uint8))
+                # sitk.WriteImage(out,'saved_pred_tumor.nii.gz')
+                # exit()
+                ####
+                post_pred_mask[b,organ-1] = extract_topk_largest_candidates(pred_mask[b,organ-1], TUMOR_NUM[ORGAN_NAME[organ-1]], area_least=TUMOR_SIZE[ORGAN_NAME[organ-1]])
+            elif organ == 27:
+                organ_mask = merge_and_top_organ(pred_mask[b], TUMOR_ORGAN[ORGAN_NAME[organ-1]])
+                post_pred_mask[b,organ-1] = organ_region_filter_out(pred_mask[b,organ-1], organ_mask)
+                post_pred_mask[b,organ-1] = extract_topk_largest_candidates(post_pred_mask[b,organ-1], TUMOR_NUM[ORGAN_NAME[organ-1]], area_least=TUMOR_SIZE[ORGAN_NAME[organ-1]])
             else:
                 post_pred_mask[b,organ-1] = pred_mask[b,organ-1]
     return post_pred_mask
             
+def merge_and_top_organ(pred_mask, organ_list):
+    ## merge 
+    out_mask = np.zeros(pred_mask.shape[1:], np.uint8)
+    for organ in organ_list:
+        out_mask = np.logical_or(out_mask, pred_mask[organ-1])
+    ## select the top k, for righr left case
+    out_mask = extract_topk_largest_candidates(out_mask, len(organ_list))
+
+    return out_mask
+
+def organ_region_filter_out(tumor_mask, organ_mask):
+    ## dialtion
+    organ_mask = ndimage.binary_closing(organ_mask, structure=np.ones((6,6,6)))
+    organ_mask = ndimage.binary_dilation(organ_mask, structure=np.ones((10,10,10)))
+    ## filter out
+    tumor_mask = organ_mask * tumor_mask
+
+    return tumor_mask
+
 
 def PSVein_post_process(PSVein_mask, pancreas_mask):
     xy_sum_pancreas = pancreas_mask.sum(axis=0).sum(axis=0)

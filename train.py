@@ -225,9 +225,9 @@ def main():
     parser.add_argument('--word_embedding', default='./pretrained_weights/word_embedding.pth', 
                         help='The path of word embedding')
     ## hyperparameter
-    parser.add_argument('--max_epoch', default=4000, type=int, help='Number of training epoches')
+    parser.add_argument('--max_epoch', default=2000, type=int, help='Number of training epoches')
     parser.add_argument('--store_num', default=10, type=int, help='Store model how often')
-    parser.add_argument('--warmup_epoch', default=100, type=int, help='number of warmup epochs')
+    parser.add_argument('--warmup_epoch', default=15, type=int, help='number of warmup epochs')
     parser.add_argument('--lr', default=1e-4, type=float, help='Learning rate')
     parser.add_argument('--weight_decay', default=1e-5, help='Weight Decay')
     ## dataset

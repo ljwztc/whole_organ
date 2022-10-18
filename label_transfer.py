@@ -52,7 +52,7 @@ ORGAN_DATASET_DIR = '/home/jliu288/data/whole_organ/'
 ORGAN_LIST = 'dataset/dataset_list/PAOT.txt'
 NUM_WORKER = 8
 NUM_CLASS = 32
-TRANSFER_LIST = ['05', '12']
+TRANSFER_LIST = ['10_08']
 ## full list
 # TRANSFER_LIST = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10_03', '10_06', '10_07', '10_08', '10_09', '10_10', '12', '13', '14']
 
@@ -80,8 +80,7 @@ POST_TUMOR_DICT = {
     '04': [(2,27)],
     '05': [(2,26), (3,32)],
     '10_03': [(2,27)], 
-    '10_07': [(2,28)],
-    '10_08': [(2,29)]
+    '10_07': [(2,28)]
 }
 
 def rl_split(input_data, organ_index, right_index, left_index, name):
@@ -164,7 +163,7 @@ class ToTemplatelabeld(MapTransform):
             template_key = d['name'][0:2] + '_' + d['name'][17:19]
         else:
             template_key = d['name'][0:2]
-        if template_key in ['04', '05', '10_03', '10_07', '10_08', '14']:
+        if template_key in ['04', '05', '10_03', '10_07', '14']:
             TUMOR = True
             tumor_list = POST_TUMOR_DICT[template_key]
         d['label'] = self.totemplate(d['label'], TEMPLATE[template_key], tumor=TUMOR, tumor_list=tumor_list)
@@ -252,7 +251,7 @@ def generate_label(input_lbl, num_classes, name, TEMPLATE, raw_lbl):
                 result[b, i] = (input_lbl[b][0] ==  (i+1))
         
         # for tumor case
-        if template_key in ['04', '05', '10_03', '10_07', '10_08']:
+        if template_key in ['04', '05', '10_03', '10_07']:
             tumor_list = POST_TUMOR_DICT[template_key]
             for src, item in tumor_list:
                 result[b, item - 1] = (raw_lbl[b][0] == src)

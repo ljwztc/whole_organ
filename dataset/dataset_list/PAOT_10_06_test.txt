@@ -1,0 +1,12 @@
+10_Decathlon/Task06_Lung//imagesTr/lung_064.nii.gz	10_Decathlon/Task06_Lung//labelsTr/lung_064.nii.gz
+10_Decathlon/Task06_Lung//imagesTr/lung_031.nii.gz	10_Decathlon/Task06_Lung//labelsTr/lung_031.nii.gz
+10_Decathlon/Task06_Lung//imagesTr/lung_023.nii.gz	10_Decathlon/Task06_Lung//labelsTr/lung_023.nii.gz
+10_Decathlon/Task06_Lung//imagesTr/lung_005.nii.gz	10_Decathlon/Task06_Lung//labelsTr/lung_005.nii.gz
+10_Decathlon/Task06_Lung//imagesTr/lung_078.nii.gz	10_Decathlon/Task06_Lung//labelsTr/lung_078.nii.gz
+10_Decathlon/Task06_Lung//imagesTr/lung_066.nii.gz	10_Decathlon/Task06_Lung//labelsTr/lung_066.nii.gz
+10_Decathlon/Task06_Lung//imagesTr/lung_009.nii.gz	10_Decathlon/Task06_Lung//labelsTr/lung_009.nii.gz
+10_Decathlon/Task06_Lung//imagesTr/lung_074.nii.gz	10_Decathlon/Task06_Lung//labelsTr/lung_074.nii.gz
+10_Decathlon/Task06_Lung//imagesTr/lung_042.nii.gz	10_Decathlon/Task06_Lung//labelsTr/lung_042.nii.gz
+10_Decathlon/Task06_Lung//imagesTr/lung_033.nii.gz	10_Decathlon/Task06_Lung//labelsTr/lung_033.nii.gz
+10_Decathlon/Task06_Lung//imagesTr/lung_095.nii.gz	10_Decathlon/Task06_Lung//labelsTr/lung_095.nii.gz
+10_Decathlon/Task06_Lung//imagesTr/lung_037.nii.gz	10_Decathlon/Task06_Lung//labelsTr/lung_037.nii.gz

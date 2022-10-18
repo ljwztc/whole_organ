@@ -32,6 +32,14 @@ def validation(model, ValLoader, args, i):
         # print('%d processd' % (index))
         image, label, name = batch["image"].cuda(), batch["post_label"], batch["name"]
         # print(name, label.shape)
+        ####
+        # print(name)
+        # import SimpleITK as sitk
+        # out = sitk.GetImageFromArray(image[0][0].cpu().numpy())
+        # sitk.WriteImage(out,'saved_img.nii.gz')
+        # out = sitk.GetImageFromArray(batch["label"][0][0].numpy())
+        # sitk.WriteImage(out,'saved_gt.nii.gz')
+        ####
         with torch.no_grad():
             pred = sliding_window_inference(image, (args.roi_x, args.roi_y, args.roi_z), 1, model, overlap=args.overlap, mode='gaussian')
             pred_sigmoid = F.sigmoid(pred)
@@ -40,21 +48,25 @@ def validation(model, ValLoader, args, i):
         torch.cuda.empty_cache()
         B = pred_sigmoid.shape[0]
         for b in range(B):
+            content = 'case%s| '%(name[b])
             template_key = get_key(name[b])
             organ_list = TEMPLATE[template_key]
             pred_hard_post = organ_post_process(pred_hard.numpy(), organ_list)
             pred_hard_post = torch.tensor(pred_hard_post)
-
             for organ in organ_list:
                 if torch.sum(label[b,organ-1,:,:,:]) != 0:
-                    dice_organ, _, _ = dice_score(pred_hard_post[b,organ-1,:,:,:].cuda(), label[b,organ-1,:,:,:].cuda())
+                    dice_organ, recall, precision = dice_score(pred_hard_post[b,organ-1,:,:,:].cuda(), label[b,organ-1,:,:,:].cuda())
                     dice_list[template_key][0][organ-1] += dice_organ.item()
                     dice_list[template_key][1][organ-1] += 1
+                    content += '%s: %.4f, '%(ORGAN_NAME[organ-1], dice_organ.item())
+                    print('%s: dice %.4f, recall %.4f, precision %.4f.'%(ORGAN_NAME[organ-1], dice_organ.item(), recall.item(), precision.item()))
+            print(content)
+
         torch.cuda.empty_cache()
     
     ave_organ_dice = np.zeros((2, NUM_CLASS))
 
-    with open('out/'+args.log_name+f'/val_{i}.txt', 'w') as f:
+    with open('out/'+args.log_name+f'/b_val_{i}.txt', 'w') as f:
         for key in TEMPLATE.keys():
             organ_list = TEMPLATE[key]
             content = 'Task%s| '%(key)
@@ -88,10 +100,10 @@ def main():
     parser.add_argument("--device")
     parser.add_argument("--epoch", default=0)
     ## logging
-    parser.add_argument('--log_name', default='Nvidia/1006', help='The path resume from checkpoint')
+    parser.add_argument('--log_name', default='Nvidia/old_fold0', help='The path resume from checkpoint')
     ## model load
-    parser.add_argument('--start_epoch', default=210, type=int, help='Number of start epoches')
-    parser.add_argument('--end_epoch', default=230, type=int, help='Number of end epoches')
+    parser.add_argument('--start_epoch', default=500, type=int, help='Number of start epoches')
+    parser.add_argument('--end_epoch', default=500, type=int, help='Number of end epoches')
     parser.add_argument('--epoch_interval', default=10, type=int, help='Number of start epoches')
 
     ## hyperparameter
@@ -100,7 +112,7 @@ def main():
     parser.add_argument('--lr', default=1e-4, type=float, help='Learning rate')
     parser.add_argument('--weight_decay', default=1e-5, type=float, help='Weight Decay')
     ## dataset
-    parser.add_argument('--dataset_list', nargs='+', default=['PAOT_123457891213', 'PAOT_10_inner']) # 'PAOT', 'felix'
+    parser.add_argument('--dataset_list', nargs='+', default=['PAOT_tumor']) # 'PAOT', 'felix' 'PAOT_123457891213', 'PAOT_10_inner', 'PAOT_tumor'
     ### please check this argment carefully
     ### PAOT: include PAOT_123457891213 and PAOT_10
     ### PAOT_123457891213: include 1 2 3 4 5 7 8 9 12 13

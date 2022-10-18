@@ -243,7 +243,7 @@ def get_loader(args):
             ),
             CropForegroundd(keys=["image", "label", "post_label"], source_key="image"),
             SpatialPadd(keys=["image", "label", "post_label"], spatial_size=(args.roi_x, args.roi_y, args.roi_z), mode='constant'),
-            RandZoomd_select(keys=["image", "label", "post_label"], prob=1, min_zoom=1.3, max_zoom=1.5, mode=['area', 'nearest', 'nearest']), # 7
+            RandZoomd_select(keys=["image", "label", "post_label"], prob=0.3, min_zoom=1.3, max_zoom=1.5, mode=['area', 'nearest', 'nearest']), # 7
             RandCropByPosNegLabeld_select(
                 keys=["image", "label", "post_label"],
                 label_key="label",

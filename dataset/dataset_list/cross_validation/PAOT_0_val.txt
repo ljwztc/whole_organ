@@ -379,7 +379,6 @@
 12_CT-ORG/img/volume-118.nii.gz	12_CT-ORG/label/labels-118.nii.gz
 12_CT-ORG/img/volume-126.nii.gz	12_CT-ORG/label/labels-126.nii.gz
 12_CT-ORG/img/volume-127.nii.gz	12_CT-ORG/label/labels-127.nii.gz
-12_CT-ORG/img/volume-135.nii.gz	12_CT-ORG/label/labels-135.nii.gz
 12_CT-ORG/img/volume-2.nii.gz	12_CT-ORG/label/labels-2.nii.gz
 12_CT-ORG/img/volume-24.nii.gz	12_CT-ORG/label/labels-24.nii.gz
 12_CT-ORG/img/volume-3.nii.gz	12_CT-ORG/label/labels-3.nii.gz
