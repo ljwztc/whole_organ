@@ -9,3 +9,4 @@ total_seg*
 *.ipynb
 flop*
 validation_fold*
+saved_*
